@@ -16,8 +16,8 @@ click on clone. Then you edit the code using eclipse or any other IDE on your
 own machine. After coding something, you save it on your computer, and GitHub
 Desktop will show you all the changes you made. Select the files that you
 edited and mention whatever you changed in the text box. Once you click on
-commit on GitHub Desktop, your new files will be sent back to GitHub and
-updated for everyone else.
+commit and then push to origin on GitHub Desktop, your new files will be 
+sent back to GitHub and updated for everyone else.
 
 All the commits people make will be done by default on the master branch.
 Usually if you want to work on features that are more disruptive or kind of
