@@ -10,9 +10,11 @@ Different people can change code at once, and work on different features at the
 same time. We can revert to previous versions of the code and we can see who's
 working on something so we don't waste time with coordinating stuff.
 
-Basically all of the files of the website are stored on GitHub. You download
-the changes that people have made recently to your own computer. To do that just
-click on clone. Then you edit the code using eclipse or any other IDE on your
+Basically all of the files of the website are stored on GitHub. To get them on
+your own computer just click on clone. That will download the files to your 
+computer for the first time. Every time after that when you want to update your 
+own files from Github after someone has made changes, you click on fetch origin 
+in the Desktop Client. Then you edit the code using eclipse or any other IDE on your
 own machine. After coding something, you save it on your computer, and GitHub
 Desktop will show you all the changes you made. Select the files that you
 edited and mention whatever you changed in the text box. Once you click on
