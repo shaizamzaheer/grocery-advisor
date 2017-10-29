@@ -32,9 +32,10 @@ People often undervalue documentation.
 HOW ARE WE WORKING TOGETHER?
 
 This based on a workflow I've used in the past.
-If you look at issues, you can see a list of stuff that needs to be done.
-I didn't populate it properly yet, so if you want to work on an issue you can
-add it and assign it to yourself and start working on it. This is usually so
-people don't end up working on the same thing at once.
+If you look at the issues tab on top, you can see a list of stuff that needs
+to be done. I didn't populate it properly yet, so if you want to work on an 
+issue you can add it and assign it to yourself and start working on it. This 
+is usually so people don't end up working on the same thing at once.
 
-Feel free to elaborate if people want to add something.
+Feel free to elaborate if people want to add something to this file.
+You can also edit right on GitHub for something like a readme.
