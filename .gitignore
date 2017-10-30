@@ -25,3 +25,5 @@ hs_err_pid*
 /.metadata
 /RemoteSystemsTempFiles
 /apache-tomcat-7.0.64
+/db
+db.properties
