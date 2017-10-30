@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<server port="8080">
-  <module context="mie350webapp" name="mie350webapp" path="C:/Users/shaiz/OneDrive/Documents/GitHub/grocery-advisor/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/mie350webapp" type="j2ee"/>
-</server>
