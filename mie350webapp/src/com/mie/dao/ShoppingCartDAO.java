@@ -13,7 +13,7 @@ import com.mie.model.*;
 import com.mie.controller.*;
 import com.mie.util.*;
 
-public class UserDAO {
+public class ShoppingCartDAO {
 
 	/**
 	 * This class handles the User objects and the login component of the web
@@ -26,51 +26,39 @@ public class UserDAO {
 	 * This method attempts to find the user that is trying to log in by
 	 * first retrieving the username and password entered by the user.
 	 */
-	public boolean checkUserExists(User user) {
-
-		boolean doesUserExist = true;
+	public List<CartItem> getShoppingCart() {
 		
 		Statement stmt = null;
-
-		String username = user.getUsername();
-		String password = user.getPassword();
 
 		/**
 		 * Prepare a query that searches the members table in the database
 		 * with the given username and password.
 		 */
-		String userTable = "UserAccounts";
-		String searchQuery = "select * from " + userTable + " where username='"
-				+ username + "' AND password='" + password + "'";
+		String searchQuery = "select I.Item_Name, S.Quantity from Items I, ShoppingList S where I.ItemID = S.ItemID";
+		
+		List<CartItem> shoppingCart = new ArrayList<CartItem>();
 
 		try {
 			// connect to DB
 			currentCon = DbUtil.getConnection();
 			stmt = currentCon.createStatement();
 			rs = stmt.executeQuery(searchQuery);
-			boolean more = rs.next();
 
 			//If there are no results from the query, then user doesn't exist.
-			if (!more) 
-				doesUserExist = false;
+			while(rs.next()) {
+				//populate list
+				shoppingCart.add(new CartItem(rs.getString("Item_Name"), rs.getInt("Quantity")));//
+			}
 		}
 
 		catch (Exception ex) {
-			System.out.println("Log In failed: An Exception has occurred! "
+			System.out.println("Error reading shopping list: An Exception has occurred! "
 					+ ex);
 			ex.printStackTrace();
 		}
 		
 		//Return the whether or not user exists.
-		return doesUserExist;
+		return shoppingCart;
 
-	}
-	
-	public static void main(String [] args) {
-		UserDAO dao = new UserDAO();
-		System.out.println(dao.checkUserExists(new User("albertloa", "abcd1234")));
-		System.out.println(dao.checkUserExists(new User("albert", "abcd1234")));
-		System.out.println(dao.checkUserExists(new User("nathanling", "1234abcd")));
-		System.out.println(dao.checkUserExists(new User("nathanling", "abcd")));
 	}
 }

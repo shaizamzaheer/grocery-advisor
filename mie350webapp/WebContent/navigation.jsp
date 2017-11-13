@@ -22,7 +22,7 @@
   </div>
 
   <div class="displayInlineBlock" style="float: right;">
-    <form action=""> <!-- FinalizeServlet -->
+    <form action="FinalizeServlet" method="post"> <!-- FinalizeServlet -->
       <input type="submit" value="Shopping Cart">
     </form>
 

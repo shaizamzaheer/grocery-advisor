@@ -51,12 +51,20 @@ public class FoodDAO {
 		}
 
 		catch (Exception ex) {
-			System.out.println("Log In failed: An Exception has occurred! "
+			System.out.println("Something went wrong when trying to access the food table: An Exception has occurred! "
 					+ ex);
+			ex.printStackTrace();
 		}
 		
 		//Return the whether or not user exists.
 		return suggestionList;
 
+	}
+	
+	public static void main(String[] args) {
+		FoodDAO dao = new FoodDAO();
+		
+		List<String> suggestionList = dao.getAllSuggestions();
+		System.out.println(suggestionList);
 	}
 }

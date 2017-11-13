@@ -27,4 +27,34 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetStoresWithinRadiusServlet</display-name>
+    <servlet-name>GetStoresWithinRadiusServlet</servlet-name>
+    <servlet-class>com.mie.controller.GetStoresWithinRadiusServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetStoresWithinRadiusServlet</servlet-name>
+    <url-pattern>/GetStoresWithinRadiusServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DisplayResultsServlet</display-name>
+    <servlet-name>DisplayResultsServlet</servlet-name>
+    <servlet-class>com.mie.controller.DisplayResultsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayResultsServlet</servlet-name>
+    <url-pattern>/DisplayResultsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FinalizeServlet</display-name>
+    <servlet-name>FinalizeServlet</servlet-name>
+    <servlet-class>com.mie.controller.FinalizeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FinalizeServlet</servlet-name>
+    <url-pattern>/FinalizeServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
