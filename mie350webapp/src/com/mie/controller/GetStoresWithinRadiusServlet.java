@@ -42,7 +42,7 @@ public class GetStoresWithinRadiusServlet extends HttpServlet {
 				+ key
 				+ "&units=metric"
 				+ "&origins="
-				+ userLat + ", " + userLon
+				+ userLat + "," + userLon
 				+ "&destinations=";
 		
 		for (int i = 0; i < storesWithinRadius.size(); i++) {
@@ -54,12 +54,14 @@ public class GetStoresWithinRadiusServlet extends HttpServlet {
 			candidateStoreIDs.add(currStore.getStoreID());
 			
 			//add destination lat and lon to url
-			url += currStore.getLat() + ", " + currStore.getLon();
+			url += currStore.getLat() + "," + currStore.getLon();
 			
-			//if store in list is not the first one or the last one, then add a "pipe" so that more destinations can be allowed in url
-			if (i != 0 || i != storesWithinRadius.size()-1)
+			//if store in list is not the last one, then add a "pipe" so that more destinations can be allowed in url
+			if (i < storesWithinRadius.size()-1)
 				url += "|";
 		}
+		
+		System.out.println(url);
 		
 		//put url on session so that DistanceMatrixAPI can use it when it is called in the next JSP
 		request.getSession().setAttribute("distanceMatrixURL", url);
@@ -67,7 +69,7 @@ public class GetStoresWithinRadiusServlet extends HttpServlet {
 		//put list of storeIDs on session so that DisplayResultsServlet can use it to filter only relevant stores when getting cheapest stores/prices
 		request.getSession().setAttribute("candidateStoreIDs", candidateStoreIDs);
 		
-		//response.sendRedirect("gettingDistances.jsp");
+		response.sendRedirect("gettingDistances.jsp");
 		
 	}
 
