@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 		if (doesUserExist) {
 			
 			request.getSession().setAttribute("userID", user.getUserID()); //store userID on session for later use
-			System.out.println(user.getUserID());
+			System.out.println(user.getUserID()); //test check if userID is properly incorporated
 			
 			//get all the suggestions so that the next page can use it
 			FoodDAO foodDAO = new FoodDAO();

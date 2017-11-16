@@ -31,11 +31,11 @@ public class StoreDAO {
 		 * Prepare a query that searches for stores that are within a certain radius of the user's location (lat, lon)
 		 */
 		
-		String searchQuery = "select StoreID, StoreLat, StoreLon from Location where "
+		String searchQuery = "select StoreID, Lat, Long from Store where "
 				+ "(((111.2)^2)*((?-StoreLat)^2+((?-StoreLon)^2)*(cos(?*3.141592654/180))^2))<?^2;";
 		System.out.println("\n" + searchQuery + "\n"); //test to check if query looks right
 								
-		List<Store> storesWithinRadius2 = new ArrayList<Store>(); //list to store the stores
+		List<Store> storesWithinRadius = new ArrayList<Store>(); //list to store the stores
 
 		try {
 			// connect to DB
@@ -52,12 +52,12 @@ public class StoreDAO {
 			
 			while (rs.next()) {
 				int storeID = rs.getInt("StoreID");
-				double storeLat = rs.getDouble("StoreLat");
-				double storeLon = rs.getDouble("StoreLon");
+				double storeLat = rs.getDouble("Lat");
+				double storeLon = rs.getDouble("Long");
 				System.out.println(storeID);
 				System.out.println(storeLat);
 				System.out.println(storeLon);
-				storesWithinRadius2.add(new Store(storeID, storeLat, storeLon));
+				storesWithinRadius.add(new Store(storeID, storeLat, storeLon));
 				
 			}
 		}
@@ -69,7 +69,7 @@ public class StoreDAO {
 			ex.printStackTrace();
 		}
 		//Return the list of stores that are within certain radius of user
-		return storesWithinRadius2;
+		return storesWithinRadius;
 
 	}
 
