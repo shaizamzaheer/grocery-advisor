@@ -23,8 +23,7 @@ public class StoreDAO {
 	static ResultSet rs = null;
 
 	/**
-	 * This method attempts to find the user that is trying to log in by
-	 * first retrieving the username and password entered by the user.
+	 * This method gets all the stores within a certain radius of the user's location (lat, lon).
 	 */
 	public List<Store> getStoresWithinRadius(double userLat, double userLon, double radius) {
 		PreparedStatement pst = null;
@@ -34,9 +33,9 @@ public class StoreDAO {
 		
 		String searchQuery = "select StoreID, StoreLat, StoreLon from Location where "
 				+ "(((111.2)^2)*((?-StoreLat)^2+((?-StoreLon)^2)*(cos(?*3.141592654/180))^2))<?^2;";
-		System.out.println("\n" + searchQuery + "\n");
+		System.out.println("\n" + searchQuery + "\n"); //test to check if query looks right
 								
-		List<Store> storesWithinRadius2 = new ArrayList<Store>();
+		List<Store> storesWithinRadius2 = new ArrayList<Store>(); //list to store the stores
 
 		try {
 			// connect to DB
@@ -74,11 +73,14 @@ public class StoreDAO {
 
 	}
 
+	/**
+	 * This method gets the details of a particular store
+	 */
 	public Store getStoreDetails(int storeID) {
 		Statement stmt = null;
 
 		/**
-		 * Prepare a query that searches for stores that are within a certain radius of the user's location (lat, lon)
+		 * Prepare a query that retrieves singular details of a certain store and another query that retrieves store hours
 		 */
 		String searchQuery = "select Franchise, Street_Address, Region, Postal_Code, Phone from Store where storeID = " + storeID + ";";	
 		String searchHours = "select DayOfWeek, StartTime, EndTime from Store where StoreID = " + storeID + ";";
@@ -90,9 +92,8 @@ public class StoreDAO {
 			stmt = currentCon.createStatement();
 			rs = stmt.executeQuery(searchQuery);
 			
-			rs.next();
+			rs.next(); //expecting only one tuple...
 			
-			//TODO: make sure column names correspond
 			storeDetails = new Store(
 					storeID,
 					rs.getString("Franchise"), 

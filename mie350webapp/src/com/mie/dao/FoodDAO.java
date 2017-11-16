@@ -21,22 +21,17 @@ public class FoodDAO {
 	static ResultSet rs = null;
 
 	/**
-	 * This method attempts to find the user that is trying to log in by
-	 * first retrieving the username and password entered by the user.
+	 * This method returns a list of suggestions of all the existing item_types.
 	 */
 	public List<String> getAllSuggestions() {
-
-		boolean doesUserExist = true;
 		
 		Statement stmt = null;
 
 		/**
-		 * Prepare a query that searches the members table in the database
-		 * with the given username and password.
+		 * Prepare a query that searches the ItemCategory table for all item_types.
 		 */
-		String foodTable = "ItemCategory";
-		String searchQuery = "select Item_Type from " + foodTable; //Food 
-		List<String> suggestionList = new ArrayList<String>();
+		String searchQuery = "select Item_Type from ItemCategory";  
+		List<String> suggestionList = new ArrayList<String>(); //list to store item_types 
 
 		try {
 			// connect to DB
@@ -44,7 +39,7 @@ public class FoodDAO {
 			stmt = currentCon.createStatement();
 			rs = stmt.executeQuery(searchQuery);
 			
-			//For each tuple returned, store the foodName in the list
+			//For each tuple returned, store the item_type in the list
 			while(rs.next()) {
 				suggestionList.add(rs.getString(1));
 			}
@@ -56,15 +51,8 @@ public class FoodDAO {
 			ex.printStackTrace();
 		}
 		
-		//Return the whether or not user exists.
+		//Return list of item_types (list of strings).
 		return suggestionList;
 
-	}
-	
-	public static void main(String[] args) {
-		FoodDAO dao = new FoodDAO();
-		
-		List<String> suggestionList = dao.getAllSuggestions();
-		System.out.println(suggestionList);
 	}
 }

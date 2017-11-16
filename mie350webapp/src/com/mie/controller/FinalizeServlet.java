@@ -19,8 +19,9 @@ public class FinalizeServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int userID = (Integer)request.getSession().getAttribute("userID");
 		ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
-		List<CartItem> shoppingCart = shoppingCartDAO.getShoppingCart();
+		List<CartItem> shoppingCart = shoppingCartDAO.getShoppingCart(userID);
 		
 		request.getSession().setAttribute("shoppingCart", shoppingCart);
 		

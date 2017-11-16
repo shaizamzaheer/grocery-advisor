@@ -53,6 +53,9 @@ public class UserDAO {
 			//If there are no results from the query, then user doesn't exist.
 			if (!more) 
 				doesUserExist = false;
+			
+			else
+				user.setUserID(rs.getInt("AccountID")); //if user exists, set accountID in object
 		}
 
 		catch (Exception ex) {
@@ -64,13 +67,5 @@ public class UserDAO {
 		//Return the whether or not user exists.
 		return doesUserExist;
 
-	}
-	
-	public static void main(String [] args) {
-		UserDAO dao = new UserDAO();
-		System.out.println(dao.checkUserExists(new User("albertloa", "abcd1234")));
-		System.out.println(dao.checkUserExists(new User("albert", "abcd1234")));
-		System.out.println(dao.checkUserExists(new User("nathanling", "1234abcd")));
-		System.out.println(dao.checkUserExists(new User("nathanling", "abcd")));
 	}
 }

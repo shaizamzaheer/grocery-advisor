@@ -26,17 +26,16 @@ public class ShoppingCartDAO {
 	 * This method attempts to find the user that is trying to log in by
 	 * first retrieving the username and password entered by the user.
 	 */
-	public List<CartItem> getShoppingCart() {
+	public List<CartItem> getShoppingCart(int userID) {
 		
 		Statement stmt = null;
 
 		/**
-		 * Prepare a query that searches the members table in the database
-		 * with the given username and password.
+		 * Prepare a query gets the shopping cart (item_name and quantity) for a particular user.
 		 */
-		String searchQuery = "select I.Item_Name, S.Quantity from Items I, ShoppingList S where I.ItemID = S.ItemID";
+		String searchQuery = "select I.Item_Name, S.Quantity from Items I, ShoppingList S where I.ItemID = S.ItemID and S.AccountID = " + userID;
 		
-		List<CartItem> shoppingCart = new ArrayList<CartItem>();
+		List<CartItem> shoppingCart = new ArrayList<CartItem>(); //shopping cart is a list of cartitems (contains item_name, quantity)
 
 		try {
 			// connect to DB
@@ -44,7 +43,6 @@ public class ShoppingCartDAO {
 			stmt = currentCon.createStatement();
 			rs = stmt.executeQuery(searchQuery);
 
-			//If there are no results from the query, then user doesn't exist.
 			while(rs.next()) {
 				//populate list
 				shoppingCart.add(new CartItem(rs.getString("Item_Name"), rs.getInt("Quantity")));//
@@ -57,7 +55,7 @@ public class ShoppingCartDAO {
 			ex.printStackTrace();
 		}
 		
-		//Return the whether or not user exists.
+		//Return the user's shopping cart.
 		return shoppingCart;
 
 	}

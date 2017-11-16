@@ -8,6 +8,7 @@ public class User {
 	 * methods for the User object.
 	 */
 
+	private int userID;
 	private String username;
 	private String password;
 	private String email;
@@ -44,5 +45,14 @@ public class User {
 	public String toString() {
 		return "User [username=" + username
 				+ ", password=" + password + ", email=" + email + "]";
+	}
+	
+	public void setUserID(int userID) {
+		this.userID = userID;
+		
+	}
+	
+	public int getUserID() {
+		return userID;
 	}
 }
