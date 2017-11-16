@@ -11,7 +11,7 @@
 
 <p id="url" style="display: none;"><%= session.getAttribute("distanceMatrixURL") %></p>
 
-<form action="DisplayResultsServlet" method="post" id="form">
+<form action="DisplayResultsServlet" method="post" id="form"> <!--  DisplayResultsServlet -->
 	
 
 </form>

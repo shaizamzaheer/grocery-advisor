@@ -41,12 +41,21 @@
 		for(String day : hours.keySet()) { %>
 			
 			<tr>
-				<td><%= day %></td>
-				<td><%= hours.get(day)[0] %> to <%= hours.get(day)[1] %></td>
+				<th><%= day %></th>
+				<th><%= hours.get(day)[0] %> to <%= hours.get(day)[1] %></th>
 			</tr>
 			
 		<% } %>
-		
+	
+	<tr>
+	<th>Total Price:</th>
+	<th><%= result.getPrice() %></th>
+	</tr>
+	
+	<tr>
+	<th>Distance:</th>
+	<th><%= result.getDistance() %></th>
+	</tr>	
 	</table>
 	<br>
 	<br>

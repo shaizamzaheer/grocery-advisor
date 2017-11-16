@@ -25,12 +25,12 @@ public class DisplayResultsServlet extends HttpServlet {
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-			
+		int userID = (Integer)request.getSession().getAttribute("userID");	
 		ArrayList<Integer> candidateStoreIDs = (ArrayList<Integer>) request.getSession().getAttribute("candidateStoreIDs");
 		Set<Result> results = new TreeSet<Result>();
 		
 		CheapestDAO cheapestDAO = new CheapestDAO();
-		HashMap<Integer, Double> cheapestStoreIDsAndPrices = cheapestDAO.getCheapestStoreIDsAndPrices(candidateStoreIDs);
+		HashMap<Integer, Double> cheapestStoreIDsAndPrices = cheapestDAO.getCheapestStoreIDsAndPrices(userID, candidateStoreIDs);
 		
 		StoreDAO storeDAO = new StoreDAO();
 		
@@ -39,8 +39,16 @@ public class DisplayResultsServlet extends HttpServlet {
 		//new Result(store object, price (from hashmap i.e. cheapestStoreIDsAndPrice.get(i)), distance (getparameter "dist"+i from request))
 		//add to list of Results
 		
+		System.out.println("Candidate StoreIDS: ");
+		System.out.println(candidateStoreIDs);
+		
+		System.out.println("StoreIDsToPrices:");
+		System.out.println(cheapestStoreIDsAndPrices);
+		
 		for (int i = 0; i < candidateStoreIDs.size(); i++) {
+			System.out.println("ID: " + candidateStoreIDs.get(i));
 			Store storeDetails = storeDAO.getStoreDetails(candidateStoreIDs.get(i));
+			System.out.println(storeDetails.getFranchise() + ", " + storeDetails.getStoreID());
 			double price = cheapestStoreIDsAndPrices.get(candidateStoreIDs.get(i));
 			double distance = Double.parseDouble(request.getParameter("dist"+i));
 			Result result = new Result(storeDetails, price, distance);

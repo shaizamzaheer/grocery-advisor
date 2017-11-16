@@ -32,7 +32,7 @@ public class StoreDAO {
 		 */
 		
 		String searchQuery = "select StoreID, Lat, Long from Store where "
-				+ "(((111.2)^2)*((?-StoreLat)^2+((?-StoreLon)^2)*(cos(?*3.141592654/180))^2))<?^2;";
+				+ "(((111.2)^2)*((?-Lat)^2+((?-Long)^2)*(cos(?*3.141592654/180))^2))<?^2;";
 		System.out.println("\n" + searchQuery + "\n"); //test to check if query looks right
 								
 		List<Store> storesWithinRadius = new ArrayList<Store>(); //list to store the stores
@@ -83,7 +83,7 @@ public class StoreDAO {
 		 * Prepare a query that retrieves singular details of a certain store and another query that retrieves store hours
 		 */
 		String searchQuery = "select Franchise, Street_Address, Region, Postal_Code, Phone from Store where storeID = " + storeID + ";";	
-		String searchHours = "select DayOfWeek, StartTime, EndTime from Store where StoreID = " + storeID + ";";
+		String searchHours = "select DayOfWeek, StartTime, EndTime from StoreHours where StoreID = " + storeID + ";";
 		Store storeDetails = null;
 
 		try {
@@ -112,7 +112,7 @@ public class StoreDAO {
 		}
 
 		catch (Exception ex) {
-			System.out.println("Log In failed: An Exception has occurred! "
+			System.out.println("Failed to get store details: An Exception has occurred! "
 					+ ex);
 		}
 		
