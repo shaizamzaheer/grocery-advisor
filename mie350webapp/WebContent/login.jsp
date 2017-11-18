@@ -7,6 +7,17 @@
 
 </head>
 <body style="margin: 0;">
+
+	<%
+	
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	
+	if (session.getAttribute("user") != null) {
+		//System.out.println("Is response null? " + response);
+		response.sendRedirect("welcome.jsp");
+		return;
+	}
+	%>
 <div id="Login" style="background: black; padding: 25px; color:white">
 	<div>
 		<h1>Expedia Shopping</h1>

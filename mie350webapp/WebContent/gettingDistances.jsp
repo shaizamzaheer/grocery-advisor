@@ -10,8 +10,16 @@
 <body>
 
 	<%
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	
 	if (session.getAttribute("user") == null) {
 		response.sendRedirect("login.jsp");
+		return;
+	}
+	
+	if (session.getAttribute("resultsVisited") != null && (Boolean)session.getAttribute("resultsVisited") == true) {
+		session.setAttribute("resultsVisited", false);
+		response.sendRedirect("finalize.jsp");
 		return;
 	}
 	%>
