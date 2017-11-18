@@ -3,8 +3,8 @@
 
 <div id="navigationArea" style="background: grey; padding: 25px;">
   <div class="displayInlineBlock">
-    <form action=""> <!-- DisplayItemsServlet -->
-      <input type="text" name="foodSelected" list="suggestions">
+    <form action="DisplayItemsServlet"> <!-- DisplayItemsServlet -->
+      <input type="text" name="item_type" list="suggestions">
       <datalist id="suggestions">
       
       <!-- Populate search bar dropdown suggestion list with suggestions -->

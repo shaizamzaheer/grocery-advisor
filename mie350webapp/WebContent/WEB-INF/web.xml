@@ -57,4 +57,24 @@
     <servlet-name>FinalizeServlet</servlet-name>
     <url-pattern>/FinalizeServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddToCartServlet</display-name>
+    <servlet-name>AddToCartServlet</servlet-name>
+    <servlet-class>com.mie.controller.AddToCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddToCartServlet</servlet-name>
+    <url-pattern>/AddToCartServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DisplayItemsServlet</display-name>
+    <servlet-name>DisplayItemsServlet</servlet-name>
+    <servlet-class>com.mie.controller.DisplayItemsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayItemsServlet</servlet-name>
+    <url-pattern>/DisplayItemsServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

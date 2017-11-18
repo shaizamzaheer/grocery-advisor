@@ -4,8 +4,12 @@ public class CartItem extends Item {
 	int quantity;
 
 	public CartItem(String item_name, int quantity) {
-		// TODO Auto-generated constructor stub
 		this.setItemName(item_name);
+		this.setQuantity(quantity);
+	}
+	
+	public CartItem(int itemID, int quantity) {
+		this.setItemID(itemID);
 		this.setQuantity(quantity);
 	}
 

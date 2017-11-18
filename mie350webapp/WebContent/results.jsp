@@ -18,22 +18,22 @@
 	<table>
 	<tr>
 	<th>Store:</th>
-	<th><%= store.getFranchise() %></th>
+	<td><%= store.getFranchise() %></td>
 	</tr>
 	
 	<tr>
 	<th>Location:</th>
-	<th><%= store.getStreetAddress() %>, <%= store.getRegion() %>, <%= store.getPostalCode() %></th>
+	<td><%= store.getStreetAddress() %>, <%= store.getRegion() %>, <%= store.getPostalCode() %></td>
 	</tr>
 	
 	<tr>
 	<th>Phone:</th>
-	<th><%= store.getPhone() %></th>
+	<td><%= store.getPhone() %></td>
 	</tr>
 	
 	<tr>
 	<th>Hours:</th>
-	<th></th>
+	<td></td>
 	</tr>
 	
 	<% HashMap<String, Time[]> hours = store.getHours(); 
@@ -41,20 +41,20 @@
 		for(String day : hours.keySet()) { %>
 			
 			<tr>
-				<th><%= day %></th>
-				<th><%= hours.get(day)[0] %> to <%= hours.get(day)[1] %></th>
+				<td><%= day %></td>
+				<td><%= hours.get(day)[0] %> to <%= hours.get(day)[1] %></td>
 			</tr>
 			
 		<% } %>
 	
 	<tr>
 	<th>Total Price:</th>
-	<th><%= result.getPrice() %></th>
+	<td>$ <%= result.getPrice() %></td>
 	</tr>
 	
 	<tr>
 	<th>Distance:</th>
-	<th><%= result.getDistance() %></th>
+	<td><%= result.getDistance() %> m</td>
 	</tr>	
 	</table>
 	<br>

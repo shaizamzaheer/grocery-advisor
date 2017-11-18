@@ -59,4 +59,36 @@ public class ShoppingCartDAO {
 		return shoppingCart;
 
 	}
+
+	public void insertShoppingItem(int userID, CartItem cartItem) {
+		
+		PreparedStatement pst = null;
+		/**
+		 * Prepare a query that inserts the cartitme into the shoppingcart table
+		 */
+		
+		String insertQuery = "INSERT INTO ShoppingList(AccountID, ItemID, Quantity) VALUES (?,?,?)";
+
+		try {
+			// connect to DB
+			currentCon = DbUtil.getConnection();
+			
+			pst = currentCon.prepareStatement(insertQuery);
+			pst.setInt(1, userID);
+			pst.setInt(2, cartItem.getItemID());
+			pst.setInt(3, cartItem.getQuantity());
+			pst.executeUpdate();
+			
+			System.out.println(userID + ", " + cartItem.getItemID() + ", " + cartItem.getQuantity() + " has been entered successfully!");
+		}
+
+		catch (Exception ex) {
+			System.out.println("Something went wrong trying to insert shopping item: "
+					+ ex);
+			System.out.println("Stacktrace: ");
+			ex.printStackTrace();
+		}
+
+		
+	}
 }
