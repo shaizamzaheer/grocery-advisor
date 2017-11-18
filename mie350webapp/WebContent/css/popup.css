@@ -1,0 +1,43 @@
+@CHARSET "ISO-8859-1";
+
+#popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#closebtn {
+  display: none;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: black;
+  font-size: 25px;
+  color: white;
+  line-height: 70%;
+  padding: 8px;
+  border-radius: 100%;
+}
+
+input:hover {
+  background-color: green;
+}
+
+#closebtn:hover {
+  cursor: pointer;
+}
+
+#closebtn:active {
+  background-color: red;
+}
+
+#toDisplay {
+  background-color: white;
+  margin: 50px auto;
+  text-align: center;
+  width: 50%;
+}

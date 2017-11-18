@@ -9,6 +9,14 @@
 <script src="js/addToCart.js"></script>
 </head>
 <body>
+
+	<%
+	if (session.getAttribute("user") == null) {
+		response.sendRedirect("login.jsp");
+		return;
+	}
+	%>
+	
 <%@ include file="topbar.jsp" %>
 	<%@ include file="navigation.jsp"%>
 

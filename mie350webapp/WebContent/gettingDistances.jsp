@@ -9,6 +9,13 @@
 </head>
 <body>
 
+	<%
+	if (session.getAttribute("user") == null) {
+		response.sendRedirect("login.jsp");
+		return;
+	}
+	%>
+
 <p id="url" style="display: none;"><%= session.getAttribute("distanceMatrixURL") %></p>
 
 <form action="DisplayResultsServlet" method="post" id="form"> <!--  DisplayResultsServlet -->

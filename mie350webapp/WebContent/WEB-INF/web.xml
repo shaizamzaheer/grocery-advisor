@@ -77,4 +77,14 @@
     <servlet-name>DisplayItemsServlet</servlet-name>
     <url-pattern>/DisplayItemsServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TestUpdateSession</display-name>
+    <servlet-name>TestUpdateSession</servlet-name>
+    <servlet-class>com.mie.controller.TestUpdateSession</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestUpdateSession</servlet-name>
+    <url-pattern>/TestUpdateSession</url-pattern>
+  </servlet-mapping>
 </web-app>
