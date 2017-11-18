@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2GqdujVRHhAIpGZ5dRbkbzOrbvox711A&libraries=places"></script>
 <script src="js/locationSearch.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/displayInlineBlock.css">
 </head>
 
 <body>
@@ -17,6 +19,8 @@
 		return;
 	}
 	%>
+	
+		<%@ include file="topbar.jsp" %>
 
 <table>
 <tr>
