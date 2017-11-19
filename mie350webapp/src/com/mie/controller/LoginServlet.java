@@ -19,41 +19,49 @@ import com.mie.model.User;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// make user object out of parameters sent from login.jsp
+		User user = new User(request.getParameter("username"),
+				request.getParameter("password"));
 
-		//make user object out of parameters sent from login.jsp
-		User user = new User(request.getParameter("username"), request.getParameter("password"));
-		
-		//check if user exists in database
+		// check if user exists in database
 		UserDAO userDAO = new UserDAO();
 		boolean doesUserExist = userDAO.checkUserExists(user);
-		
-		//if user DOES exist...
-		if (doesUserExist) {
+
+		if (doesUserExist) 
 			
-			request.getSession().setAttribute("userID", user.getUserID()); //store userID on session for later use
-			System.out.println(user.getUserID()); //test check if userID is properly incorporated
-			
-			//get all the suggestions so that the next page can use it
-			FoodDAO foodDAO = new FoodDAO();
-			List<String> suggestionList = foodDAO.getAllSuggestions();
-			
-			//make suggestion list and user object available to all pages
-			request.getSession().setAttribute("suggestionList", suggestionList);
-			request.getSession().setAttribute("user", user);
-			
-			//redirect to welcome.jsp (Welcome Page with search bar, etc.)
-			response.sendRedirect("welcome.jsp");
-		}
-		
-		//if user DOES NOT exist...
+			//user exists
+			sendToWelcome(request, response, user);
+
 		else {
-			
-			//redirect them back to Log In page
+			// redirect them back to Log In page
 			response.sendRedirect("login.jsp");
 		}
-	
+
+	}
+
+	public void sendToWelcome(HttpServletRequest request,
+			HttpServletResponse response, User user) throws ServletException,
+			IOException {
+		
+		// store userID on session for later use
+		request.getSession().setAttribute("userID", user.getUserID());
+
+		// test check if userID is properly incorporated
+		System.out.println(user.getUserID());
+
+		// get all the suggestions so that the next page can use it
+		FoodDAO foodDAO = new FoodDAO();
+		List<String> suggestionList = foodDAO.getAllSuggestions();
+
+		// make suggestion list and user object available to all pages
+		request.getSession().setAttribute("suggestionList", suggestionList);
+		request.getSession().setAttribute("user", user);
+
+		// redirect to welcome.jsp (Welcome Page with search bar, etc.)
+		response.sendRedirect("welcome.jsp");
 	}
 
 }

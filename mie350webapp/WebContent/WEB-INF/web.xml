@@ -97,4 +97,24 @@
     <servlet-name>DisplayFirstPageServlet</servlet-name>
     <url-pattern>/DisplayFirstPageServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CreateAccountServlet</display-name>
+    <servlet-name>CreateAccountServlet</servlet-name>
+    <servlet-class>com.mie.controller.CreateAccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateAccountServlet</servlet-name>
+    <url-pattern>/CreateAccountServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DisplayCategoryServlet</display-name>
+    <servlet-name>DisplayCategoryServlet</servlet-name>
+    <servlet-class>com.mie.controller.DisplayCategoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayCategoryServlet</servlet-name>
+    <url-pattern>/DisplayCategoryServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

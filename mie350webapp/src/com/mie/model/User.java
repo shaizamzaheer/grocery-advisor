@@ -17,6 +17,13 @@ public class User {
 		setUsername(username);
 		setPassword(password);
 	}
+	
+	public User(String username, String password, String email) {
+		setUsername(username);
+		setPassword(password);
+		setEmail(email);
+	}
+	
 	public String getUsername() {
 		return username;
 	}

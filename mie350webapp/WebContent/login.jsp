@@ -21,6 +21,7 @@
 <div id="Login" style="background: black; padding: 25px; color:white">
 	<div>
 		<h1>Expedia Shopping</h1>
+		<h3>Login</h3>
 	</div>
 	<div id="" style="float: right">
 		<form action="LoginServlet" method="post">
@@ -28,6 +29,22 @@
 			Username: <input type="text" name="username" /> 
 			Password: <input type="password" name="password" /> 
 			<input type="submit" value="Submit">
+			<br />
+		</form>
+	</div>
+</div>
+
+<div id="Create User" style="background: black; padding: 25px; color:white">
+	<div>
+		<h3>Or Create an Account</h3>
+	</div>
+	<div id="" style="float: right">
+		<form action="CreateAccountServlet" method="post">
+
+			Username: <input type="text" name="username" /> 
+			Password: <input type="password" name="password" />
+			Email: <input type = "email" name = "email"/>
+			<input type="submit" value="Create Account">
 			<br />
 		</form>
 	</div>
