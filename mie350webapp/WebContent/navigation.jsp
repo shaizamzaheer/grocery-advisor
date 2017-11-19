@@ -22,9 +22,7 @@
   </div>
 
   <div class="displayInlineBlock" style="float: right;">
-    <form action="FinalizeServlet" method="post"> <!-- FinalizeServlet -->
-      <input type="submit" value="Shopping Cart">
-    </form>
+      <input type="button" value="Shopping Cart" id="displaybtn">
 
   </div>
 
@@ -40,3 +38,9 @@
 
   </div>
 </div>
+
+<div id="popup">
+
+</div>
+
+<div id="closebtn">X</div>

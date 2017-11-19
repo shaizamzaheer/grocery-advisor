@@ -23,10 +23,6 @@
   border-radius: 100%;
 }
 
-input:hover {
-  background-color: green;
-}
-
 #closebtn:hover {
   cursor: pointer;
 }

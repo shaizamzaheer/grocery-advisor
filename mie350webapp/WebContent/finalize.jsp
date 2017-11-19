@@ -24,6 +24,7 @@
 	
 		<%@ include file="topbar.jsp" %>
 
+<!--  
 <table>
 <tr>
 <th>Info</th>
@@ -42,6 +43,7 @@
 	<% } %>
 
 </table>
+-->
 
 <form action="GetStoresWithinRadiusServlet" method="get" id="form">
 

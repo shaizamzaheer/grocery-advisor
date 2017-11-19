@@ -10,6 +10,8 @@
 <title>Welcome!</title>
 
 <link rel="stylesheet" type="text/css" href="css/displayInlineBlock.css">
+<link rel="stylesheet" type="text/css" href="css/popup.css">
+<script type="text/javascript" src="js/displayShoppingCart.js"></script>
 </head>
 <body>
 	

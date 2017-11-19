@@ -6,7 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/displayInlineBlock.css">
-<script src="js/addToCart.js"></script>
+<link rel="stylesheet" type="text/css" href="css/popup.css">
+<script type="text/javascript" src="js/addToCart.js"></script>
+<script type="text/javascript" src="js/editCart.js"></script>
+<script type="text/javascript" src="js/displayShoppingCart.js"></script>
 </head>
 <body>
 
@@ -31,7 +34,7 @@ for (Item item : items) { %>
 			<img src="" alt="IMAGE!" style="position: relative; top: 40%; "/>
 		</div>
 		<input type="hidden" value="<%= item.getItemID() %>" />
-		<div class="itemInfo" style="margin: auto;"><%= item.getItemName() + ", " + item.getAmount() %></div>
+		<div class="itemInfo" style="margin: auto;"><span class="itemName"><%= item.getItemName()%></span> , <span class="amount"><%=item.getAmount() %></div>
 		<input type="number" min="0" value="0" style="margin: 10px auto; width: 50px;"/>
 		<input type="button" value="Add To Cart" class="itemBtn" />
 		

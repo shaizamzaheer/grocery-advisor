@@ -117,4 +117,24 @@
     <servlet-name>DisplayCategoryServlet</servlet-name>
     <url-pattern>/DisplayCategoryServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InOutCartServlet</display-name>
+    <servlet-name>InOutCartServlet</servlet-name>
+    <servlet-class>com.mie.controller.InOutCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InOutCartServlet</servlet-name>
+    <url-pattern>/InOutCartServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShoppingCartServlet</display-name>
+    <servlet-name>ShoppingCartServlet</servlet-name>
+    <servlet-class>com.mie.controller.ShoppingCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShoppingCartServlet</servlet-name>
+    <url-pattern>/ShoppingCartServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
