@@ -27,3 +27,7 @@ hs_err_pid*
 /apache-tomcat-7.0.64
 /db
 db.properties
+mie350webapp/build/classes/db/mie350_group08.ldb
+mie350webapp/build/classes/db/mie350_group08.mdb
+mie350webapp/src/db/mie350_group08.ldb
+mie350webapp/src/db/mie350_group08.mdb
