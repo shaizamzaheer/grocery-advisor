@@ -28,7 +28,7 @@
 		<form action="InsertCartServlet">
 			<input type="submit" value="Confirm" />
 		</form>
-		}
+		<% }
 
 		else { %>
 
