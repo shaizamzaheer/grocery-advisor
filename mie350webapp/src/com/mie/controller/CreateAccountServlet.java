@@ -24,15 +24,18 @@ public class CreateAccountServlet extends LoginServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		// make user object out of parameters sent from login.jsp
-		User user = new User(request.getParameter("username"),
-				request.getParameter("password"), request.getParameter("email"));
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
+		User user = new User(name, password, email);
 
 		// check if user exists in database
 		UserDAO userDAO = new UserDAO();
-		boolean doesUserExist = userDAO.checkUserExists(user);
+		boolean canUserSignup = userDAO.allowSignup(user);
 
-		// if user DOES exist...
-		if (doesUserExist)
+		// if user cant signup means user exists...
+		if (!canUserSignup)
 			sendToWelcome(request, response, user);
 
 		// if user DOES NOT exist...
@@ -40,7 +43,7 @@ public class CreateAccountServlet extends LoginServlet {
 
 			// put into userAccounts table
 			userDAO.createaccount(user);
-			
+			userDAO.allowLogin(user); //not proper, but assigns proper ID to user
 			//if username already exists, some SQL error will come up because username is the primary key
 			//username restrictions (min characters or something) can be done in access, if we choose to do that
 			//or restrict it within the form itself. We might need a userAlreadyExists.jsp to redirect to at this point

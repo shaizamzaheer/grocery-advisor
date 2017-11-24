@@ -3,10 +3,12 @@
 
 <html lang="en">
 <head>
-<title>Expedia Shopping - Login</title>
+<title>Grocery Advisor - Login</title>
+<script src="js/login.js"></script>
 
+<link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
-<body style="margin: 0;">
+<body">
 
 	<%
 	
@@ -18,47 +20,45 @@
 		return;
 	}
 	%>
-<div id="Login" style="background: black; padding: 25px; color:white">
-	<div>
-		<h1>Expedia Shopping</h1>
-		<h3>Login</h3>
-	</div>
-	<div id="" style="float: right">
-		<form action="LoginServlet" method="post">
-
-			Username: <input type="text" name="username" /> 
-			Password: <input type="password" name="password" /> 
-			<input type="submit" value="Submit">
-			<br />
-		</form>
-	</div>
+<div id="login-header">
+  <div id="logo-container" >
+  	<div id="logo"></div>
+  </div>
+  <h1>Welcome to Grocery Advisor</h1>
 </div>
 
-<div id="Create User" style="background: black; padding: 25px; color:white">
-	<div>
-		<h3>Or Create an Account</h3>
-	</div>
-	<div id="" style="float: right">
-		<form action="CreateAccountServlet" method="post">
+<div id="login-left" class="login-content">
+    <form action="LoginServlet" method="post" id="login-fields">
+      <input type="text" name="email" id="login-email" placeholder="Email">
+      <input type="password" name="password" id="login-password" placeholder="Password">
+      <input type="submit" value="Sign In" id="login-submit" class='login-btn'>
+      <input type="button" value="Forgot Password" class='login-btn' id='login-forgot'>
+      
+    </form>
+  
+  <form action="CreateAccountServlet" method="post" id="signup-fields" style="display: none;">
+      <input type="text" name="name" id="signup-name" placeholder="Name">
+      <input type="text" name="email" id="signup-email" placeholder="Email">
+    <input type="password" name="password" id="signup-password" placeholder="Password">
+    <input type="password" id="confirm-password" placeholder="Confirm Password">
+    
+      <input type="submit" value="Sign Up" id="signup-submit">
+      
+      
+      
+    </form>
+   
 
-			Username: <input type="text" name="username" /> 
-			Password: <input type="password" name="password" />
-			Email: <input type = "email" name = "email"/>
-			<input type="submit" value="Create Account">
-			<br />
-		</form>
-	</div>
 </div>
-		<br /> 
-		For demonstration purposes, please use the following
-		credentials:
-		<ul>
-			<li><b>Username</b>: albertloa <b>Password</b>: abcd1234</li>
-			<li><b>Username</b>: nathanling <b>Password</b>: 1234abcd</li>
-		</ul>
 
-				<!-- You can put right sidebar links here if you want to. -->
-
-
+<div id="login-right" class="login-content">
+  <h1 id='login-blurb'>We know you work hard for your money. This website wants to help you get the most for your dollar on everyday grocery purchases. It tailors grocery store recommendations to you based on what you need to buy and how far the store is from your location. 
+    <br><br>
+    <span id="login-create"><span>Create an account</span> to begin using the full power of your dollar.</span>
+    
+    <span id="signin" style="display: none;">Already have an account?<span>Sign In</span></span>
+      
+    </h1>
+</div>
 </body>
 </html>

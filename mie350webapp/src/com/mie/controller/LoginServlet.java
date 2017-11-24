@@ -22,13 +22,15 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
 		// make user object out of parameters sent from login.jsp
-		User user = new User(request.getParameter("username"),
-				request.getParameter("password"));
+		User user = new User(email, password);
 
 		// check if user exists in database
 		UserDAO userDAO = new UserDAO();
-		boolean doesUserExist = userDAO.checkUserExists(user);
+		boolean doesUserExist = userDAO.allowLogin(user);
 
 		if (doesUserExist) 
 			

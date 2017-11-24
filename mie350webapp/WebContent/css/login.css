@@ -1,0 +1,211 @@
+@CHARSET "ISO-8859-1";
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#login-header {
+  position: absolute;
+  height: 363px;
+  background-color: white;
+}
+
+#logo-container {
+  position: absolute;
+  top: 56px;
+  left: 56px;
+  width: 257px;
+  height: 265px;
+  border: 1px solid #bdbdbd;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+#logo {
+/* 	width: 228px;
+	height: 134px; */
+	position: absolute;
+left: 5.58%;
+right: 5.58%;
+top: 24.87%;
+bottom: 24.62%;
+background: url("../img/logo.png");
+background-size: 100%;
+
+}
+
+#login-header h1 {
+  position: absolute;
+  width: 546px;
+  height: 60px;
+  left: 379px;
+  top: 99px;
+
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 72px;
+  margin: 0;
+}
+
+#login-left {
+  position: absolute;
+  top: 363px;
+  bottom: 0px;
+  left: 0px;
+  right: 50.1%;
+  background-color: mediumaquamarine;
+}
+
+#login-right {
+  position: absolute;
+  top: 363px;
+  bottom: 0px;
+  left: 50.1%;
+  right: 0px;
+  background-color: mediumaquamarine;
+}
+
+#login-fields, #signup-fields {
+  position: absolute;
+  top: 36px;
+  left: 113px;
+}
+
+#login-email,
+#login-password,
+#signup-name,
+#signup-email,
+#signup-password,
+#confirm-password {
+  position: absolute;
+  color: white;
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 48px;
+  border: none;
+  border-bottom: 3px solid white;
+  background-color: transparent;
+
+  width: 590px;
+}
+
+#login-password, #signup-email {
+  top: 73px;
+}
+
+#signup-password {
+  top: 140px;
+}
+
+#confirm-password {
+  top: 213px;
+}
+
+#login-email::placeholder,
+#login-password::placeholder,
+#signup-name::placeholder,
+#signup-email::placeholder,
+#signup-password::placeholder,
+#confirm-password::placeholder {
+  color: white;
+}
+
+.login-btn {
+  position: absolute;
+  height: 73px;
+  top: 161px;
+  border: 3px solid #ffffff;
+
+  border-radius: 25px;
+  background: none;
+
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 24px;
+  text-align: center;
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  width: 215px;
+}
+
+#signup-submit {
+  position: absolute;
+  height: 73px;
+  top: 293px;
+  border: 3px solid #ffffff;
+
+  border-radius: 25px;
+  background: none;
+
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 24px;
+  text-align: center;
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  width: 215px;
+}
+
+#login-forgot {
+  left: 375px;
+}
+
+#login-right h1 {
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 36px;
+
+  color: #ffffff;
+
+  position: absolute;
+  right: 80px;
+  left: 65px;
+  top: 36px;
+  text-align: justify;
+}
+
+#login-create span {
+  display: inline-block;
+  border: 3px solid #ffffff;
+  border-radius: 25px;
+
+  text-align: center;
+  padding: 7px 13px;
+
+  cursor: pointer;
+}
+
+#signin span {
+  display: block;
+  border: 3px solid #ffffff;
+  border-radius: 25px;
+
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 24px;
+  text-align: center;
+  padding: 17px 45px;
+  margin: 5px;
+  height: 29px;
+  width: 99px;
+  cursor: pointer;
+}

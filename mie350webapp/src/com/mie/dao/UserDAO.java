@@ -28,14 +28,14 @@ public class UserDAO {
 	 * This method attempts to find the user that is trying to log in by first
 	 * retrieving the username and password entered by the user.
 	 */
-	public boolean checkUserExists(User user) {
+	public boolean allowLogin(User user) {
 		
 
-		boolean doesUserExist = true;
+		boolean allowLogin = true;
 
 		Statement stmt = null;
 
-		String username = user.getUsername();
+		String email = user.getEmail();
 		String password = user.getPassword();
 
 		/**
@@ -43,8 +43,8 @@ public class UserDAO {
 		 * the given username and password.
 		 */
 		String userTable = "UserAccounts";
-		String searchQuery = "select * from " + userTable + " where username='"
-				+ username + "' AND password='" + password + "'";
+		String searchQuery = "select * from " + userTable + " where email='"
+				+ email + "' AND password='" + password + "'";
 
 		try {
 			// connect to DB
@@ -55,21 +55,65 @@ public class UserDAO {
 
 			// If there are no results from the query, then user doesn't exist.
 			if (!more)
-				doesUserExist = false;
+				allowLogin = false;
 
-			else
+			else {
 				// if user exists, set accountID in object
 				user.setUserID(rs.getInt("AccountID"));
+				user.setUsername(rs.getString("Username"));
+			}
 		}
 
 		catch (Exception ex) {
-			System.out.println("Log In failed: An Exception has occurred! "
+			System.out.println("allow login failed: An Exception has occurred! "
 					+ ex);
 			ex.printStackTrace();
 		}
 
 		// Return the whether or not user exists.
-		return doesUserExist;
+		return allowLogin;
+
+	}
+	
+	public boolean allowSignup(User user) {
+		
+
+		boolean allowSignup = true;
+
+		Statement stmt = null;
+
+		String email = user.getEmail();
+		String name = user.getUsername();
+
+		/**
+		 * Prepare a query that searches the members table in the database with
+		 * the given username and password.
+		 */
+		String userTable = "UserAccounts";
+		String searchQuery = "select * from " + userTable + " where email='"
+				+ email + "' OR username ='" + name + "'";
+
+		try {
+			// connect to DB
+			currentCon = DbUtil.getConnection();
+			stmt = currentCon.createStatement();
+			rs = stmt.executeQuery(searchQuery);
+			boolean more = rs.next();
+
+			// If there are no results from the query, then user doesn't exist.
+			if (more)
+				allowSignup = false;
+
+		}
+
+		catch (Exception ex) {
+			System.out.println("allow signup: An Exception has occurred! "
+					+ ex);
+			ex.printStackTrace();
+		}
+
+		// Return the whether or not user exists.
+		return allowSignup;
 
 	}
 
@@ -92,11 +136,12 @@ public class UserDAO {
 			currentCon = DbUtil.getConnection();
 			stmt = currentCon.createStatement();
 			stmt.executeUpdate(insertQuery);
+			
 
 		}
 
 		catch (Exception ex) {
-			System.out.println("Log In failed: An Exception has occurred! "
+			System.out.println("new user insertion failed: An Exception has occurred! "
 					+ ex);
 			ex.printStackTrace();
 		}

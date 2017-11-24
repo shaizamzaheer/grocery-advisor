@@ -13,8 +13,8 @@ public class User {
 	private String password;
 	private String email;
 
-	public User(String username, String password) {
-		setUsername(username);
+	public User(String email, String password) {
+		setEmail(email);
 		setPassword(password);
 	}
 	
