@@ -10,6 +10,8 @@
 <script type="text/javascript" src="js/addToCart.js"></script>
 <script type="text/javascript" src="js/editCart.js"></script>
 <script type="text/javascript" src="js/displayShoppingCart.js"></script>
+<link rel="stylesheet" type="text/css" href="css/navigation.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
 
@@ -22,9 +24,9 @@
 	}
 	%>
 	
-<%@ include file="topbar.jsp" %>
 	<%@ include file="navigation.jsp"%>
-
+<div id="contents" style="background-color: grey; position: absolute; top: 401px; bottom: 0px; width: 100%; overflow-y: auto;">
+	
 <% List<Item> items = (ArrayList<Item>) session.getAttribute("items"); 
 	
 for (Item item : items) { %>
@@ -41,5 +43,6 @@ for (Item item : items) { %>
 	</div>
 
 <% } %>
+</div>
 </body>
 </html>

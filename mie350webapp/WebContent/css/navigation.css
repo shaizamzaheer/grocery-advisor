@@ -1,0 +1,223 @@
+@CHARSET "ISO-8859-1";
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: mediumaquamarine;
+}
+
+#topbar {
+  height: 201px;
+  width: 100%;
+  background-color: white;
+  position: fixed;
+}
+
+#logo-container {
+  border-radius: 100%;
+  border: 3px solid black;
+  width: 143px;
+  height: 143px;
+
+  position: absolute;
+  top: 27px;
+  left: 32px;
+}
+
+#website-name {
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 72px;
+
+  margin: 0;
+
+  position: absolute;
+  top: 66px;
+  left: 250px;
+}
+
+#signout-container {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+}
+
+#signout-btn {
+  border: 3px solid #333333;
+  border-radius: 25px;
+
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 24px;
+  text-align: center;
+
+  width: 205px;
+  height: 63px;
+
+  background-color: white;
+}
+
+#signout-btn:hover {
+  cursor: pointer;
+}
+
+#user-name {
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 48px;
+
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  right: 15px;
+}
+
+#navigation {
+  position: fixed;
+  width: 100%;
+  height: 197px;
+  background-color: mediumaquamrine;
+  top: 201px;
+  border-bottom: 3px solid white;
+}
+
+#category-btns {
+  position: absolute;
+  margin: 0;
+  bottom: 19px;
+  padding: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+#category-btns li {
+  display: inline-block;
+  position: relative;
+  height: 58px;
+  width: 216px;
+  border: 3px solid #ffffff;
+  border-radius: 25px;
+
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 24px;
+  text-align: center;
+
+  color: #ffffff;
+  margin: 0px 1.5%;
+  
+  background-color: mediumaquamarine;
+}
+
+#category-btns li:hover {
+  cursor: pointer;
+}
+
+#category-btns li span {
+  position: relative;
+  top: 12px;
+}
+
+#category-btns li i {
+  position: absolute;
+  font-size: 48px;
+  right: 10px;
+  top: 2.5px;
+}
+
+#item-search-container {
+  background-color: blue;
+  position: absolute;
+  top: 30px;
+  
+  left: 2.5%; /*UX: 1.5%; NEEDS TWEAKING! */
+  
+  height: 58px;
+  /* width: 684px; UX: 47.5%*/
+  width: 46%;
+  
+  border-radius: 5px;
+}
+
+#item-search-bar {
+  position: absolute;
+  height: 100%;
+  border: 0;
+  padding: 0 10px;
+  left: 0;
+  
+  width: 83.4%;
+  
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 48px;
+}
+
+/* this gets rid of the arrow */
+#item-search-bar::-webkit-calendar-picker-indicator{
+  opacity: 0;
+}
+
+#item-search-btn {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  /*width: 83px;*/
+  width: 14%;
+  position: absolute;
+  right: 0;
+  
+  border: 0;
+  border-left: 3px solid mediumaquamarine;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  
+  background-color: white;
+  
+}
+
+#item-search-btn:hover {
+  cursor: pointer;
+}
+
+#item-search-btn i {
+  font-size: 48px;
+  color: mediumaquamarine;
+}
+
+#cart-btn {
+  position: absolute;
+  border: 3px solid #FFFFFF;
+  border-radius: 25px;
+  
+  height: 82px;
+  width: 300px; /* for now? */
+  top: 14px;
+  right: 2.5%;
+  
+  background-color: mediumaquamarine;
+  
+}
+
+#cart-btn:hover {
+  cursor: pointer;
+}
+
+#cart-btn i {
+  font-size: 64px;
+  color: white;
+}

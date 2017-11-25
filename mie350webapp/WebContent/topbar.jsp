@@ -8,7 +8,7 @@
 <div id="topbar">
   <div id="logo-container"></div>
   <h1 id="website-name">Grocery Advisor</h1>
-  <div id="signout-container"><form action="LogoutServlet"><input type="submit" value="Sign Out"  id="signout-btn"></form></div>
+  <form action="LogoutServlet" id="signout-container"><input type="submit" value="Sign Out"  id="signout-btn"></form>
   <h1 id="user-name"><%= user.getUsername() %></h1>
 
 </div>
