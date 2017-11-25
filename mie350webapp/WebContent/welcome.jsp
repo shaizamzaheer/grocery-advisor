@@ -11,6 +11,7 @@
 
 <link rel="stylesheet" type="text/css" href="css/displayInlineBlock.css">
 <link rel="stylesheet" type="text/css" href="css/popup.css">
+<link rel="stylesheet" type="text/css" href="css/topbar.css">
 <script type="text/javascript" src="js/displayShoppingCart.js"></script>
 </head>
 <body>
@@ -27,8 +28,8 @@
 	
 	<%@ include file="topbar.jsp" %>
 	<%@ include file="navigation.jsp"%>
-	<%	User user = (User)session.getAttribute("user");
-		String username = user.getUsername();
+	<%	User user1 = (User)session.getAttribute("user");
+		String username1 = user1.getUsername();
 	%>
 	<h1 style="margin: 20px;">Welcome, <%= username %> !</h1>
 </body>
