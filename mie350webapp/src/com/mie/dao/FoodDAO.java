@@ -55,4 +55,37 @@ public class FoodDAO {
 		return suggestionList;
 
 	}
+	
+	public List<String> getItemTypes(String category) {
+		//categories are: Grains, Meat, Other, Vegetables, Fruits, Dairy
+		Statement stmt = null;
+
+		/**
+		 * Prepare a query that searches the ItemCategory table for all item_types.
+		 */
+		String searchQuery = "select Item_Type from ItemCategory where Item_Category='" + category + "'";  
+		List<String> itemTypes = new ArrayList<String>(); //list to store item_types 
+
+		try {
+			// connect to DB
+			currentCon = DbUtil.getConnection();
+			stmt = currentCon.createStatement();
+			rs = stmt.executeQuery(searchQuery);
+			
+			//For each tuple returned, store the item_type in the list
+			while(rs.next()) {
+				itemTypes.add(rs.getString(1));
+			}
+		}
+
+		catch (Exception ex) {
+			System.out.println("Something went wrong when trying to get the item types for a category: An Exception has occurred! "
+					+ ex);
+			ex.printStackTrace();
+		}
+		
+		//Return list of item_types (list of strings).
+		return itemTypes;
+
+	}
 }

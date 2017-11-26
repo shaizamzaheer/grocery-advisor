@@ -9,12 +9,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome!</title>
 
-<link rel="stylesheet" type="text/css" href="css/displayInlineBlock.css">
 <link rel="stylesheet" type="text/css" href="css/popup.css">
+<script type="text/javascript" src="js/addToCart.js"></script>
+<script type="text/javascript" src="js/editCart.js"></script>
+<script type="text/javascript" src="js/displayShoppingCart.js"></script>
 <link rel="stylesheet" type="text/css" href="css/navigation.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<!--  <script type="text/javascript" src="js/displayShoppingCart.js"></script> -->
-<script src="js/itemBySearch.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/items.css">
+<link rel="stylesheet" type="text/css" href="css/welcome.css">
 </head>
 <body>
 	
@@ -30,11 +33,14 @@
 	
 	<%@ include file="navigation.jsp"%>
 	
-	<div id="contents" style="background-color: grey; position: absolute; top: 401px; bottom: 0px; width: 100%; overflow-y: auto;">
-	<%	User user1 = (User)session.getAttribute("user");
-		String username1 = user1.getUsername();
-	%>
-	<h1 style="margin: 20px;">Welcome, <%= username %> !</h1>
-	</div>
+<h1 id="content-title">Bread</h1>
+<div id="contents">
+	 <h1 id="empty-message">
+	 Looks like your list is empty. 
+	 Use the categories or search for some groceries to make a shopping list. 
+	 When you've added all your items, confirm your shopping list. 
+	 Next, enter your location and proceed to get a ranked list of the best stores to shop at.
+	 </h1>
+</div>
 </body>
 </html>

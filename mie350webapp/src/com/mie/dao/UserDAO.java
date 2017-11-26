@@ -147,4 +147,43 @@ public class UserDAO {
 		}
 
 	}
+	
+	public boolean isReturningUser(User user) {
+		
+
+		boolean isReturning = true;
+
+		Statement stmt = null;
+
+		int userID = user.getUserID();
+
+		/**
+		 * Prepare a query that searches the members table in the database with
+		 * the given username and password.
+		 */
+		String searchQuery = "select * from ShoppingList where AccountID="	+ userID + "";
+
+		try {
+			// connect to DB
+			currentCon = DbUtil.getConnection();
+			stmt = currentCon.createStatement();
+			rs = stmt.executeQuery(searchQuery);
+			boolean more = rs.next();
+
+			// If there are no results from the query, then user doesn't exist.
+			if (!more)
+				isReturning = false;
+
+		}
+
+		catch (Exception ex) {
+			System.out.println("allow login failed: An Exception has occurred! "
+					+ ex);
+			ex.printStackTrace();
+		}
+
+		// Return the whether or not user exists.
+		return isReturning;
+
+	}
 }

@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="java.util.*, com.mie.model.User" %>
 	
-	<%	User user = (User)session.getAttribute("user");
-		String username = user.getUsername();
-	%>
+	<%	User user = (User)session.getAttribute("user");	%>
 	
 <div id="topbar">
   <div id="logo-container"></div>
   <h1 id="website-name">Grocery Advisor</h1>
   <form action="LogoutServlet" id="signout-container"><input type="submit" value="Sign Out"  id="signout-btn"></form>
   <h1 id="user-name"><%= user.getUsername() %></h1>
+  <input type="hidden" value="<%= user.isReturning() %>" id="user-returning"/>
 </div>
 
 <div id="navigation">
@@ -32,17 +31,87 @@
   <button id="cart-btn"><i class="material-icons">shopping_cart</i></button>
   
   <ul id="category-btns">
-    <li><span>Grain</span><i class="material-icons">expand_more</i></li>
-    <li><span>Dairy</span><i class="material-icons">expand_more</i></li>
-    <li><span>Fruits</span><i class="material-icons">expand_more</i></li>
-    <li><span>Veggies</span><i class="material-icons">expand_more</i></li>
-    <li><span>Milk</span><i class="material-icons">expand_more</i></li>
-    <li><span>Other</span><i class="material-icons">expand_more</i></li>
+    <li><span>Grain</span><i class="material-icons">expand_more</i>
+    	<div class="category-dropdown-container">
+    	<% List<String> grainItems = (ArrayList<String>)session.getAttribute("grainItems");
+    	
+    	for (String grainItem : grainItems) { %>
+	        <form action="DisplayItemsServlet" class="category-dropdown">
+	          <input type="hidden" value="<%= grainItem %>" name="item_type">
+	          <input type="submit" value="<%= grainItem %>" class="category-dropdown-content">
+	        </form>
+	    <% } %>
+        </div>
+    </li>
+    
+    <li><span>Dairy</span><i class="material-icons">expand_more</i>
+        <div class="category-dropdown-container">
+    	<% List<String> dairyItems = (ArrayList<String>)session.getAttribute("dairyItems");
+    	
+    	for (String diaryItem : dairyItems) { %>
+	        <form action="DisplayItemsServlet" class="category-dropdown">
+	          <input type="hidden" value="<%= diaryItem %>" name="item_type">
+	          <input type="submit" value="<%= diaryItem %>" class="category-dropdown-content">
+	        </form>
+	    <% } %>
+        </div>
+    </li>
+    
+    <li><span>Fruits</span><i class="material-icons">expand_more</i>
+        <div class="category-dropdown-container">
+    	<% List<String> fruitItems = (ArrayList<String>)session.getAttribute("fruitItems");
+    	
+    	for (String fruitItem : fruitItems) { %>
+	        <form action="DisplayItemsServlet" class="category-dropdown">
+	          <input type="hidden" value="<%= fruitItem %>" name="item_type">
+	          <input type="submit" value="<%= fruitItem %>" class="category-dropdown-content">
+	        </form>
+	    <% } %>
+        </div>
+    </li>
+    
+    <li><span>Veggies</span><i class="material-icons">expand_more</i>
+        <div class="category-dropdown-container">
+    	<% List<String> veggieItems = (ArrayList<String>)session.getAttribute("veggieItems");
+    	
+    	for (String veggieItem : veggieItems) { %>
+	        <form action="DisplayItemsServlet" class="category-dropdown">
+	          <input type="hidden" value="<%= veggieItem %>" name="item_type">
+	          <input type="submit" value="<%= veggieItem %>" class="category-dropdown-content">
+	        </form>
+	    <% } %>
+        </div>
+    </li>
+    
+    <li><span>Meat</span><i class="material-icons">expand_more</i>
+        <div class="category-dropdown-container">
+    	<% List<String> meatItems = (ArrayList<String>)session.getAttribute("meatItems");
+    	
+    	for (String meatItem : meatItems) { %>
+	        <form action="DisplayItemsServlet" class="category-dropdown">
+	          <input type="hidden" value="<%= meatItem %>" name="item_type">
+	          <input type="submit" value="<%= meatItem %>" class="category-dropdown-content">
+	        </form>
+	    <% } %>
+        </div>
+    </li>
+    
+    <li><span>Other</span><i class="material-icons">expand_more</i>
+        <div class="category-dropdown-container">
+    	<% List<String> otherItems = (ArrayList<String>)session.getAttribute("otherItems");
+    	
+    	for (String otherItem : otherItems) { %>
+	        <form action="DisplayItemsServlet" class="category-dropdown">
+	          <input type="hidden" value="<%= otherItem %>" name="item_type">
+	          <input type="submit" value="<%= otherItem %>" class="category-dropdown-content">
+	        </form>
+	    <% } %>
+        </div>
+    </li>
+    
   </ul>
 </div>
       
 <div id="popup">
 
 </div>
-
-<div id="closebtn">X</div>

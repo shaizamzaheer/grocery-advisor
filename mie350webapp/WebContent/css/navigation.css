@@ -6,6 +6,8 @@ body {
   background-color: mediumaquamarine;
 }
 
+/* TOP AREA (for signing out, username, logo) */
+
 #topbar {
   height: 201px;
   width: 100%;
@@ -78,6 +80,8 @@ body {
   right: 15px;
 }
 
+/* GREEN NAVIGATION AREA (to look for items and shopping cart btn */
+
 #navigation {
   position: fixed;
   width: 100%;
@@ -85,6 +89,8 @@ body {
   background-color: mediumaquamrine;
   top: 201px;
   border-bottom: 3px solid white;
+  
+  z-index: 1;
 }
 
 #category-btns {
@@ -125,6 +131,7 @@ body {
 #category-btns li span {
   position: relative;
   top: 12px;
+  pointer-events: none;
 }
 
 #category-btns li i {
@@ -132,6 +139,7 @@ body {
   font-size: 48px;
   right: 10px;
   top: 2.5px;
+  pointer-events: none;
 }
 
 #item-search-container {
@@ -220,4 +228,49 @@ body {
 #cart-btn i {
   font-size: 64px;
   color: white;
+}
+
+.category-dropdown-container {
+  position: absolute;
+  top: calc(100% + 3px);
+  left: -3px;
+  width: calc(100% + 6px);
+  /* height?? max height? */
+
+  background-color: white;
+  display: none;
+}
+
+.category-dropdown {
+  position: relative;
+  background-color: grey;
+  height: 58px;
+  
+
+}
+
+.category-dropdown-content {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  border: none;
+  
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 24px;
+  text-align: center;
+
+  color: black;
+  
+  cursor: pointer;
+}
+
+.category-dropdown-content:hover {
+  background-color: lightgrey;
+}
+
+#category-btns li:hover .category-dropdown-container {
+  display: block;
 }

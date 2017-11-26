@@ -12,6 +12,7 @@ public class User {
 	private String username;
 	private String password;
 	private String email;
+	private boolean isReturning;
 
 	public User(String email, String password) {
 		setEmail(email);
@@ -61,5 +62,13 @@ public class User {
 	
 	public int getUserID() {
 		return userID;
+	}
+
+	public boolean isReturning() {
+		return isReturning;
+	}
+
+	public void setReturning(boolean isReturning) {
+		this.isReturning = isReturning;
 	}
 }

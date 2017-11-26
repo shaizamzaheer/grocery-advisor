@@ -32,10 +32,13 @@ public class LoginServlet extends HttpServlet {
 		UserDAO userDAO = new UserDAO();
 		boolean doesUserExist = userDAO.allowLogin(user);
 
-		if (doesUserExist) 
+		if (doesUserExist) {
 			
 			//user exists
+			user.setReturning(userDAO.isReturningUser(user)); //determine if user is returning, so that a popup can be shown on next page
+			System.out.println("Is the user returning? " + user.isReturning());
 			sendToWelcome(request, response, user);
+		}
 
 		else {
 			// redirect them back to Log In page
@@ -50,6 +53,8 @@ public class LoginServlet extends HttpServlet {
 		
 		// store userID on session for later use
 		request.getSession().setAttribute("userID", user.getUserID());
+		
+		request.getSession().setAttribute("isReturningUser", user.isReturning());
 
 		// test check if userID is properly incorporated
 		System.out.println(user.getUserID());
@@ -57,9 +62,25 @@ public class LoginServlet extends HttpServlet {
 		// get all the suggestions so that the next page can use it
 		FoodDAO foodDAO = new FoodDAO();
 		List<String> suggestionList = foodDAO.getAllSuggestions();
+		
+		//categories are: Grains, Meat, Other, Vegetables, Fruits, Dairy
+		List<String> grainItems = foodDAO.getItemTypes("Grains");
+		List<String> meatItems = foodDAO.getItemTypes("Meat");
+		List<String> veggieItems = foodDAO.getItemTypes("Vegetables");
+		List<String> fruitItems = foodDAO.getItemTypes("Fruits");
+		List<String> dairyItems = foodDAO.getItemTypes("Dairy");
+		List<String> otherItems = foodDAO.getItemTypes("Other");
+		
 
 		// make suggestion list and user object available to all pages
 		request.getSession().setAttribute("suggestionList", suggestionList);
+		request.getSession().setAttribute("grainItems", grainItems);
+		request.getSession().setAttribute("meatItems", meatItems);
+		request.getSession().setAttribute("veggieItems", veggieItems);
+		request.getSession().setAttribute("fruitItems", fruitItems);
+		request.getSession().setAttribute("dairyItems", dairyItems);
+		request.getSession().setAttribute("otherItems", otherItems);
+		
 		request.getSession().setAttribute("user", user);
 
 		// redirect to welcome.jsp (Welcome Page with search bar, etc.)
