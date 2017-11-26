@@ -1,7 +1,7 @@
 window.addEventListener("load", function() {
 	console.log("Trying to print!");
   var popup = document.getElementById("popup");
-  var displaybtn = document.getElementById("displaybtn");
+  var displaybtn = document.getElementById("cart-btn");
   var closebtn = document.getElementById("closebtn");
 
   //click button to display popup

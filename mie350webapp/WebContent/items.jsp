@@ -12,6 +12,9 @@
 <script type="text/javascript" src="js/displayShoppingCart.js"></script>
 <link rel="stylesheet" type="text/css" href="css/navigation.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet" type="text/css" href="css/items.css">
+<script src="js/itemsChangeQuantity.js"></script>
 </head>
 <body>
 
@@ -25,24 +28,34 @@
 	%>
 	
 	<%@ include file="navigation.jsp"%>
-<div id="contents" style="background-color: grey; position: absolute; top: 401px; bottom: 0px; width: 100%; overflow-y: auto;">
+<h1 id="content-title">Bread</h1>
+	<div id="contents">
 	
-<% List<Item> items = (ArrayList<Item>) session.getAttribute("items"); 
+	<% List<Item> items = (ArrayList<Item>) session.getAttribute("items"); 
 	
 for (Item item : items) { %>
 	
-	<div class="item" style="width: 250px; display: inline-block; border: 2px solid black; margin: 10px; text-align: center;">
-		<div class="itemImg" style="width: 90%; height: 150px; margin: 10px auto; background-color: grey;">
-			<img src="" alt="IMAGE!" style="position: relative; top: 40%; "/>
-		</div>
-		<input type="hidden" value="<%= item.getItemID() %>" />
-		<div class="itemInfo" style="margin: auto;"><span class="itemName"><%= item.getItemName()%></span> , <span class="amount"><%=item.getAmount() %></div>
-		<input type="number" min="0" value="0" style="margin: 10px auto; width: 50px;"/>
-		<input type="button" value="Add To Cart" class="itemBtn" />
-		
+	  <div class="item-container">
+	  <div class="item-image">
+	    <div class="in-cart-symbol" style="display: none;">
+	      <i class="material-icons">done</i>
+	      <span>In Cart</span>
+	    </div>
+	  </div>
+	  <input type="hidden" value="<%= item.getItemID() %>" />
+	  <p class="item-info"><span class="item-name"><%= item.getItemName()%></span> , <span class="item-amount"><%=item.getAmount() %></span></p>
+	  <div class="quantity-control">
+	    <button class="quantity-dec"><i class="material-icons">remove</i></button>
+	    <input type="text" class="quantity" value="0">
+	    <button class="quantity-inc"><i class="material-icons">add</i></button>
+	  </div>
+	
+	  <button type="button" class="item-btn">Add</button>
 	</div>
-
-<% } %>
+	
+	<% } %>
+  
 </div>
 </body>
 </html>
+

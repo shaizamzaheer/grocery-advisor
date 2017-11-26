@@ -1,40 +1,45 @@
 window.addEventListener("load", function() {
-  //btns is an array of all buttons with class 'btn' (btns is all "Add To Cart" buttons)
-	console.log("Hey before getting item buttons");
-  var btns = document.getElementsByClassName("itemBtn"); 
-  console.log("Hey after getting item buttons");
-  console.log(btns);
-  //since its an array, go through each button and add an event listener;
-  for (i = 0; i < btns.length; i++) {
-    
-    btns[i].addEventListener("click", function() {
-    	var currElement = this; //start DOM traversal on button
-    	
-    	currElement = currElement.previousElementSibling; //now on number input quantity
-      var quantity = currElement.value; //TO SEND TO SERVLET
-      
-      currElement = currElement.previousElementSibling; //now on itemInfo (need children itemName and amount
-      var itemInfo = currElement.children; //array of children
-      var itemName = itemInfo[0].innerHTML; //TO SEND TO SERVLET
-      var amount = itemInfo[1].innerHTML; //TO SEND TO SERVLET
-      
-      currElement = currElement.previousElementSibling; //now on hidden input itemID
-      var itemID = currElement.value; //TO SEND TO SERVLET
-      
-      var inCart = true; //TO SEND TO SERVLET
-      
-      console.log("Clicked out");
-      if (quantity > 0) {
-    	  console.log("Clicked in");
-    	  var xhr = new XMLHttpRequest();
-    	  console.log(encodeURI("ShoppingCartServlet?itemID="+itemID+"&itemName="+itemName+"&amount="+amount+"&quantity="+quantity+"&inCart="+inCart));
-    	  xhr.open("POST", encodeURI("ShoppingCartServlet?itemID="+itemID+"&itemName="+itemName+"&amount="+amount+"&quantity="+quantity+"&inCart="+inCart));
-    	  
-    	  xhr.send();
-      }
-      
-    });
-    
-  }
+
+	var contents = document.getElementById("contents");
+	
+	contents.addEventListener("click", function(e) {
+	    if(e.target.className == "item-btn") {
+	      e.target.innerHTML = "Added";
+	      e.target.style.border = "none";
+	      e.target.disabled = true;
+	      e.target.style.cursor = "default";
+	      
+	      var currElement = e.target; //currElem is button
+	      currElement = currElement.previousElementSibling; //up one, currElem is quantity-control
+	      var quantity = currElement.children[1].value;
+	      /* Do something with quantity-control, like make it disappear? */
+	      
+	      currElement = currElement.previousElementSibling; //currElem is item-info
+	      var itemName = currElement.children[0].innerHTML; //first child is item-name
+	      var amount = currElement.children[1].innerHTML; //second child is item-amount
+	      
+	      currElement = currElement.previousElementSibling; //currElem is hidden itemID
+	      var itemID = currElement.value;
+	      
+	      currElement = currElement.previousElementSibling; //currElem is item-image
+	      var inCartSymbol = currElement.children[0]; //access to in-cart-symbol
+	      
+	      inCartSymbol.style.display = "block"; //display "In Cart" on image, showing that it's in cart
+	      
+	      var inCart = true; //phase this out...
+	      
+	      if (quantity > 0) {
+	    	  console.log("Clicked in");
+	    	  var xhr = new XMLHttpRequest();
+	    	  console.log(encodeURI("ShoppingCartServlet?itemID="+itemID+"&itemName="+itemName+"&amount="+amount+"&quantity="+quantity+"&inCart="+inCart));
+	    	  xhr.open("POST", encodeURI("ShoppingCartServlet?itemID="+itemID+"&itemName="+itemName+"&amount="+amount+"&quantity="+quantity+"&inCart="+inCart));
+	    	  
+	    	  xhr.send();
+	      } //end if quantity > 0
+	      
+	    } //end if class = 'item-btn'
+	    
+	  }); //end, click listener
   
 });
+

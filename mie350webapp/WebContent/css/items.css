@@ -1,0 +1,170 @@
+@CHARSET "ISO-8859-1";
+
+#content-title {
+  position: fixed;
+  top: 401px;
+  background-color: mediumaquamarine;
+  height: 76px;
+  width: 100%;
+  margin: 0;
+  
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 64px;
+
+  color: #FFFFFF;
+  
+  padding: 3px 36px;
+  border-bottom: 3px solid white;
+}
+
+#contents {
+  background-color: mediumaquamarine;
+  position: absolute;
+  top: 486px;
+  bottom: 0px;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.item-btn {
+  width: 107px;
+  height: 58px;
+  border: 3px solid #FFFFFF;
+  border-radius: 25px;
+  display: block;
+  margin: auto;
+  
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 24px;
+  text-align: center;
+
+  color: #FFFFFF;
+  
+  background-color: mediumaquamarine;
+  
+  cursor: pointer;
+}
+
+.item-image {
+  width: 215px;
+  height: 215px;
+  border-radius: 10px;
+  background-color: white;
+  
+  margin: auto;
+  position: relative;
+}
+
+.quantity-control {
+  height: 33px;
+  width: 120px;
+  padding: 0;
+  margin: 10px auto;
+  border: 0;
+  position: relative;
+}
+
+.quantity-inc, .quantity-dec {
+  height: 100%;
+  width: 32px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-align: center;
+  display: inline-block;
+  position: absolute;
+  
+  background-color: transparent;
+  
+  cursor: pointer;
+}
+
+.quantity-inc {
+  right: 0;
+}
+
+.quantity-dec {
+  left: 0;
+}
+
+.quantity-inc i, .quantity-dec i {
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.quantity {
+  height: 100%;
+  display: inline-block;
+  width: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 24px);
+  
+  font-family: Abyssinica SIL;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 18px;
+text-align: center;
+}
+
+.item-container {
+  display: inline-block;
+  text-align: center;
+  margin: 32px;
+}
+
+.item-info {
+  border: 0;
+  padding: 0;
+  margin: 10px auto;
+}
+
+.material-icons {
+  pointer-events: none;
+}
+
+.in-cart-symbol {
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  background-color: mediumaquamarine;
+  position: relative;
+  margin: auto;
+  top: calc(50% - 60px);
+  
+  text-align: center;
+  
+}
+
+.in-cart-symbol i, .in-cart-symbol span {
+  position: relative;
+
+  color: white;
+  display: block;
+  
+  top: 16px; /* if symbol 100x100, 5px*/
+}
+
+.in-cart-symbol i {
+  font-size: 48px;
+}
+
+.in-cart-symbol span {
+  font-size: 24px;
+
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+}
