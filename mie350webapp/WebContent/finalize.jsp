@@ -9,6 +9,15 @@
 <script src="js/locationSearch.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/displayInlineBlock.css">
+
+<link rel="stylesheet" type="text/css" href="css/popup.css">
+
+<script type="text/javascript" src="js/editCart.js"></script>
+<script type="text/javascript" src="js/displayShoppingCart.js"></script>
+<link rel="stylesheet" type="text/css" href="css/navigation.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet" type="text/css" href="css/items.css">
 </head>
 
 <body>
@@ -22,28 +31,9 @@
 	}
 	%>
 	
-		<%@ include file="topbar.jsp" %>
-
-<!--  
-<table>
-<tr>
-<th>Info</th>
-<th>Qty</th>
-</tr>
-
-<%
-	List<CartItem> shoppingCart = (ArrayList<CartItem>)session.getAttribute("shoppingCart");
-	for (CartItem cartItem : shoppingCart) { %>
-		
-		<tr>
-		<th><%= cartItem.getItemName() %></th>
-		<th><%= cartItem.getQuantity() %></th>
-		</tr>
-		
-	<% } %>
-
-</table>
--->
+		<%@ include file="navigation.jsp"%>
+<h1 id="content-title">Finalize</h1>
+	<div id="contents">
 
 <form action="GetStoresWithinRadiusServlet" method="get" id="form">
 
@@ -53,5 +43,6 @@
 	<input type="button" value="Confirm" id="submitButton"/>
 </form>
 
+</div>
 </body>
 </html>

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import com.mie.util.DbUtil;
@@ -91,4 +92,67 @@ public class ShoppingCartDAO {
 
 		
 	}
+	
+public void deleteCart(int userID) {
+		
+		PreparedStatement pst = null;
+		/**
+		 * Prepare a query that inserts the cartitme into the shoppingcart table
+		 */
+		
+		String insertQuery = "DELETE FROM ShoppingList WHERE AccountID=?";
+
+		try {
+			// connect to DB
+			currentCon = DbUtil.getConnection();
+			
+			pst = currentCon.prepareStatement(insertQuery);
+			pst.setInt(1, userID);
+			pst.executeUpdate();
+		}
+
+		catch (Exception ex) {
+			System.out.println("Something went wrong trying to delete a user's entire cart: "
+					+ ex);
+			System.out.println("Stacktrace: ");
+			ex.printStackTrace();
+		}
+
+		
+	}
+
+public void insertCart(int userID, HashSet<CartItem> cart) {
+	
+	PreparedStatement pst = null;
+	/**
+	 * Prepare a query that inserts a single item into shopping list table. Will be looped through to add user's entire cart.
+	 */
+	
+	String insertQuery = "INSERT INTO ShoppingList(AccountID, ItemID, Quantity) VALUES (?,?,?)";
+
+	try {
+		// connect to DB
+		currentCon = DbUtil.getConnection();
+		
+		for (CartItem item : cart) {
+			pst = currentCon.prepareStatement(insertQuery);
+			pst.setInt(1, userID);
+			pst.setInt(2, item.getItemID());
+			pst.setInt(3, item.getQuantity());
+			pst.executeUpdate();
+			
+			System.out.println(userID + ", " + item.getItemID() + ", " + item.getQuantity() + " has been entered successfully!");
+		
+		}
+	}
+
+	catch (Exception ex) {
+		System.out.println("Something went wrong trying to insert one or all shopping item(s): "
+				+ ex);
+		System.out.println("Stacktrace: ");
+		ex.printStackTrace();
+	}
+
+	
+}
 }

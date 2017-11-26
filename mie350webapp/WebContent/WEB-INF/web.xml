@@ -137,4 +137,14 @@
     <servlet-name>ShoppingCartServlet</servlet-name>
     <url-pattern>/ShoppingCartServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InsertCartServlet</display-name>
+    <servlet-name>InsertCartServlet</servlet-name>
+    <servlet-class>com.mie.controller.InsertCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InsertCartServlet</servlet-name>
+    <url-pattern>/InsertCartServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

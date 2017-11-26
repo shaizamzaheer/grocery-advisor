@@ -105,6 +105,7 @@ color: black;
   font-size: 48px;
   position: relative;
   top: 3px;
+  pointer-events: none;
 }
 
 #popup-cart-clearall i {
@@ -119,6 +120,7 @@ color: black;
 .popup-cart-btn span {
   position: relative;
   top: -3px;
+  pointer-events: none;
 }
 
 #popup-cart-contents {
