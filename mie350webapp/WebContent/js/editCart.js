@@ -8,6 +8,8 @@ window.addEventListener("load", function() {
 		  var quantity = 0;
 		  var itemID = 0;
 		  var prev = 0;
+		  var url = "";
+		  var deleteVar = "";
 		  
 	    if (e.target.className == "quantity-inc") {
 	      e.target.previousElementSibling.value = parseInt(e.target.previousElementSibling.value) + 1;
@@ -26,12 +28,32 @@ window.addEventListener("load", function() {
 		    itemID = e.target.nextElementSibling.id;
 	      }
 	    } //end if
-
+	    
 	    if (e.target.className == "quantity-inc" || (e.target.className == "quantity-dec" && prev != 1)) {
+	    	url = encodeURI("ShoppingCartServlet?itemID=" + itemID + "&quantity="	+ quantity);
+	    } //end if for setting url for qty change
+	    
+	    if (e.target.className == "popup-cart-delete") {
+	    	deleteVar = "item";
+	    	itemID = e.target.id;
+	    	
+	    	url = encodeURI("ShoppingCartServlet?itemID=" + itemID + "&delete="	+ deleteVar);
+	    } //end if for setting url for single item delete
+	    
+	    if (e.target.id == "popup-cart-clearall") {
+	    	deleteVar = "all";
+	    	
+	    	url = encodeURI("ShoppingCartServlet?delete="	+ deleteVar);
+	    } //end if for deleting/clearing all items
+	    
+
+	    if (e.target.className == "quantity-inc" || (e.target.className == "quantity-dec" && prev != 1) 
+	    		|| e.target.className == "popup-cart-delete" 
+	    			|| e.target.id == "popup-cart-clearall") {
 	    	var xhrQty = new XMLHttpRequest();
 
-			console.log(encodeURI("ShoppingCartServlet?itemID=" + itemID + "&quantity="	+ quantity));
-			xhrQty.open("POST", encodeURI("ShoppingCartServlet?itemID=" + itemID	+ "&quantity=" + quantity));
+			console.log(url);
+			xhrQty.open("POST", url);
 			xhrQty.onload = function() {
 
 				var xhr2 = new XMLHttpRequest();
@@ -49,6 +71,8 @@ window.addEventListener("load", function() {
 			xhrQty.send();
 			
 	    } //end if
+	    
+	   
 	    
 	  }); //end, click listener
 	  
@@ -68,4 +92,4 @@ window.addEventListener("load", function() {
 	    } //end if
 	    
 	  }); //end, click listener
-	});
+	}); //end, window listener

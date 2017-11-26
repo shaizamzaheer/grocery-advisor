@@ -51,6 +51,14 @@ public class ShoppingCartServlet extends HttpServlet {
 		//if the request only has itemID and quantity, means the quantity is being changed
 		else if (paramNames.containsAll(Arrays.asList(new String[]{"itemID", "quantity"}))) 
 			changeQuantity(Integer.parseInt(request.getParameter("itemID")), Integer.parseInt(request.getParameter("quantity")), shoppingCartDictionary);
+
+		//if the request only has itemID and delete = 'item', means the item is deleted
+		else if (paramNames.containsAll(Arrays.asList("itemID", "delete")))
+			deleteItem(Integer.parseInt(request.getParameter("itemID")), request.getParameter("delete"), shoppingCartDictionary);
+		
+		//if the request only has delete = 'all', means entire shopping cart is emptied.
+		else if(paramNames.size() == 1 && paramNames.contains("delete")) 
+			clearAll(request.getParameter("delete"), shoppingCartDictionary);
 		
 		//Convert from dictionary to an arrangement of items
 		Set<CartItem> shoppingCart = new HashSet<CartItem>(shoppingCartDictionary.values());
@@ -60,7 +68,21 @@ public class ShoppingCartServlet extends HttpServlet {
 		request.getSession().setAttribute("shoppingCart", shoppingCart);
 		
 	}
+	
+	private void clearAll(String delete, HashMap<Integer, CartItem> shoppingCartDictionary) {
 
+		if (delete.equalsIgnoreCase("all")) 
+			shoppingCartDictionary.clear();
+		
+	}
+
+	private void deleteItem(int itemID, String delete, HashMap<Integer, CartItem> shoppingCartDictionary) {
+
+		if (delete.equalsIgnoreCase("item")) 
+			shoppingCartDictionary.remove(itemID);
+		
+	}
+	
 	private void changeQuantity(int itemID, int quantity, HashMap<Integer, CartItem> shoppingCartDictionary) {
 		shoppingCartDictionary.get(itemID).setQuantity(quantity); //change quantity
 		

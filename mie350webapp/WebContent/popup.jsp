@@ -8,14 +8,14 @@
     <div id="popup-cart-contents">
     <%
 		Set<CartItem> shoppingCart = (HashSet<CartItem>)session.getAttribute("shoppingCart"); 
-	  	if (shoppingCart != null) {
+	  	if (shoppingCart != null && !shoppingCart.isEmpty()) {
 	  		
 			for (CartItem item : shoppingCart) { 
 
 		%>
 		
       <div class="popup-cart-item">
-        <button class="popup-cart-delete"><i class="material-icons">delete</i></button>
+        <button class="popup-cart-delete" id="<%=item.getItemID()%>"><i class="material-icons">delete</i></button>
         <p class="popup-item-info"><span class="popup-item-name"><%= item.getItemName()%></span>, <span class="popup-item-amount"><%=item.getAmount() %></span></p>
         <div class="popup-quantity-control">
           <button class="quantity-dec"><i class="material-icons">remove</i></button>
@@ -36,7 +36,7 @@
 	
 	</div>
 	
-	<% if (shoppingCart != null) { %>
+	<% if (shoppingCart != null && !shoppingCart.isEmpty()) { %>
 		<div id="popup-cart-btns">
       <button id="popup-cart-clearall" class="popup-cart-btn"><i class="material-icons">delete</i>  <span>Clear All</span></button>
 
