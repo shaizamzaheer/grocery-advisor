@@ -26,13 +26,10 @@ window.addEventListener("load", function() {
 	      
 	      inCartSymbol.style.display = "block"; //display "In Cart" on image, showing that it's in cart
 	      
-	      var inCart = true; //phase this out...
-	      
 	      if (quantity > 0) {
-	    	  console.log("Clicked in");
 	    	  var xhr = new XMLHttpRequest();
-	    	  console.log(encodeURI("ShoppingCartServlet?itemID="+itemID+"&itemName="+itemName+"&amount="+amount+"&quantity="+quantity+"&inCart="+inCart));
-	    	  xhr.open("POST", encodeURI("ShoppingCartServlet?itemID="+itemID+"&itemName="+itemName+"&amount="+amount+"&quantity="+quantity+"&inCart="+inCart));
+	    	  console.log(encodeURI("ShoppingCartServlet?itemID="+itemID+"&itemName="+itemName+"&amount="+amount+"&quantity="+quantity));
+	    	  xhr.open("POST", encodeURI("ShoppingCartServlet?itemID="+itemID+"&itemName="+itemName+"&amount="+amount+"&quantity="+quantity));
 	    	  
 	    	  xhr.send();
 	      } //end if quantity > 0

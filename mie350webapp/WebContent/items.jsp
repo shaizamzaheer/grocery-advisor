@@ -28,7 +28,7 @@
 	%>
 	
 	<%@ include file="navigation.jsp"%>
-<h1 id="content-title">Bread</h1>
+<h1 id="content-title"><%= session.getAttribute("item_type") %></h1>
 	<div id="contents">
 	
 	<% List<Item> items = (ArrayList<Item>) session.getAttribute("items"); 
@@ -43,10 +43,10 @@ for (Item item : items) { %>
 	    </div>
 	  </div>
 	  <input type="hidden" value="<%= item.getItemID() %>" />
-	  <p class="item-info"><span class="item-name"><%= item.getItemName()%></span> , <span class="item-amount"><%=item.getAmount() %></span></p>
+	  <p class="item-info"><span class="item-name"><%= item.getItemName()%></span>, <span class="item-amount"><%=item.getAmount() %></span></p>
 	  <div class="quantity-control">
 	    <button class="quantity-dec"><i class="material-icons">remove</i></button>
-	    <input type="text" class="quantity" value="0">
+	    <input type="text" class="quantity" value="0" disabled>
 	    <button class="quantity-inc"><i class="material-icons">add</i></button>
 	  </div>
 	

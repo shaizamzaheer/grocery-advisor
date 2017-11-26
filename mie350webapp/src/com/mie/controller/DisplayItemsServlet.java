@@ -25,6 +25,7 @@ public class DisplayItemsServlet extends HttpServlet {
 		
 		List<Item> items = itemDAO.getItems(item_type); 
 		
+		request.getSession().setAttribute("item_type", item_type);
 		request.getSession().setAttribute("items", items);
 		
 		response.sendRedirect("items.jsp");

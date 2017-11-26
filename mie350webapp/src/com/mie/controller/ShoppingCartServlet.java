@@ -1,10 +1,12 @@
 package com.mie.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.TreeSet;
 
 import javax.servlet.ServletException;
@@ -22,8 +24,7 @@ public class ShoppingCartServlet extends HttpServlet {
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("ANYONE HOME!???");
-		//Get the parameter names to decide what to do - Add To Cart, Change to In or Out, or Change Quantity
+		//Get the parameter names to decide what to do - Add To Cart, Change Quantity, Delete, Delete All
 		Enumeration<String> params = request.getParameterNames();
 		
 		HashSet<String> paramNames = new HashSet<String>();
@@ -33,9 +34,9 @@ public class ShoppingCartServlet extends HttpServlet {
 			System.out.println(param);
 			paramNames.add(param);
 		}
-		//
+		//end of getting parameter names
 		
-		//A shopping cart dictionary will make it easy to make modifications to a particular item (if it's quantity is changed, or taken out/put back into the cart)
+		//A shopping cart dictionary will make it easy to make modifications to a particular item (if it's quantity is changed, or deleted)
 		HashMap<Integer, CartItem> shoppingCartDictionary = (HashMap<Integer, CartItem>) request.getSession().getAttribute("shoppingCartDictionary");
 		
 		//if request params > 2, that means all the item info is sent, meaning a new item is to be added to the cart
@@ -47,23 +48,14 @@ public class ShoppingCartServlet extends HttpServlet {
 			addToCart(request, response, shoppingCartDictionary);
 		}
 			
-		
-		//if the request only has itemID and inCart, means it's being taken out/put back into the cart
-		else if (paramNames.containsAll(Arrays.asList(new String[]{"itemID", "inCart"}))) 
-			changeInOut(Integer.parseInt(request.getParameter("itemID")), Boolean.parseBoolean(request.getParameter("inCart")), shoppingCartDictionary);
-		
 		//if the request only has itemID and quantity, means the quantity is being changed
 		else if (paramNames.containsAll(Arrays.asList(new String[]{"itemID", "quantity"}))) 
 			changeQuantity(Integer.parseInt(request.getParameter("itemID")), Integer.parseInt(request.getParameter("quantity")), shoppingCartDictionary);
 		
-		System.out.println(shoppingCartDictionary);
-		
 		//Convert from dictionary to an arrangement of items
-		TreeSet<CartItem> shoppingCart = new TreeSet<CartItem>(shoppingCartDictionary.values());
+		Set<CartItem> shoppingCart = new HashSet<CartItem>(shoppingCartDictionary.values());
 		
 		//put dictionary and shoppingCart on session
-		System.out.println("Dictionary:" + shoppingCartDictionary);
-		System.out.println("Cart: " + shoppingCart);
 		request.getSession().setAttribute("shoppingCartDictionary", shoppingCartDictionary);
 		request.getSession().setAttribute("shoppingCart", shoppingCart);
 		
@@ -74,11 +66,6 @@ public class ShoppingCartServlet extends HttpServlet {
 		
 	}
 
-	private void changeInOut(int itemID, boolean inCart, HashMap<Integer, CartItem> shoppingCartDictionary) {
-		shoppingCartDictionary.get(itemID).setInCart(inCart); //change in/out status
-		
-	}
-
 	private void addToCart(HttpServletRequest request, HttpServletResponse response, HashMap<Integer, CartItem> shoppingCartDictionary) {
 		
 		//set item info
@@ -86,10 +73,9 @@ public class ShoppingCartServlet extends HttpServlet {
 		String itemName = request.getParameter("itemName");
 		String amount = request.getParameter("amount");
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		boolean inCart = Boolean.parseBoolean(request.getParameter("inCart"));
 		
 		//add item to dictionary
-		shoppingCartDictionary.put(itemID, new CartItem(itemID, itemName, amount, quantity, inCart));
+		shoppingCartDictionary.put(itemID, new CartItem(itemID, itemName, amount, quantity));
 	}
 
 }

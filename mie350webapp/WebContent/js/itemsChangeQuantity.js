@@ -22,7 +22,7 @@ window.addEventListener("load", function() {
         
         var regex = /[^0-9]+/g;
         if (regex.exec(this.value)) {
-          this.value = prevNumVal; /* OUT OF SCOPE */
+          this.value = prevNumVal; /* OUT OF SCOPE, just becomes 0 */
         } //end if
 
       }); //end, input listener
