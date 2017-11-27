@@ -42,9 +42,9 @@
 	        </form>
 	    <% } %>
         </div>
-    </li>
+    </li><!--  
     
-    <li><span>Dairy</span><i class="material-icons">expand_more</i>
+    --><li><span>Dairy</span><i class="material-icons">expand_more</i>
         <div class="category-dropdown-container">
     	<% List<String> dairyItems = (ArrayList<String>)session.getAttribute("dairyItems");
     	
@@ -55,9 +55,9 @@
 	        </form>
 	    <% } %>
         </div>
-    </li>
+    </li><!--  
     
-    <li><span>Fruits</span><i class="material-icons">expand_more</i>
+    --><li><span>Fruits</span><i class="material-icons">expand_more</i>
         <div class="category-dropdown-container">
     	<% List<String> fruitItems = (ArrayList<String>)session.getAttribute("fruitItems");
     	
@@ -68,9 +68,9 @@
 	        </form>
 	    <% } %>
         </div>
-    </li>
+    </li><!--  
     
-    <li><span>Veggies</span><i class="material-icons">expand_more</i>
+    --><li><span>Veggies</span><i class="material-icons">expand_more</i>
         <div class="category-dropdown-container">
     	<% List<String> veggieItems = (ArrayList<String>)session.getAttribute("veggieItems");
     	
@@ -81,9 +81,9 @@
 	        </form>
 	    <% } %>
         </div>
-    </li>
+    </li><!--  
     
-    <li><span>Meat</span><i class="material-icons">expand_more</i>
+    --><li><span>Meat</span><i class="material-icons">expand_more</i>
         <div class="category-dropdown-container">
     	<% List<String> meatItems = (ArrayList<String>)session.getAttribute("meatItems");
     	
@@ -94,9 +94,9 @@
 	        </form>
 	    <% } %>
         </div>
-    </li>
+    </li><!--  
     
-    <li><span>Other</span><i class="material-icons">expand_more</i>
+    --><li><span>Other</span><i class="material-icons">expand_more</i>
         <div class="category-dropdown-container">
     	<% List<String> otherItems = (ArrayList<String>)session.getAttribute("otherItems");
     	
