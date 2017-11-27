@@ -1,0 +1,149 @@
+@CHARSET "ISO-8859-1";
+
+#finalize-form h1 {
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 36px;
+
+  color: #FFFFFF;
+  
+  display: inline-block;
+  padding: 0;
+  margin: 10px;
+}
+
+#input-radius {
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 36px;
+  
+  margin: 0px 5px;
+  padding: 0px 5px;
+}
+
+.radio-choice input {
+  font-size: 100px;
+  width: 25px;
+  height: 25px;
+}
+
+#location-search-container {
+  
+  height: 58px;
+  width: 100%;
+  
+  border-radius: 5px;
+  
+  position: relative;
+  margin: 15px auto;
+}
+
+#location-search-bar {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 84.5%;
+  border: 0;
+  padding: 0 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 48px;
+}
+
+
+
+#location-search-btn {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  /*width: 83px;*/
+  width: 14%;
+  position: absolute;
+  right: 0;
+  
+  border: 0;
+  border-left: 3px solid mediumaquamarine;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  
+  background-color: white;
+  
+  cursor: pointer;
+  
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 36px;
+  
+}
+
+#finalize-form {
+  padding: 35px 40px;
+}
+
+#ask-preference, .radio-choice, #radio-choices-container, #input-radius-container, #transport-btns {
+  display: inline-block;
+}
+
+#transport-btns {
+  height: 56px;
+}
+
+#transport-btns button {
+  height: 50px;
+  width: 50px;
+  border: 3px solid white;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  
+  cursor: pointer;
+}
+
+#transport-btns button i {
+  font-size: 36px;
+  color: white;
+  pointer-events: none;
+}
+
+#input-radius-container, #radio-choices-container {
+  padding-left: 50px;
+}
+
+#transport-btns button.transport-selected {
+  border: 3px solid red;
+  
+}
+
+#transport-btns button.transport-selected i {
+  color: red;
+}
+
+#time-value {
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 36px;
+  
+  margin: 0px 5px;
+  padding: 0px 5px;
+  
+  width: 77px;
+  
+  text-align: center;
+}
+
+#time-value-container {
+  padding: 0px 0px 0px 442px;
+}
