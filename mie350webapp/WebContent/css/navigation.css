@@ -99,7 +99,7 @@ body {
   bottom: 19px;
   padding: 0;
   left: 30px;
-  right: 30px;
+  right: 15px;
 }
 
 #category-btns li {
@@ -217,7 +217,7 @@ body {
   height: 82px;
   width: 222px; /* for now? */
   top: 14px;
-  right: 30px;
+  right: 15px;
   
   background-color: mediumaquamarine;
   
