@@ -33,7 +33,7 @@
 	
 	<%@ include file="navigation.jsp"%>
 	
-<h1 id="content-title">Bread</h1>
+<h1 id="content-title">Home</h1>
 <div id="contents">
 	 <h1 id="empty-message">
 	 Looks like your list is empty. 
