@@ -16,6 +16,8 @@
 
 <link rel="stylesheet" type="text/css" href="css/items.css">
 <link rel="stylesheet" type="text/css" href="css/results.css">
+<link rel="stylesheet" type="text/css" href="css/popupStore.css">
+<script type="text/javascript" src="js/displayStoreDetails.js"></script>
 </head>
 <body>
 
@@ -41,7 +43,26 @@
 	for (Result result : results) { 
 		Store store = result.getStoreDetails();
 	%>
-	
+	<div class="popup-store">
+      <div class="popup-store-container">
+        <h1 class="popup-store-title">Store Details</h1>
+        <div class="popup-store-close"><i class="material-icons">close</i></div>
+
+        <div class="popup-store-contents">
+
+            <p class="popup-store-franchise"><%= store.getFranchise() %></p>
+          <p class="popup-store-info"><span>Address:</span><span><%= store.getStreetAddress() %></span></p>
+          <p class="popup-store-info"><span>Region:</span><span><%= store.getRegion() %>, <%= store.getPostalCode() %></span></p>
+          <p class="popup-store-info"><span>Phone:</span><span><%= store.getPhone() %></span></p>
+          <p class="popup-store-info"><span>Hours:</span><span>
+          <% for (String line : store.getHoursCompact()) { %>
+            <span><%= line %></span> <% } %>
+            </span></p>
+
+        </div>
+      </div>
+    </div>
+    
 	<div class="result-container">
 	    <span class="result-number"><%= count %>.</span><!--  
 	    --><div>

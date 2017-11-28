@@ -1,0 +1,115 @@
+@CHARSET "ISO-8859-1";
+
+/* STORE POPUP */
+
+.popup-store {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
+  background-color: rgba(0,0,0,0.5);
+  
+  z-index: 1;
+  
+  display: none;
+}
+
+.popup-store-container {
+  height: 600px;
+  width: 800px;
+  background-color: white;
+  
+  border-radius: 10px;
+  position: relative;
+  margin: auto;
+  top: calc(50% - 300px);
+}
+
+.popup-store-title {
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 48px;
+  
+  height: 54px;
+  
+  margin: 0;
+  padding: 4px 10px;
+  
+  border-bottom: 3px solid black;
+
+  position: relative;
+}
+
+.popup-store-close {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  height: 62px;
+  
+  cursor: pointer;
+
+}
+
+.popup-store-close i {
+  font-size: 64px;
+  color: mediumaquamarine;
+  pointer-events: none;
+}
+
+.popup-store-contents {
+  
+  position: absolute;
+  top: 65px;
+  bottom: 121px;
+  width: 100%;
+  /*background-color: lightgrey; */
+}
+
+.popup-store-franchise {
+  height: 54px;
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 42px;
+  position: relative;
+  margin: 0;
+  top: 30px;
+  left: 40px;
+  width: calc(100% - 80px);
+  
+  /*background-color: grey;*/
+}
+
+.popup-store-info {
+  height: 54px;
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 32px;
+  position: relative;
+  margin: 20px 0 0 0;
+  top: 30px;
+  left: 40px;
+  width: calc(100% - 80px);
+  
+  /*background-color: grey;*/
+}
+
+.popup-store-info > span + span {
+  position: absolute;
+  left: 150px;
+}
+
+.popup-store-info span + span span {
+  position: relative;
+  display: block;
+  /*background-color: blue;*/
+  margin: 0 0 15px 0;
+}

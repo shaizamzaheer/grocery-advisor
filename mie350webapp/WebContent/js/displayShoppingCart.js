@@ -1,5 +1,5 @@
 window.addEventListener("load", function() {
-	console.log("Trying to print!");
+
   var popup = document.getElementById("popup");
   var displaybtn = document.getElementById("cart-btn");
 
@@ -21,9 +21,8 @@ window.addEventListener("load", function() {
   
   //click grey area or X to close popup
     popup.addEventListener("click", function(e) {
-      if (e.target == popup || e.target.id == "popup-close-btn") {
+      if (e.target == popup || e.target.id === "popup-close-btn") {
         popup.style.display = "none";
-        closebtn.style.display = "none";
       }
   });
     
