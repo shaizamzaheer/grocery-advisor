@@ -46,7 +46,7 @@
 	    <span class="result-number"><%= count %>.</span><!--  
 	    --><div>
 		    <span class="result-store"><%= store.getFranchise() %> (<%= store.getStreetAddress() %>)</span>
-		    <span class="result-cost">Total Cost: <span>$<%= result.getPrice() %></span></span>
+		    <span class="result-cost">Total Cost: $<%= result.getPrice() %></span>
 		    <span class="result-time">ETA: <%= result.getETA() %> min</span>
 	    </div>
   	</div>

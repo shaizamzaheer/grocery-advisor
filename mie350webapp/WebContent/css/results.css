@@ -36,7 +36,7 @@
   margin: 0 0 0 13px;
 }
 
-.result-store:hover, .result-cost span:hover {
+.result-store:hover, .result-cost:hover {
   cursor: pointer;
   text-shadow: 0 0 10px white;
 }
