@@ -1,0 +1,42 @@
+@CHARSET "ISO-8859-1";
+
+.result-container {
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 36px;
+  
+  color: white;
+  
+  position: relative;
+  
+  margin: 30px 30px 50px;
+  
+  height: 166px;
+}
+
+.result-number {
+  position: relative;
+  bottom: calc(100% - 42px);
+}
+
+.result-number, .result-container div {
+  display: inline-block;
+  height: 100%;
+}
+
+.result-store, .result-cost, .result-time {
+  display: block;
+  
+  margin: 0 0 20px 13px;
+}
+
+.result-time {
+  margin: 0 0 0 13px;
+}
+
+.result-store:hover, .result-cost span:hover {
+  cursor: pointer;
+  text-shadow: 0 0 10px white;
+}

@@ -39,7 +39,7 @@
 <h1 id="content-title">Finalize</h1>
 	<div id="contents">
 
-  <form action="GetStoresWithinRadiusServlet" id="finalize-form">
+  <form action="GetStoresWithinRadiusServlet" id="finalize-form" method="post">
     
     <div id="transport-btns">
       <button type="button" id="transport-walk" class="transport-selected"><i class="material-icons">directions_walk</i></button>

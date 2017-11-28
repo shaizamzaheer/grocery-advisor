@@ -30,11 +30,15 @@ public class StoreDAO {
 		/**
 		 * Prepare a query that searches for stores that are within a certain radius of the user's location (lat, lon)
 		 */
-		
+		/*
 		String searchQuery = "select StoreID, Lat, Long from Store where "
 				+ "(((111.2)^2)*((?-Lat)^2+((?-Long)^2)*(cos(?*3.141592654/180))^2))<?^2;";
-		System.out.println("\n" + searchQuery + "\n"); //test to check if query looks right
-								
+				*/
+		//System.out.println("\n" + searchQuery + "\n"); //test to check if query looks right
+		String searchQuery = 
+				"select StoreID, Lat, Long, "
+				+ "Sqr(((111.2)^2)*((?-Lat)^2+((?-Long)^2)*(cos(?*3.141592654/180))^2)) as Distance "
+				+ "from Store where (((111.2)^2)*((?-Lat)^2+((?-Long)^2)*(cos(?*3.141592654/180))^2))<?^2;";						
 		List<Store> storesWithinRadius = new ArrayList<Store>(); //list to store the stores
 
 		try {
@@ -45,7 +49,10 @@ public class StoreDAO {
 			pst.setDouble(1, userLat);
 			pst.setDouble(2, userLon);
 			pst.setDouble(3, userLat);
-			pst.setDouble(4, radius);
+			pst.setDouble(4, userLat);
+			pst.setDouble(5, userLon);
+			pst.setDouble(6, userLat);
+			pst.setDouble(7, radius);
 			rs = pst.executeQuery();
 
 			//Make a list of stores from the results
@@ -54,10 +61,12 @@ public class StoreDAO {
 				int storeID = rs.getInt("StoreID");
 				double storeLat = rs.getDouble("Lat");
 				double storeLon = rs.getDouble("Long");
-				System.out.println(storeID);
-				System.out.println(storeLat);
-				System.out.println(storeLon);
-				storesWithinRadius.add(new Store(storeID, storeLat, storeLon));
+				double distance = rs.getDouble("Distance");
+//				System.out.println("StoreID: " + storeID);
+//				System.out.println("StoreLat: " + storeLat);
+//				System.out.println("StoreLon: " + storeLon);
+//				System.out.println("Store distance: " + distance);
+				storesWithinRadius.add(new Store(storeID, storeLat, storeLon, distance));
 				
 			}
 		}
@@ -109,6 +118,8 @@ public class StoreDAO {
 			while(rs.next()) {
 				storeDetails.addDayAndHours(rs.getString("DayOfWeek"), new Time[]{rs.getTime("StartTime"), rs.getTime("EndTime")});
 			}
+			
+			storeDetails.makeHoursCompact();
 		}
 
 		catch (Exception ex) {

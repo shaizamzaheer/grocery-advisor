@@ -37,6 +37,7 @@ public class CheapestDAO {
 							+ " FROM Store AS S, SoldIn AS SI, ShoppingList AS SL"
 							+ " WHERE SI.ItemID = SL.ItemID" 
 							+ " AND SI.Franchise = S.Franchise"
+							/*+ " AND SL.Quantity <= I.Stock"*/
 							+ " AND SL.AccountID = " + userID
 							+ " AND S.StoreID In " + candidateStoreIDs.toString().replace("[", "(").replace("]", ")")
 							+ " AND SL.ItemID In (SELECT ItemID FROM ShoppingList WHERE AccountID = " + userID + ")"
