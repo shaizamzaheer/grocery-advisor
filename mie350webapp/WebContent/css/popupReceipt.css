@@ -1,0 +1,191 @@
+@CHARSET "ISO-8859-1";
+
+#popup-receipt {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
+  background-color: rgba(0,0,0,0.5);
+  
+  z-index: 1;
+  
+  display: none;
+}
+
+#popup-receipt-container {
+  height: 600px;
+  width: 800px;
+  background-color: white;
+  
+  border-radius: 10px;
+  position: relative;
+  margin: auto;
+  top: calc(50% - 300px);
+}
+
+#popup-receipt-title {
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 48px;
+  
+  height: 54px;
+  
+  margin: 0;
+  padding: 4px 10px;
+  
+  border-bottom: 3px solid black;
+
+  position: relative;
+}
+
+#popup-receipt-close {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  height: 62px;
+  
+  cursor: pointer;
+
+}
+
+#popup-receipt-close i {
+  font-size: 64px;
+  color: mediumaquamarine;
+  pointer-events: none;
+}
+
+#popup-receipt-contents {
+  overflow-y: scroll;
+  
+  position: absolute;
+  top: 65px;
+  bottom: 67px;
+  width: 100%;
+}
+
+.popup-receipt-item {
+  background-color: #b8b8b8;
+  height: 67px;
+  position: relative;
+
+  border-bottom: 3px solid white;
+}
+
+.popup-receipt-item p {
+
+  height: 54px;
+  vertical-align: middle;
+  line-height: 54px;
+  
+  top: calc(50% - 54px/2);
+}
+
+.popup-receipt-quantity {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  position: absolute;
+  
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 40px;
+  text-decoration-line: underline;
+
+  color: black;
+  
+  left: 20px;
+}
+
+.popup-receipt-info {
+
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 32px;
+  position: absolute;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  
+  left: 100px;
+}
+
+.popup-receipt-cost {
+  position: absolute;
+
+  /* border: 1px solid black; */
+  border: 0;
+  padding: 0;
+  margin: 0;
+  right: 20px;
+  
+  font-family: Abyssinica SIL;
+font-style: normal;
+font-weight: bold;
+line-height: normal;
+font-size: 40px;
+
+color: black;
+  
+}
+
+#popup-receipt-total {
+  position: absolute;
+  bottom: 0;
+  height: 67px;
+  width: 100%;
+  overflow-y: scroll;
+  border-top: 3px solid black;
+}
+
+#popup-receipt-total::-webkit-scrollbar {
+  background: transparent;
+}
+
+#popup-receipt-total p {
+  position: absolute;
+  height: 54px;
+  vertical-align: middle;
+  line-height: 54px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  
+  right: 20px;
+  bottom: calc(50% - 54px/2);
+}
+
+#popup-receipt-total p span:first-child {
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 32px;
+  position: absolute;
+  right: 150px;
+  top: calc(100% - 54px);
+  height: 54px;
+  vertical-align: middle;
+  line-height: 54px;
+}
+
+#popup-receipt-total p span + span {
+    font-family: Abyssinica SIL;
+font-style: normal;
+font-weight: bold;
+line-height: normal;
+font-size: 40px;
+  height: 54px;
+  vertical-align: middle;
+  line-height: 54px;
+
+color: black;
+}

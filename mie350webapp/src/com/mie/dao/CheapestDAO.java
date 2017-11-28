@@ -1,6 +1,7 @@
 package com.mie.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -66,6 +67,64 @@ public class CheapestDAO {
 		}
 		
 		return storeIDToPrice;
+	}
+	
+	public List<ReceiptItem> getReceipt(int userID, int storeID) {
+		Statement stmt = null;
+
+		List<ReceiptItem> receipt = new ArrayList<ReceiptItem>();
+		int itemID = 0;
+		String item_name = "";
+		String amount = "";
+		int quantity = 0;
+		double price = 0;
+		Date saleEnd = null;
+	
+		/**
+		 * Prepare a query gets the storeID and corresponding total price for all items in user's shopping cart that is sold at those stores
+		 */
+		String searchQuery = "SELECT I.ItemID, I.Item_Name, I.Amount, SL.Quantity, SI.Price, SI.PriceEnd"
+							+ " FROM Store AS S, SoldIn AS SI, ShoppingList AS SL, Inventory N, Items I"
+							+ " WHERE SI.ItemID = SL.ItemID"
+							+ " AND SI.ItemID = I.ItemID"
+							+ " AND SI.ItemID = N.ItemID" 
+							+ " AND SI.Franchise = S.Franchise"
+							+ " AND SL.Quantity <= N.Stock"
+							+ " AND S.StoreID = N.StoreID"
+							+ " AND SI.ItemID = SL.ItemID"
+							+ " AND SL.AccountID = " + userID
+							+ " AND S.StoreID = " + storeID
+							+ " AND SL.ItemID In (SELECT ItemID FROM ShoppingList WHERE AccountID = " + userID + ")";
+
+		try {
+			// connect to DB
+			currentCon = DbUtil.getConnection();
+			stmt = currentCon.createStatement();
+			rs = stmt.executeQuery(searchQuery);
+
+			while(rs.next()) {
+				//populate list
+				itemID = rs.getInt(1);
+				item_name = rs.getString(2);
+				amount = rs.getString(3);
+				quantity = rs.getInt(4);
+				price = rs.getDouble(5);
+				saleEnd = rs.getDate(6);
+				
+				System.out.println("ID: " + itemID + " Name: " + item_name + " Amount: " + amount + "Qty: " + quantity
+						+ " Price: $" + price);
+				
+				receipt.add(new ReceiptItem(itemID, item_name, amount, quantity, price, saleEnd));
+			}
+		}
+
+		catch (Exception ex) {
+			System.out.println("Error reading shopping list: An Exception has occurred! "
+					+ ex);
+			ex.printStackTrace();
+		}
+		
+		return receipt;
 	}
 	
 	public static void main(String[] args) {

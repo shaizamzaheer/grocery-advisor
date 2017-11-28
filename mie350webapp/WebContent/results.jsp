@@ -18,6 +18,9 @@
 <link rel="stylesheet" type="text/css" href="css/results.css">
 <link rel="stylesheet" type="text/css" href="css/popupStore.css">
 <script type="text/javascript" src="js/displayStoreDetails.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/popupReceipt.css">
+<script type="text/javascript" src="js/displayReceipt.js"></script>
 </head>
 <body>
 
@@ -67,7 +70,7 @@
 	    <span class="result-number"><%= count %>.</span><!--  
 	    --><div>
 		    <span class="result-store"><%= store.getFranchise() %> (<%= store.getStreetAddress() %>)</span>
-		    <span class="result-cost">Total Cost: $<%= result.getPrice() %></span>
+		    <span class="result-cost" id="<%= store.getStoreID() %>">Total Cost: $<%= result.getPrice() %></span>
 		    <span class="result-time">ETA: <%= result.getETA() %> min</span>
 	    </div>
   	</div>
@@ -76,5 +79,10 @@
 	} %>
 	
 </div>
+
+<div id="popup-receipt">
+
+</div>
+
 </body>
 </html>
