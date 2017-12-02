@@ -10,6 +10,7 @@ window.addEventListener("load", function() {
 		  var prev = 0;
 		  var url = "";
 		  var deleteVar = "";
+		  var arrItems = [];
 		  
 	    if (e.target.className == "quantity-inc") {
 	      e.target.previousElementSibling.value = parseInt(e.target.previousElementSibling.value) + 1;
@@ -31,6 +32,13 @@ window.addEventListener("load", function() {
 	    
 	    if (e.target.className == "quantity-inc" || (e.target.className == "quantity-dec" && prev != 1)) {
 	    	url = encodeURI("ShoppingCartServlet?itemID=" + itemID + "&quantity="	+ quantity);
+	    	
+			var elementHidden = document.getElementById("contents").querySelector("input[type='hidden'][value='"+itemID+"']");
+			
+			if (elementHidden != null) {
+				elementHidden.nextElementSibling.nextElementSibling.children[1].value = quantity;
+			}
+			
 	    } //end if for setting url for qty change
 	    
 	    if (e.target.className == "popup-cart-delete") {
@@ -38,12 +46,44 @@ window.addEventListener("load", function() {
 	    	itemID = e.target.id;
 	    	
 	    	url = encodeURI("ShoppingCartServlet?itemID=" + itemID + "&delete="	+ deleteVar);
+	    	
+	    	var elementHidden = document.getElementById("contents").querySelector("input[type='hidden'][value='"+itemID+"']");
+			
+			if (elementHidden != null) {
+				var btn = elementHidden.nextElementSibling.nextElementSibling.nextElementSibling;
+				btn.innerHTML = "Add";
+				btn.classList.remove("delete");
+				
+				elementHidden.previousElementSibling.children[0].style.display = "none";
+			
+			}
 	    } //end if for setting url for single item delete
 	    
 	    if (e.target.id == "popup-cart-clearall") {
 	    	deleteVar = "all";
 	    	
 	    	url = encodeURI("ShoppingCartServlet?delete="	+ deleteVar);
+	    	
+	    	arrItems = this.getElementsByClassName("popup-cart-delete");
+	    	console.log("items: " + arrItems);
+	    	console.log("# items:  " + arrItems.length);
+	    	
+	    	for (var i = 0; i < arrItems.length; i++) {
+	    		itemID = arrItems[i].id;
+	    		console.log("Item being deleted: " + itemID);
+	    		
+	    		var elementHidden = document.getElementById("contents").querySelector("input[type='hidden'][value='"+itemID+"']");
+				
+				if (elementHidden != null) {
+					var btn = elementHidden.nextElementSibling.nextElementSibling.nextElementSibling;
+					btn.innerHTML = "Add";
+					btn.classList.remove("delete");
+					
+					elementHidden.previousElementSibling.children[0].style.display = "none";
+				
+				} //end if elementHidden not null
+	    		
+	    	} //end for loop, for each item in shopping cart
 	    } //end if for deleting/clearing all items
 	    
 
@@ -62,8 +102,6 @@ window.addEventListener("load", function() {
 					popup.innerHTML = xhr2.responseText;
 					console.log(xhr2.responseText);
 					popup.style.display = "block";
-					closebtn.style.display = "block";
-
 				};
 				xhr2.send();
 
