@@ -51,6 +51,11 @@
   cursor: pointer;
 }
 
+.item-btn.delete {
+	color: red;
+	border-color: red;
+}
+
 .item-image {
   width: 215px;
   height: 215px;
