@@ -32,12 +32,31 @@
 	<div id="contents">
 	
 	<% List<Item> items = (ArrayList<Item>) session.getAttribute("items"); 
+	HashMap<Integer, CartItem> shoppingCartDictionary = (HashMap<Integer, CartItem>)session.getAttribute("shoppingCartDictionary");
+	String display = "none";
+	String deleteClass = "";
+	String btnText = "Add";
+	int qty = 0;
 	
-for (Item item : items) { %>
+for (Item item : items) { 
+	if (shoppingCartDictionary != null && shoppingCartDictionary.containsKey(item.getItemID())) {
+		display = "block";
+		deleteClass = "delete";
+		btnText = "Delete";
+		qty = shoppingCartDictionary.get(item.getItemID()).getQuantity();
+	}
+	
+	else if (shoppingCartDictionary != null && !shoppingCartDictionary.containsKey(item.getItemID())) {
+		display = "none";
+		deleteClass = "";
+		btnText = "Add";
+		qty = 0;
+	}
+%>
 	
 	  <div class="item-container">
 	  <div class="item-image">
-	    <div class="in-cart-symbol" style="display: none;">
+	    <div class="in-cart-symbol" style="display: <%= display%>;">
 	      <i class="material-icons">done</i>
 	      <span>In Cart</span>
 	    </div>
@@ -46,11 +65,11 @@ for (Item item : items) { %>
 	  <p class="item-info"><span class="item-name"><%= item.getItemName()%></span>, <span class="item-amount"><%=item.getAmount() %></span></p>
 	  <div class="quantity-control">
 	    <button class="quantity-dec"><i class="material-icons">remove</i></button>
-	    <input type="text" class="quantity" value="0" disabled>
+	    <input type="text" class="quantity" value="<%= qty %>" disabled>
 	    <button class="quantity-inc"><i class="material-icons">add</i></button>
 	  </div>
 	
-	  <button type="button" class="item-btn">Add</button>
+	  <button type="button" class="item-btn <%= deleteClass%>"><%= btnText %></button>
 	</div>
 	
 	<% } %>

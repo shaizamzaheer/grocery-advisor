@@ -3,7 +3,7 @@ window.addEventListener("load", function() {
 	var contents = document.getElementById("contents");
 	
 	contents.addEventListener("click", function(e) {
-	    if(e.target.className == "item-btn" && !e.target.classList.contains("delete")) {
+	    if(e.target.classList.contains("item-btn") && !e.target.classList.contains("delete")) {
 	      
 	      var currElement = e.target; //currElem is button
 	      currElement = currElement.previousElementSibling; //up one, currElem is quantity-control
