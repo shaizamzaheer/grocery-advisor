@@ -31,6 +31,11 @@ public class DisplayResultsServlet extends HttpServlet {
 		ArrayList<Integer> candidateStoreIDs = (ArrayList<Integer>) request.getSession().getAttribute("candidateStoreIDs");
 		ArrayList<Double> candidateStoreDistances = (ArrayList<Double>) request.getSession().getAttribute("candidateStoreDistances");
 		
+		HashMap<Integer, Double> storeToDistances = new HashMap<Integer, Double>();
+		
+		for (int i = 0; i < candidateStoreIDs.size(); i++) {
+			storeToDistances.put(candidateStoreIDs.get(i), candidateStoreDistances.get(i));
+		}
 		
 		Set<Result> results = new TreeSet<Result>();
 		
@@ -44,27 +49,30 @@ public class DisplayResultsServlet extends HttpServlet {
 		//new Result(store object, price (from hashmap i.e. cheapestStoreIDsAndPrice.get(i)), distance (getparameter "dist"+i from request))
 		//add to list of Results
 		
-		/*
+		
 		System.out.println("Candidate StoreIDS: ");
 		System.out.println(candidateStoreIDs);
 		
 		System.out.println("StoreIDsToPrices:");
 		System.out.println(cheapestStoreIDsAndPrices);
-		*/
 		
-		for (int i = 0; i < candidateStoreIDs.size(); i++) {
+		
+		//for (int i = 0; i < candidateStoreIDs.size(); i++) {
+		for (Integer i : cheapestStoreIDsAndPrices.keySet()) {
 			
-			System.out.println("ID: " + candidateStoreIDs.get(i));
+			System.out.println("ID: " + i);
 			
-			Store storeDetails = storeDAO.getStoreDetails(candidateStoreIDs.get(i));
+			//Store storeDetails = storeDAO.getStoreDetails(candidateStoreIDs.get(i));
+			Store storeDetails = storeDAO.getStoreDetails(i);
 			
 			System.out.println(storeDetails.getFranchise() + ", " + storeDetails.getStoreID());
 			
-			double price = cheapestStoreIDsAndPrices.get(candidateStoreIDs.get(i));
+			//double price = cheapestStoreIDsAndPrices.get(candidateStoreIDs.get(i));
+			double price = cheapestStoreIDsAndPrices.get(i);
 			
 			//double distance = Double.parseDouble(request.getParameter("dist"+i));
 			
-			double distance = candidateStoreDistances.get(i);
+			double distance = storeToDistances.get(i);
 			
 			Result result = new Result(storeDetails, price, distance, travelMethod);
 			
