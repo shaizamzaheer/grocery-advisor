@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.util.*, com.mie.model.User" %>
+    pageEncoding="ISO-8859-1" import="java.util.*, com.mie.model.*" %>
 	
 	<%	User user = (User)session.getAttribute("user");	%>
 	
@@ -20,6 +20,14 @@
       	<%
       	List<String> suggestionList = (ArrayList<String>) session.getAttribute("suggestionList");
       	
+      	Set<CartItem> shoppingCart = (HashSet<CartItem>)session.getAttribute("shoppingCart"); 
+      	int capacity = 0;
+      	String displayCapacity = "none";
+	  	if (shoppingCart != null && !shoppingCart.isEmpty()) {
+	  		capacity = shoppingCart.size();
+	  		displayCapacity = "block";
+	  	}
+      	
       	for (String suggestion : suggestionList) { %>
       		<option> <%= suggestion %> </option>
       	<% } %>
@@ -28,7 +36,7 @@
     <button id="item-search-btn"><i class="material-icons">search</i></button>
   </form>
   
-  <button id="cart-btn"><i class="material-icons">shopping_cart</i></button>
+  <button id="cart-btn"><i class="material-icons">shopping_cart</i><span style="display:<%= displayCapacity%>"><%=capacity %></span></button>
   
   <ul id="category-btns">
     <li><span>Grain</span><i class="material-icons">expand_more</i>

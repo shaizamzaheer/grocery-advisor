@@ -232,6 +232,30 @@ body {
   color: white;
 }
 
+#cart-btn span {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: red;
+  border-radius: 100%;
+  color: white;
+  right: 70px;
+  top: 0px;
+  font-size: 17px;
+  line-height: 25px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  
+  pointer-events: none;
+  
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+}
+
 .category-dropdown-container {
   position: absolute;
   top: calc(100% + 3px);

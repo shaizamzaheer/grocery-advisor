@@ -3,6 +3,9 @@ window.addEventListener("load", function() {
 	var contents = document.getElementById("contents");
 	
 	contents.addEventListener("click", function(e) {
+		
+		var cartCapacity = document.querySelector("#cart-btn span");
+		
 	    if(e.target.classList.contains("item-btn") && !e.target.classList.contains("delete")) {
 	      
 	      var currElement = e.target; //currElem is button
@@ -25,6 +28,10 @@ window.addEventListener("load", function() {
 		      e.target.classList.add("delete");
 		      inCartSymbol.style.display = "block"; //display "In Cart" on image, showing that it's in cart
 		      
+		      cartCapacity.innerHTML = parseInt(cartCapacity.innerHTML) + 1;
+		      if (parseInt(cartCapacity.innerHTML) > 0) {
+					cartCapacity.style.display = "block";
+				}
 		      
 	    	  var xhr = new XMLHttpRequest();
 	    	  console.log(encodeURI("ShoppingCartServlet?itemID="+itemID+"&itemName="+itemName+"&amount="+amount+"&quantity="+quantity));
@@ -53,7 +60,12 @@ window.addEventListener("load", function() {
 		      var inCartSymbol = currElement.children[0]; //access to in-cart-symbol
 		      
 		      inCartSymbol.style.display = "none"; //remove "In Cart" on image, showing that it's not in cart anymore
-
+		      
+		      cartCapacity.innerHTML = parseInt(cartCapacity.innerHTML) - 1;
+				if (parseInt(cartCapacity.innerHTML) == 0) {
+					cartCapacity.style.display = "none";
+				}
+		      
 		    	  var xhr = new XMLHttpRequest();
 		    	  var url = encodeURI("ShoppingCartServlet?itemID=" + itemID + "&delete="	+ deleteVar);
 		    	  xhr.open("POST", url);

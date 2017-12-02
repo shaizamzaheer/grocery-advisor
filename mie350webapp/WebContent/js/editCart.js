@@ -11,6 +11,7 @@ window.addEventListener("load", function() {
 		  var url = "";
 		  var deleteVar = "";
 		  var arrItems = [];
+		  var cartCapacity = document.querySelector("#cart-btn span");
 		  
 	    if (e.target.className == "quantity-inc") {
 	      e.target.previousElementSibling.value = parseInt(e.target.previousElementSibling.value) + 1;
@@ -57,6 +58,11 @@ window.addEventListener("load", function() {
 				elementHidden.previousElementSibling.children[0].style.display = "none";
 			
 			}
+			
+			cartCapacity.innerHTML = parseInt(cartCapacity.innerHTML) - 1;
+			if (parseInt(cartCapacity.innerHTML) == 0) {
+				cartCapacity.style.display = "none";
+			}
 	    } //end if for setting url for single item delete
 	    
 	    if (e.target.id == "popup-cart-clearall") {
@@ -84,6 +90,10 @@ window.addEventListener("load", function() {
 				} //end if elementHidden not null
 	    		
 	    	} //end for loop, for each item in shopping cart
+	    	
+	    	cartCapacity.innerHTML = 0;
+			cartCapacity.style.display = "none";
+			
 	    } //end if for deleting/clearing all items
 	    
 
