@@ -30,6 +30,8 @@ public class LoadCartServlet extends HttpServlet {
 		//put dictionary and shoppingCart on session
 		request.getSession().setAttribute("shoppingCartDictionary", shoppingCartDictionary);
 		request.getSession().setAttribute("shoppingCart", shoppingCart);
+		
+		response.sendRedirect("welcome.jsp");
 	}
 
 	private HashMap<Integer, CartItem> makeDictionary(HashSet<CartItem> shoppingCart) {

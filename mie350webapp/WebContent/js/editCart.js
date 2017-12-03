@@ -12,6 +12,7 @@ window.addEventListener("load", function() {
 		  var deleteVar = "";
 		  var arrItems = [];
 		  var cartCapacity = document.querySelector("#cart-btn span");
+		  var welcomeMsg = document.getElementById("welcome-message");
 		  
 	    if (e.target.className == "quantity-inc") {
 	      e.target.previousElementSibling.value = parseInt(e.target.previousElementSibling.value) + 1;
@@ -62,6 +63,13 @@ window.addEventListener("load", function() {
 			cartCapacity.innerHTML = parseInt(cartCapacity.innerHTML) - 1;
 			if (parseInt(cartCapacity.innerHTML) == 0) {
 				cartCapacity.style.display = "none";
+				
+				if (welcomeMsg != null) {
+				welcomeMsg.innerHTML = "Looks like your list is empty. " + 
+					"Use the categories or search for some groceries to make a shopping list. " + 
+					"When you've added all your items, confirm your shopping list. " + 
+					"Next, enter your location and proceed to get a ranked list of the best stores to shop at.";
+				}
 			}
 	    } //end if for setting url for single item delete
 	    
@@ -86,13 +94,20 @@ window.addEventListener("load", function() {
 					btn.classList.remove("delete");
 					
 					elementHidden.previousElementSibling.children[0].style.display = "none";
-				
+					
 				} //end if elementHidden not null
 	    		
 	    	} //end for loop, for each item in shopping cart
 	    	
 	    	cartCapacity.innerHTML = 0;
 			cartCapacity.style.display = "none";
+			
+			if (welcomeMsg != null) {
+				welcomeMsg.innerHTML = "Looks like your list is empty. " + 
+				"Use the categories or search for some groceries to make a shopping list. " + 
+				"When you've added all your items, confirm your shopping list. " + 
+				"Next, enter your location and proceed to get a ranked list of the best stores to shop at.";
+				}
 			
 	    } //end if for deleting/clearing all items
 	    

@@ -82,6 +82,7 @@ public class LoginServlet extends HttpServlet {
 		request.getSession().setAttribute("otherItems", otherItems);
 		
 		request.getSession().setAttribute("user", user);
+		request.getSession().setAttribute("loadPopupShown", false);
 
 		// redirect to welcome.jsp (Welcome Page with search bar, etc.)
 		response.sendRedirect("welcome.jsp");
