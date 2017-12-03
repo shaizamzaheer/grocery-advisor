@@ -209,3 +209,55 @@ background-size: 100%;
   width: 99px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 1400px) {
+  #login-email,
+#login-password,
+#signup-name,
+#signup-email,
+#signup-password,
+#confirm-password {
+  width: 475px;
+  font-size: 40px;
+}
+
+#login-forgot {
+  left: 260px;
+}
+
+#login-header {
+  height: 200px;
+}
+
+#login-left, #login-right {
+  top: 200px;
+}
+
+#logo-container {
+  top: 12px;
+  left: 30px;
+  width: 175px;
+  height: 175px;
+}
+
+#login-header h1 {
+  left: 275px;
+  top: 20px;
+}
+
+#login-right h1 {
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 30px;
+
+  color: #ffffff;
+
+  position: absolute;
+  right: 80px;
+  left: 65px;
+  top: 36px;
+  text-align: justify;
+}
+}

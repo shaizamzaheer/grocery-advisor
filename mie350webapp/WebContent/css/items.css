@@ -173,3 +173,35 @@ text-align: center;
   font-weight: normal;
   line-height: normal;
 }
+
+@media screen and (max-width: 1400px) {
+  
+  #content-title {
+  position: fixed;
+  top: 287px;
+  background-color: mediumaquamarine;
+  height: 76px;
+  width: 100%;
+  margin: 0;
+  
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 64px;
+
+  color: #FFFFFF;
+  
+  padding: 3px 36px;
+  border-bottom: 3px solid white;
+}
+
+#contents {
+  background-color: mediumaquamarine;
+  position: absolute;
+  top: 372px;
+  bottom: 0px;
+  width: 100%;
+  overflow-y: auto;
+}
+}

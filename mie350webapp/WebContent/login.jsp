@@ -3,6 +3,7 @@
 
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width">
 <title>Grocery Advisor - Login</title>
 <script src="js/login.js"></script>
 
