@@ -86,7 +86,7 @@
       </div>
       
       <div class="radio-choice">
-        <input type="radio" name="preference">
+        <input type="radio" name="preference" value="both">
         <h1>Both?</h1>
       </div>
       

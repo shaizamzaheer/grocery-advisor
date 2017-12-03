@@ -11,18 +11,22 @@ public class Result implements Comparable<Result> {
 	private final double distanceToPrice = 1;
 	private int ETA;
 	private String travelMethod;
+	private String preference;
+	private double timeValue;
 	
-	public Result(Store store, double price, double distance, String travelMethod) {
+	public Result(Store store, double price, double distance, String travelMethod, String preference, double timeValue) {
 		this.setStoreDetails(store);
 		this.setPrice(price);
 		this.setDistance(distance);
 		this.setTravelMethod(travelMethod);
+		this.setPreference(preference);
+		this.setTimeValue(timeValue);
 		
 		this.makeETA(distance, travelMethod);
 	}
 	
-	public double getMetric(double price, double distance) {
-		return price + distance*distanceToPrice;
+	public double getMetric() {
+		return this.getTimeValue()*this.getETA()/60 + this.getPrice();
 	}
 
 	public Store getStoreDetails() {
@@ -51,17 +55,117 @@ public class Result implements Comparable<Result> {
 
 	@Override
 	public int compareTo(Result other) {
-		double thisMetric = this.getMetric(this.getPrice(), this.getDistance());
-		double otherMetric = other.getMetric(other.getPrice(), other.getDistance());
+
+		if (this.getPreference().equalsIgnoreCase("price")) 
+			return compareByPrice(other);
 		
-		if (thisMetric < otherMetric) return -1; 
-		else if (thisMetric > otherMetric) return 1;
-		else if (this.getPrice() < other.getPrice()) return -1;
-		else if (this.getPrice() > other.getPrice()) return 1;
-		else return 0;
+		else if (this.getPreference().equalsIgnoreCase("time"))
+			return compareByTime(other);
+		
+		else if (this.getPreference().equalsIgnoreCase("both"))
+			return compareByMetric(other);
+		
+		else
+			return 0;
 		
 	}
 	
+	private int compareByMetric(Result other) {
+
+		if (this.getMetric() < other.getMetric())
+			return -1;
+		else if (this.getMetric() > other.getMetric())
+			return 1;
+		
+		else {
+			if (this.getPrice() < other.getPrice()) 
+				return -1;
+			else if (this.getPrice() > other.getPrice()) 
+				return 1;
+			
+			else {
+				if (this.getStoreDetails().getFranchise().compareToIgnoreCase(other.getStoreDetails().getFranchise()) < 0)
+					return -1;
+				else if (this.getStoreDetails().getFranchise().compareToIgnoreCase(other.getStoreDetails().getFranchise()) > 0)
+					return 1;
+				
+				else {
+					if (this.getStoreDetails().getStoreID() < other.getStoreDetails().getStoreID())
+						return -1;
+					else if (this.getStoreDetails().getStoreID() > other.getStoreDetails().getStoreID())
+						return 1;
+					
+					else
+						return 0;
+				}
+			}
+		}
+	}
+
+	private int compareByTime(Result other) {
+
+		if (this.getETA() < other.getETA())
+			return -1;
+		else if (this.getETA() > other.getETA())
+			return 1;
+		
+		else {
+			if (this.getPrice() < other.getPrice()) 
+				return -1;
+			else if (this.getPrice() > other.getPrice()) 
+				return 1;
+			
+			else {
+				if (this.getStoreDetails().getFranchise().compareToIgnoreCase(other.getStoreDetails().getFranchise()) < 0)
+					return -1;
+				else if (this.getStoreDetails().getFranchise().compareToIgnoreCase(other.getStoreDetails().getFranchise()) > 0)
+					return 1;
+				
+				else {
+					if (this.getStoreDetails().getStoreID() < other.getStoreDetails().getStoreID())
+						return -1;
+					else if (this.getStoreDetails().getStoreID() > other.getStoreDetails().getStoreID())
+						return 1;
+					
+					else
+						return 0;
+				}
+			}
+		}
+	}
+
+	private int compareByPrice(Result other) {
+		
+		if (this.getPrice() < other.getPrice())
+			return -1;
+		else if (this.getPrice() > other.getPrice())
+			return 1;
+		
+		else {
+			if (this.getETA() < other.getETA()) 
+				return -1;
+			else if (this.getETA() > other.getETA()) 
+				return 1;
+			
+			else {
+				if (this.getStoreDetails().getFranchise().compareToIgnoreCase(other.getStoreDetails().getFranchise()) < 0)
+					return -1;
+				else if (this.getStoreDetails().getFranchise().compareToIgnoreCase(other.getStoreDetails().getFranchise()) > 0)
+					return 1;
+				
+				else {
+					if (this.getStoreDetails().getStoreID() < other.getStoreDetails().getStoreID())
+						return -1;
+					else if (this.getStoreDetails().getStoreID() > other.getStoreDetails().getStoreID())
+						return 1;
+					
+					else
+						return 0;
+				}
+			}
+		}
+	}
+
 	@Override
 	public String toString() {
 		return "{StoreID: " + this.getStoreDetails().getStoreID() + ", Price: " + this.getPrice() + ", Distance: " + this.getDistance() + "}"; //TEMPORARY TOSTRING RETURN
@@ -95,6 +199,22 @@ public class Result implements Comparable<Result> {
 			this.ETA = (int)(60*distance/5.4);
 		
 		
+	}
+
+	public String getPreference() {
+		return preference;
+	}
+
+	public void setPreference(String preference) {
+		this.preference = preference;
+	}
+
+	public double getTimeValue() {
+		return timeValue;
+	}
+
+	public void setTimeValue(double timeValue) {
+		this.timeValue = timeValue;
 	}
 	
 //	public static void main(String[] args) {

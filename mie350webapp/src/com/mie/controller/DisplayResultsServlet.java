@@ -27,6 +27,8 @@ public class DisplayResultsServlet extends HttpServlet {
 		
 		int userID = (Integer)request.getSession().getAttribute("userID");
 		String travelMethod = request.getParameter("transport-method");
+		String preference = request.getParameter("preference");
+		Double timeValue = request.getParameter("time-value") == null ? null : Double.parseDouble(request.getParameter("time-value"));
 		
 		ArrayList<Integer> candidateStoreIDs = (ArrayList<Integer>) request.getSession().getAttribute("candidateStoreIDs");
 		ArrayList<Double> candidateStoreDistances = (ArrayList<Double>) request.getSession().getAttribute("candidateStoreDistances");
@@ -74,7 +76,7 @@ public class DisplayResultsServlet extends HttpServlet {
 			
 			double distance = storeToDistances.get(i);
 			
-			Result result = new Result(storeDetails, price, distance, travelMethod);
+			Result result = new Result(storeDetails, price, distance, travelMethod, preference, timeValue);
 			
 			results.add(result);
 		}

@@ -36,7 +36,8 @@ public class CreateAccountServlet extends LoginServlet {
 
 		// if user cant signup means user exists...
 		if (!canUserSignup)
-			sendToWelcome(request, response, user);
+			//sendToWelcome(request, response, user);
+			response.sendRedirect("login.jsp");
 
 		// if user DOES NOT exist...
 		else {
