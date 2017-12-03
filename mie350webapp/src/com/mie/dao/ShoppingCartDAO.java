@@ -141,6 +141,10 @@ public class ShoppingCartDAO {
 		 * Prepare a query that inserts a single item into shopping list table.
 		 * Will be looped through to add user's entire cart.
 		 */
+		System.out.println("Cart being entered: ");
+		for (CartItem item : cart) {
+			System.out.println("ID entered: " + item.getItemID());
+		}
 
 		String insertQuery = "INSERT INTO ShoppingList(AccountID, ItemID, Quantity) VALUES (?,?,?)";
 
@@ -179,7 +183,7 @@ public class ShoppingCartDAO {
 		/**
 		 * Prepare a query gets the shopping cart (item_name and quantity) for a particular user.
 		 */
-		String searchQuery = "select I.Item_Name, I.Amount, S.Quantity from Items I, ShoppingList S where I.ItemID = S.ItemID and S.AccountID = " + userID;
+		String searchQuery = "select I.ItemID, I.Item_Name, I.Amount, S.Quantity from Items I, ShoppingList S where I.ItemID = S.ItemID and S.AccountID = " + userID;
 		
 		Set<CartItem> shoppingCart = new HashSet<CartItem>(); //shopping cart is a list of cartitems (contains item_name, quantity)
 
@@ -191,10 +195,11 @@ public class ShoppingCartDAO {
 
 			while(rs.next()) {
 				//populate list
-				String itemName = rs.getString(1);
-				String amount = rs.getString(2);
-				int quantity = rs.getInt(3);
-				shoppingCart.add(new CartItem(userID, itemName, amount, quantity));//
+				int itemID = rs.getInt(1);
+				String itemName = rs.getString(2);
+				String amount = rs.getString(3);
+				int quantity = rs.getInt(4);
+				shoppingCart.add(new CartItem(itemID, itemName, amount, quantity));//
 			}
 		}
 

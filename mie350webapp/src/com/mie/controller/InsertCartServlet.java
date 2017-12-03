@@ -22,6 +22,9 @@ public class InsertCartServlet extends HttpServlet {
 		HashSet<CartItem> shoppingCart = (HashSet<CartItem>)request.getSession().getAttribute("shoppingCart");
 		int userID = (Integer)request.getSession().getAttribute("userID");
 		
+		for (CartItem item : shoppingCart) {
+			System.out.println("item id in cart right before calling insert method: " + item.getItemID());
+		}
 		ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
 		shoppingCartDAO.deleteCart(userID);
 		shoppingCartDAO.insertCart(userID, shoppingCart);
