@@ -168,7 +168,13 @@ public class Result implements Comparable<Result> {
 
 	@Override
 	public String toString() {
-		return "{StoreID: " + this.getStoreDetails().getStoreID() + ", Price: " + this.getPrice() + ", Distance: " + this.getDistance() + "}"; //TEMPORARY TOSTRING RETURN
+		return "\n{Store: " + this.getStoreDetails().getFranchise()
+				+ "\nStoreID: " + this.getStoreDetails().getStoreID()
+				+ "\nLocation: " + this.getStoreDetails().getStreetAddress()
+				+ "\nPrice: " + this.getPrice() 
+				+ "\nETA: " + this.getETA()
+				+ "\nMetric: " + this.getMetric()
+				+ "}"; //TEMPORARY TOSTRING RETURN
 		
 	}
 

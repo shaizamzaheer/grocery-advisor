@@ -94,16 +94,76 @@ background-size: 100%;
   width: 590px;
 }
 
-#login-password, #signup-email {
+#login-email.login-red, #login-password.login-red, 
+#signup-email.login-red, #signup-name.login-red, #signup-password.login-red, #confirm-password.login-red {
+	border-bottom: 3px solid red;
+}
+
+#invalid-login {
+	position: absolute;
+	color: red;
+  font-family: Abyssinica SIL;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 25px;
+  background-color: transparent;
+  
+  left: 113px;
+  width: 590px;
+  top: 280px;
+}
+
+#invalid-signin, #missing-name, #missing-email, #missing-password, #missing-confirm, #diff-confirm {
+	position: absolute;
+	color: red;
+  	font-family: Abyssinica SIL;
+  	font-style: normal;
+  	font-weight: normal;
+  	line-height: normal;
+  	font-size: 22px;
+  	background-color: transparent;
+  
+  	left: 113px;
+  	width: 590px;
+  	
+  	display: none;
+}
+
+#invalid-signin {
+	display: block;
+}
+
+#invalid-signin, #missing-email {
+	top: 164px;
+}
+
+#missing-name {
+	top: 81px;
+}
+
+#missing-password {
+	top: 247px;
+}
+
+#missing-confirm, #diff-confirm {
+	top: 332px;
+}
+
+#login-password {
   top: 73px;
 }
 
+#signup-email {
+  top: 83px;
+}
+
 #signup-password {
-  top: 140px;
+  top: 166px;
 }
 
 #confirm-password {
-  top: 213px;
+  top: 249px;
 }
 
 #login-email::placeholder,
@@ -113,6 +173,24 @@ background-size: 100%;
 #signup-password::placeholder,
 #confirm-password::placeholder {
   color: white;
+}
+
+#login-email.login-red::placeholder,
+#login-password.login-red::placeholder,
+#signup-name.login-red::placeholder,
+#signup-email.login-red::placeholder,
+#signup-password.login-red::placeholder,
+#confirm-password.login-red::placeholder {
+	color: red;
+}
+
+#login-email:focus::placeholder,
+#login-password:focus::placeholder,
+#signup-name:focus::placeholder,
+#signup-email:focus::placeholder,
+#signup-password:focus::placeholder,
+#confirm-password:focus::placeholder {
+  color: transparent;
 }
 
 .login-btn {
@@ -141,7 +219,7 @@ background-size: 100%;
 #signup-submit {
   position: absolute;
   height: 73px;
-  top: 293px;
+  top: 360px;
   border: 3px solid #ffffff;
 
   border-radius: 25px;
@@ -221,6 +299,26 @@ background-size: 100%;
   font-size: 40px;
 }
 
+#invalid-login, #invalid-signin, #missing-email, #missing-name, #missing-password, #missing-confirm, #diff-confirm {
+	width: 475px;
+}
+
+#invalid-signin, #missing-email {
+	top: 145px;
+}
+
+#missing-name {
+	top: 73px;
+}
+
+#missing-password {
+	top: 218px;
+}
+
+#missing-confirm, #diff-confirm {
+	top: 290px;
+}
+
 #login-forgot {
   left: 260px;
 }
@@ -259,5 +357,25 @@ background-size: 100%;
   left: 65px;
   top: 36px;
   text-align: justify;
+}
+
+#signup-email {
+	top: 73px;
+}
+
+#signup-password {
+  top: 146px;
+}
+
+#confirm-password {
+  top: 219px;
+}
+
+#signup-submit {
+	top: 310px;
+}
+
+#invalid-signin {
+	top: 145px;
 }
 }

@@ -42,6 +42,8 @@ public class LoginServlet extends HttpServlet {
 
 		else {
 			// redirect them back to Log In page
+			request.getSession().setAttribute("invalidLogin", true);
+			request.getSession().setAttribute("invalidSignin", false);
 			response.sendRedirect("login.jsp");
 		}
 

@@ -17,7 +17,7 @@
 
 #popup-cart {
   height: 600px;
-  width: 800px;
+  width: 900px;
   background-color: white;
   
   border-radius: 10px;
@@ -184,4 +184,17 @@ color: black;
   font-size: 32px;
   color: red;
   pointer-events: none;
+}
+
+#popup-cart-empty {
+	height: 100%;
+	font-family: Abyssinica SIL;
+  	font-style: normal;
+  	font-weight: normal;
+  	line-height: 479px;
+  	font-size: 48px;
+  	vertical-align: middle;
+  	text-align: center;
+  	
+  	color: black;
 }

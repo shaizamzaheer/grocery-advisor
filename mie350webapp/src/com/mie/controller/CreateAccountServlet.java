@@ -35,9 +35,12 @@ public class CreateAccountServlet extends LoginServlet {
 		boolean canUserSignup = userDAO.allowSignup(user);
 
 		// if user cant signup means user exists...
-		if (!canUserSignup)
+		if (!canUserSignup) {
 			//sendToWelcome(request, response, user);
+			request.getSession().setAttribute("invalidSignin", true);
+			request.getSession().setAttribute("invalidLogin", false);
 			response.sendRedirect("login.jsp");
+		}
 
 		// if user DOES NOT exist...
 		else {

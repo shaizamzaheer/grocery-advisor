@@ -52,11 +52,11 @@ public class DisplayResultsServlet extends HttpServlet {
 		//add to list of Results
 		
 		
-		System.out.println("Candidate StoreIDS: ");
-		System.out.println(candidateStoreIDs);
-		
-		System.out.println("StoreIDsToPrices:");
-		System.out.println(cheapestStoreIDsAndPrices);
+//		System.out.println("Candidate StoreIDS: ");
+//		System.out.println(candidateStoreIDs);
+//		
+//		System.out.println("StoreIDsToPrices:");
+//		System.out.println(cheapestStoreIDsAndPrices);
 		
 		
 		//for (int i = 0; i < candidateStoreIDs.size(); i++) {
@@ -80,6 +80,8 @@ public class DisplayResultsServlet extends HttpServlet {
 			
 			results.add(result);
 		}
+		
+		System.out.println(results);
 		
 		//put list of results on session so that results.jsp can access it
 		request.getSession().setAttribute("results", results);

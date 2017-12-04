@@ -30,7 +30,7 @@
 	  	
 		else { %>
 
-	<div>Shopping Cart is empty...</div>
+	<div id="popup-cart-empty">Your shopping cart is empty...</div>
 	<% } //end of else (i.e. is null) %>
 	
 	
