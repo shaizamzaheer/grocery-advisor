@@ -216,6 +216,14 @@ background-size: 100%;
   width: 215px;
 }
 
+.login-btn:hover {
+	background-color: #3ec195;
+}
+
+.login-btn:active {
+	background-color: #38ad86;
+}
+
 #signup-submit {
   position: absolute;
   height: 73px;
@@ -237,6 +245,14 @@ background-size: 100%;
   cursor: pointer;
 
   width: 215px;
+}
+
+#signup-submit:hover, #login-forgot:hover {
+	background-color: #3ec195;
+}
+
+#signup-submit:active, #login-forgot:active {
+	background-color: #38ad86;
 }
 
 #login-forgot {
@@ -268,6 +284,14 @@ background-size: 100%;
   padding: 7px 13px;
 
   cursor: pointer;
+}
+
+#login-create span:hover, #signin span:hover {
+	background-color: #3ec195;
+}
+
+#login-create span:active, #signin span:active {
+	background-color: #38ad86;
 }
 
 #signin span {

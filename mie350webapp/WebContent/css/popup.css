@@ -60,6 +60,14 @@
   pointer-events: none;
 }
 
+#popup-close-btn:hover i {
+	color: #3ec195;
+}
+
+#popup-close-btn:active i {
+	color: #38ad86;
+}
+
 #popup-cart-btns {
 
   padding: 7px 13px;
@@ -91,6 +99,14 @@ color: black;
   
   background-color: white;
   cursor: pointer;
+}
+
+.popup-cart-btn:hover {
+	background-color: #f2f2f2;
+}
+
+.popup-cart-btn:active {
+	background-color: #d9d9d9;
 }
 
 #popup-cart-clearall {
@@ -184,6 +200,14 @@ color: black;
   font-size: 32px;
   color: red;
   pointer-events: none;
+}
+
+.popup-cart-delete:hover i {
+	color: #cc0000;
+}
+
+.popup-cart-delete:active i {
+	color: #b30000;
 }
 
 #popup-cart-empty {

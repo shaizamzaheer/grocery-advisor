@@ -59,6 +59,14 @@
   pointer-events: none;
 }
 
+#popup-receipt-close:hover i {
+	color: #3ec195;
+}
+
+#popup-receipt-close:active i {
+	color: #38ad86;
+}
+
 #popup-receipt-contents {
   overflow-y: scroll;
   

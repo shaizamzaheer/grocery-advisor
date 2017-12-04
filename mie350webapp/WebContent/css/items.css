@@ -51,6 +51,14 @@
   cursor: pointer;
 }
 
+.item-btn:hover {
+	background-color: #3ec195;
+}
+
+.item-btn:active {
+	background-color: #38ad86;
+}
+
 .item-btn.delete {
 	color: red;
 	border-color: red;
@@ -102,6 +110,14 @@
   color: white;
   font-size: 32px;
   font-weight: bold;
+}
+
+.quantity-inc:hover i, .quantity-dec:hover i {
+	color: #f2f2f2;
+}
+
+.quantity-inc:active i, .quantity-dec:active i {
+	color: #d9d9d9;
 }
 
 .quantity {

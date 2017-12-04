@@ -61,6 +61,14 @@
   pointer-events: none;
 }
 
+.popup-store-close:hover i {
+	color: #3ec195;
+}
+
+.popup-store-close:active i {
+	color: #38ad86;
+}
+
 .popup-store-contents {
   
   position: absolute;

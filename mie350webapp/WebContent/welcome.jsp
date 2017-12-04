@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width">
-<title>Welcome!</title>
+<title>Grocery Advisor - Home</title>
 
 <link rel="stylesheet" type="text/css" href="css/popup.css">
 <script type="text/javascript" src="js/addToCart.js"></script>

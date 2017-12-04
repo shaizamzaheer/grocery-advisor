@@ -192,19 +192,75 @@ public class Result implements Comparable<Result> {
 
 	public void makeETA(double distance, String travelMethod) {
 		
+		if (travelMethod.equalsIgnoreCase("walk"))
+			this.ETA = ETAByWalk(distance);
+		
+		else if (travelMethod.equalsIgnoreCase("car"))
+			this.ETA = ETAByCar(distance);
+		
+		else if (travelMethod.equalsIgnoreCase("transit"))
+			this.ETA = ETAByTransit(distance);
+		
+		else if (travelMethod.equalsIgnoreCase("bike"))
+			this.ETA = ETAByBike(distance);
+		
+		
+	}
+	
+	public int ETAByCar(double distance) {
 		if (distance >= 15.5) 
-			this.ETA = (int)(60*(distance + 10)/70);
+			return (int)(60*(distance + 10)/70);
 		
 		else if (distance < 15.5 && distance >= 1.15) 
-			this.ETA = (int)(60*(distance + 3)/50);
+			return (int)(60*(distance + 3)/50);
 		
 		else if (distance < 1.15 && distance >= 0.15) 
-			this.ETA = (int)(60*(distance + 0.3)/5.4);
+			return (int)(60*(distance + 0.3)/5.4);
 		
 		else 
-			this.ETA = (int)(60*distance/5.4);
+			return (int)(60*distance/5.4);
+	}
+	
+	public int ETAByBike(double distance) {
+		if (distance >= 15.5) 
+			return (int)(60*(distance + 6.5)/15.5);
 		
+		else if (distance < 15.5 && distance >= 1.15) 
+			return (int)(60*(distance + 1.67)/15.5);
 		
+		else if (distance < 1.15 && distance >= 0.15) 
+			return (int)(60*(distance + 0.15)/15.5);
+		
+		else 
+			return (int)(60*distance/5.4);
+	}
+	
+	public int ETAByWalk(double distance) {
+		if (distance >= 15.5) 
+			return (int)(60*(distance + 10)/5.4);
+		
+		else if (distance < 15.5 && distance >= 1.15) 
+			return (int)(60*(distance*2.177 - 1.089)/5.4);
+		
+		else if (distance < 1.15 && distance >= 0.15) 
+			return (int)(60*(distance + 0.3)/5.4);
+		
+		else 
+			return (int)(60*distance/5.4);
+	}
+	
+	public int ETAByTransit(double distance) {
+		if (distance >= 15.5) 
+			return (int)(ETAByBike(distance)*1.75);
+		
+		else if (distance < 15.5 && distance >= 1.15) 
+			return (int)ETAByBike(distance);
+		
+		else if (distance < 1.15 && distance >= 0.15) 
+			return (int)(60*(distance + 0.3)/5.4);
+		
+		else 
+			return (int)(60*distance/5.4);
 	}
 
 	public String getPreference() {

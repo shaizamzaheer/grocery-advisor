@@ -80,6 +80,11 @@ background-size: 100%;
 
 #signout-btn:hover {
   cursor: pointer;
+  background-color: #f2f2f2;
+}
+
+#signout-btn:active {
+	background-color: #d9d9d9;
 }
 
 #user-name {
@@ -143,6 +148,8 @@ background-size: 100%;
 
 #category-btns li:hover {
   cursor: pointer;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 #category-btns li span {
@@ -217,6 +224,12 @@ background-size: 100%;
 
 #item-search-btn:hover {
   cursor: pointer;
+  
+  background-color: #f2f2f2;
+}
+
+#item-search-btn:active {
+	background-color: #d9d9d9;
 }
 
 #item-search-btn i {
@@ -240,6 +253,11 @@ background-size: 100%;
 
 #cart-btn:hover {
   cursor: pointer;
+  background-color: #3ec195;
+}
+
+#cart-btn:active {
+	background-color: #38ad86;
 }
 
 #cart-btn i {

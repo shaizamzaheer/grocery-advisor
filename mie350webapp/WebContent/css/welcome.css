@@ -103,6 +103,14 @@ color: black;
   cursor: pointer;
 }
 
+.popup-load-btn:hover {
+	background-color: #f2f2f2;
+}
+
+.popup-load-btn:active {
+	background-color: #d9d9d9;
+}
+
 #popup-load-no {
   left: 13px;
 }
@@ -165,3 +173,10 @@ color: black;
   pointer-events: none;
 }
 
+#popup-load-close:hover i {
+	color: #3ec195;
+}
+
+#popup-load-close:active i {
+	color: #38ad86;
+}

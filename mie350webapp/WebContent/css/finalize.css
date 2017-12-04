@@ -87,6 +87,14 @@
   
 }
 
+#location-search-btn:hover {
+	background-color: #f2f2f2;
+}
+
+#location-search-btn:active {
+	background-color: #d9d9d9;
+}
+
 #finalize-form {
   padding: 35px 40px;
 }
