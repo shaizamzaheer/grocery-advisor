@@ -4,7 +4,7 @@
 	<%	User user = (User)session.getAttribute("user");	%>
 	
 <div id="topbar">
-  <div id="logo-container"></div>
+  <div id="logo-container"><div id="logo"></div></div>
   <h1 id="website-name">Grocery Advisor</h1>
   <form action="LogoutServlet" id="signout-container"><input type="submit" value="Sign Out"  id="signout-btn"></form>
   <h1 id="user-name"><%= user.getUsername() %></h1>

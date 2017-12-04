@@ -24,6 +24,21 @@ body {
   position: absolute;
   top: 27px;
   left: 32px;
+  
+  overflow: hidden;
+}
+
+#logo {
+/* 	width: 228px;
+	height: 134px; */
+	position: absolute;
+left: 5.58%;
+right: 5.58%;
+top: 24.87%;
+bottom: 24.62%;
+background: url("../img/logo.png");
+background-size: 100%;
+
 }
 
 #website-name {
@@ -57,7 +72,7 @@ body {
   font-size: 24px;
   text-align: center;
 
-  width: 205px;
+  width: 222px;
   height: 63px;
 
   background-color: white;
@@ -318,7 +333,7 @@ body {
   top: 8.5px;
 }
 
-#cart-btn {
+#cart-btn, #signout-btn {
   width: 166px; /* for now? */
 }
 
