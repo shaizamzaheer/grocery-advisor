@@ -81,9 +81,9 @@ public class ShoppingCartDAO {
 			pst.setInt(3, cartItem.getQuantity());
 			pst.executeUpdate();
 
-			System.out.println(userID + ", " + cartItem.getItemID() + ", "
-					+ cartItem.getQuantity()
-					+ " has been entered successfully!");
+//			System.out.println(userID + ", " + cartItem.getItemID() + ", "
+//					+ cartItem.getQuantity()
+//					+ " has been entered successfully!");
 		}
 
 		catch (Exception ex) {

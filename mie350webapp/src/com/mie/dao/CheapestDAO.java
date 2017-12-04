@@ -115,8 +115,8 @@ public class CheapestDAO {
 				price = rs.getDouble(5);
 				saleEnd = rs.getDate(6); //sale end will notify the user if there's a sale and the end date
 				
-				System.out.println("ID: " + itemID + " Name: " + item_name + " Amount: " + amount + "Qty: " + quantity
-						+ " Price: $" + price + " Sale Ends On: " + saleEnd);
+//				System.out.println("ID: " + itemID + " Name: " + item_name + " Amount: " + amount + "Qty: " + quantity
+//						+ " Price: $" + price + " Sale Ends On: " + saleEnd);
 				
 				receipt.add(new ReceiptItem(itemID, item_name, amount, quantity, price, saleEnd));
 			}
