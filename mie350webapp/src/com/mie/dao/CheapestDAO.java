@@ -15,24 +15,23 @@ import com.mie.model.*;
 import com.mie.controller.*;
 import com.mie.util.*;
 
+// this class is a DAO that accesses multiple tables via joins to provide/calculate information about prices
+// getCheapestStoreIDsAndPrices(...) returns a mapping of storeIDs to costs for the user's shopping cart
+// getReceipt(...) returns information about the costs of the user's shopping cart at a particular store, in a list of ReceiptItem objects
+
 public class CheapestDAO {
-	/**
-	 * This class handles calculating the prices for the stores within a certain radius of the user for their particular shopping list
-	 */
+
 	static Connection currentCon = null;
 	static ResultSet rs = null;
 
-	/**
-	 * This method finds the prices for each storeID that's within the user's preferred/fixed radius
-	 */
-	
+	// This function returns a mapping of storeIDs to costs for the user's shopping cart
 	public HashMap<Integer, Double> getCheapestStoreIDsAndPrices(int userID, ArrayList<Integer> candidateStoreIDs) {
 		Statement stmt = null;
 
 		HashMap<Integer, Double> storeIDToPrice = new HashMap<Integer, Double>();
 	
 		/**
-		 * Prepare a query gets the storeID and corresponding total price for all items in user's shopping cart that is sold at those stores
+		 * Prepare a query that gets the storeID and corresponding total price for all items in user's shopping cart that is sold at those stores
 		 */
 		String searchQuery = "SELECT S.StoreID as StoreID, Sum(SI.Price*SL.Quantity) as TotalPrice"
 							+ " FROM Store AS S, SoldIn AS SI, ShoppingList AS SL, Inventory N"
@@ -49,7 +48,7 @@ public class CheapestDAO {
 							+ " HAVING Count(*) = (SELECT COUNT(*) FROM ShoppingList WHERE AccountID = " + userID + ")";
 
 		
-		List<CartItem> shoppingCart = new ArrayList<CartItem>(); //shopping cart is a list of cartitems (contains item_name, quantity)
+		//List<CartItem> shoppingCart = new ArrayList<CartItem>(); //shopping cart is a list of cartitems (contains item_name, quantity)
 
 		try {
 			// connect to DB
@@ -58,8 +57,8 @@ public class CheapestDAO {
 			rs = stmt.executeQuery(searchQuery);
 
 			while(rs.next()) {
-				//populate list
-				storeIDToPrice.put(rs.getInt(1), rs.getDouble(2));
+				//populate HashMap
+				storeIDToPrice.put(rs.getInt(1), rs.getDouble(2)); //map storeID to price
 			}
 		}
 
@@ -72,9 +71,11 @@ public class CheapestDAO {
 		return storeIDToPrice;
 	}
 	
+	// this function returns information about the costs of the user's shopping cart at a particular store, in a list of ReceiptItem objects
 	public List<ReceiptItem> getReceipt(int userID, int storeID) {
 		Statement stmt = null;
 
+		// initialize variables that will store ReceiptItem object information
 		List<ReceiptItem> receipt = new ArrayList<ReceiptItem>();
 		int itemID = 0;
 		String item_name = "";
@@ -84,7 +85,7 @@ public class CheapestDAO {
 		Date saleEnd = null;
 	
 		/**
-		 * Prepare a query gets the storeID and corresponding total price for all items in user's shopping cart that is sold at those stores
+		 * Prepare a query that gets the cost breakdown of all the items in the user's shopping cart at a particular store
 		 */
 		String searchQuery = "SELECT I.ItemID, I.Item_Name, I.Amount, SL.Quantity, SI.Price, SI.PriceEnd"
 							+ " FROM Store AS S, SoldIn AS SI, ShoppingList AS SL, Inventory N, Items I"
@@ -112,7 +113,7 @@ public class CheapestDAO {
 				amount = rs.getString(3);
 				quantity = rs.getInt(4);
 				price = rs.getDouble(5);
-				saleEnd = rs.getDate(6);
+				saleEnd = rs.getDate(6); //sale end will notify the user if there's a sale and the end date
 				
 				System.out.println("ID: " + itemID + " Name: " + item_name + " Amount: " + amount + "Qty: " + quantity
 						+ " Price: $" + price + " Sale Ends On: " + saleEnd);

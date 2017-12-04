@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+// This servlet handles the logout process
+
 public class LogoutServlet extends HttpServlet {
 	/**
 	 * This class handles all aspects of the logout action.
@@ -22,6 +24,6 @@ public class LogoutServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		session.invalidate();
 
-		response.sendRedirect("login.jsp");
+		response.sendRedirect("login.jsp"); // redirect to login page after logging out
 	}
 }

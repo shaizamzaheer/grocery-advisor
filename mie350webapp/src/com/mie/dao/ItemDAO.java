@@ -15,16 +15,15 @@ import com.mie.util.*;
 
 import com.mie.util.DbUtil;
 
+// this class is a DAO that accesses the Items table to get information about specific items
+// used to display all specific items for a selected item type
+
 public class ItemDAO {
-	/**
-	 * This class handles the Item objects and... TO FILL IN.
-	 */
+
 	static Connection currentCon = null;
 	static ResultSet rs = null;
 
-	/**
-	 * This method returns a list of suggestions of all the existing item_types.
-	 */
+	// this function returns information about specific items for a selected item type, in a list of Item objects
 	public List<Item> getItems(String item_type) {
 		
 		Statement stmt = null;

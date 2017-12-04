@@ -14,11 +14,11 @@ import com.mie.model.*;
 import com.mie.controller.*;
 import com.mie.util.*;
 
+// this class is a DAO that accesses the Store and StoreHours tables to get information about stores
+// also used to find the stores that are within a certain radius of a given locatin (lat/lon)
+
 public class StoreDAO {
 
-	/**
-	 * This class handles the Store objects 
-	 */
 	static Connection currentCon = null;
 	static ResultSet rs = null;
 
@@ -27,14 +27,11 @@ public class StoreDAO {
 	 */
 	public List<Store> getStoresWithinRadius(double userLat, double userLon, double radius) {
 		PreparedStatement pst = null;
+		
 		/**
 		 * Prepare a query that searches for stores that are within a certain radius of the user's location (lat, lon)
 		 */
-		/*
-		String searchQuery = "select StoreID, Lat, Long from Store where "
-				+ "(((111.2)^2)*((?-Lat)^2+((?-Long)^2)*(cos(?*3.141592654/180))^2))<?^2;";
-				*/
-		//System.out.println("\n" + searchQuery + "\n"); //test to check if query looks right
+		
 		String searchQuery = 
 				"select StoreID, Lat, Long, "
 				+ "Sqr(((111.2)^2)*((?-Lat)^2+((?-Long)^2)*(cos(?*3.141592654/180))^2)) as Distance "
@@ -55,7 +52,7 @@ public class StoreDAO {
 			pst.setDouble(7, radius);
 			rs = pst.executeQuery();
 
-			//Make a list of stores from the results
+			//Make a list of stores from the ResultSet
 			
 			while (rs.next()) {
 				int storeID = rs.getInt("StoreID");
@@ -119,7 +116,9 @@ public class StoreDAO {
 				storeDetails.addDayAndHours(rs.getString("DayOfWeek"), new Time[]{rs.getTime("StartTime"), rs.getTime("EndTime")});
 			}
 			
-			storeDetails.makeHoursCompact();
+			// converts tuple-like HashMap mapping each day to corresponding hours, to a shortened easy-to-read form
+			// e.g. Mon-Sun : 09:00 - 22:00 in one line, rather than 7 lines for each day of the week
+			storeDetails.makeHoursCompact(); 
 		}
 
 		catch (Exception ex) {

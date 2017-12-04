@@ -13,16 +13,15 @@ import com.mie.model.*;
 import com.mie.controller.*;
 import com.mie.util.*;
 
+// This class is a DAO that accesses the ItemCategory table to get information about item types 
+// used for search bar suggestions and category dropdowns
+
 public class FoodDAO {
-	/**
-	 * This class handles the Food objects and... TO FILL IN.
-	 */
+
 	static Connection currentCon = null;
 	static ResultSet rs = null;
 
-	/**
-	 * This method returns a list of suggestions of all the existing item_types.
-	 */
+	// This method returns a list of suggestions of all the existing item_types (used in the search bar suggestions)
 	public List<String> getAllSuggestions() {
 		
 		Statement stmt = null;
@@ -56,12 +55,14 @@ public class FoodDAO {
 
 	}
 	
+	// This method returns a list of item types for a particular category (used in the category dropdowns)
+	// categories are: Grains, Meat, Other, Vegetables, Fruits, Dairy
 	public List<String> getItemTypes(String category) {
-		//categories are: Grains, Meat, Other, Vegetables, Fruits, Dairy
+		
 		Statement stmt = null;
 
 		/**
-		 * Prepare a query that searches the ItemCategory table for all item_types.
+		 * Prepare a query that searches the ItemCategory table for all item_types given a particular category.
 		 */
 		String searchQuery = "select Item_Type from ItemCategory where Item_Category='" + category + "'";  
 		List<String> itemTypes = new ArrayList<String>(); //list to store item_types 
@@ -72,7 +73,7 @@ public class FoodDAO {
 			stmt = currentCon.createStatement();
 			rs = stmt.executeQuery(searchQuery);
 			
-			//For each tuple returned, store the item_type in the list
+			//For each tuple returned, store the item_type in the list of strings
 			while(rs.next()) {
 				itemTypes.add(rs.getString(1));
 			}

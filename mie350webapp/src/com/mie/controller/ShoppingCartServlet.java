@@ -19,12 +19,16 @@ import com.mie.model.CartItem;
 /**
  * Servlet implementation class ShoppingCartServlet
  */
+
+// This servlet handles all actions related to the shopping cart 
+// i.e. adding to cart, changing quantity of items, deleting items individually, or deleting all items at once
+
 public class ShoppingCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//Get the parameter names to decide what to do - Add To Cart, Change Quantity, Delete, Delete All
+		// Get the parameter names to decide what to do - Add To Cart, Change Quantity, Delete, Delete All
 		Enumeration<String> params = request.getParameterNames();
 		
 		HashSet<String> paramNames = new HashSet<String>();
@@ -34,18 +38,19 @@ public class ShoppingCartServlet extends HttpServlet {
 			System.out.println(param);
 			paramNames.add(param);
 		}
-		//end of getting parameter names
+		// end of getting parameter names
 		
-		//A shopping cart dictionary will make it easy to make modifications to a particular item (if it's quantity is changed, or deleted)
+		// a shopping cart dictionary will allow for efficient O(1) access to a particular item in the cart (a CartItem object)
+		// and make modifications (i.e. quantity is changed, or item is deleted)
 		HashMap<Integer, CartItem> shoppingCartDictionary = (HashMap<Integer, CartItem>) request.getSession().getAttribute("shoppingCartDictionary");
 		
 		//if request params > 2, that means all the item info is sent, meaning a new item is to be added to the cart
 		if (paramNames.size() > 2) {
-			//Since an item is to be added, if it's the first item, then the dictionary would initially be null 
+			//Since an item is to be added, if it's the first item, then the dictionary would initially be null and needs to be initialized
 			if (shoppingCartDictionary == null)
 				shoppingCartDictionary = new HashMap<Integer, CartItem>();
 			
-			addToCart(request, response, shoppingCartDictionary);
+			addToCart(request, response, shoppingCartDictionary); // request will carry all item info to add to shoppingCartDictionary
 		}
 			
 		//if the request only has itemID and quantity, means the quantity is being changed
@@ -60,7 +65,7 @@ public class ShoppingCartServlet extends HttpServlet {
 		else if(paramNames.size() == 1 && paramNames.contains("delete")) 
 			clearAll(request.getParameter("delete"), shoppingCartDictionary);
 		
-		//Convert from dictionary to an arrangement of items
+		//Convert from dictionary to a set of CartItem objects (i.e. a shopping cart)
 		Set<CartItem> shoppingCart = new HashSet<CartItem>(shoppingCartDictionary.values());
 		
 		//put dictionary and shoppingCart on session
@@ -69,6 +74,7 @@ public class ShoppingCartServlet extends HttpServlet {
 		
 	}
 	
+	// this function empties the HashMap, making the shopping cart empty
 	private void clearAll(String delete, HashMap<Integer, CartItem> shoppingCartDictionary) {
 
 		if (delete.equalsIgnoreCase("all")) 
@@ -76,6 +82,7 @@ public class ShoppingCartServlet extends HttpServlet {
 		
 	}
 
+	// this function deletes a single item mapping from the HashMap, thus removing that item from the shopping cart
 	private void deleteItem(int itemID, String delete, HashMap<Integer, CartItem> shoppingCartDictionary) {
 
 		if (delete.equalsIgnoreCase("item")) 
@@ -83,11 +90,13 @@ public class ShoppingCartServlet extends HttpServlet {
 		
 	}
 	
+	// this function sets a new quantity for a single item in the HashMap, thus changing the quantity of an item in the shopping cart
 	private void changeQuantity(int itemID, int quantity, HashMap<Integer, CartItem> shoppingCartDictionary) {
 		shoppingCartDictionary.get(itemID).setQuantity(quantity); //change quantity
 		
 	}
 
+	// this function adds a new item mapping to the HashMap, thus adding a new item to the shopping cart
 	private void addToCart(HttpServletRequest request, HttpServletResponse response, HashMap<Integer, CartItem> shoppingCartDictionary) {
 		
 		//set item info

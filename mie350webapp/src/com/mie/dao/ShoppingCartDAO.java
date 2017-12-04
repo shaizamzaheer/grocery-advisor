@@ -15,19 +15,14 @@ import com.mie.model.*;
 import com.mie.controller.*;
 import com.mie.util.*;
 
+// this class is a DAO that accesses the ShoppingList table to retrieve, insert, and/or delete a user's shopping cart data
+
 public class ShoppingCartDAO {
 
-	/**
-	 * This class handles the User objects and the login component of the web
-	 * app.
-	 */
 	static Connection currentCon = null;
 	static ResultSet rs = null;
 
-	/**
-	 * This method attempts to find the user that is trying to log in by first
-	 * retrieving the username and password entered by the user.
-	 */
+	// (NOT USED) this function retrieves a particular user's shopping cart
 	public List<CartItem> getShoppingCart(int userID) {
 
 		Statement stmt = null;
@@ -39,13 +34,8 @@ public class ShoppingCartDAO {
 		String searchQuery = "select I.Item_Name, S.Quantity from Items I, ShoppingList S where I.ItemID = S.ItemID and S.AccountID = "
 				+ userID;
 
-		List<CartItem> shoppingCart = new ArrayList<CartItem>(); // shopping
-																	// cart is a
-																	// list of
-																	// cartitems
-																	// (contains
-																	// item_name,
-																	// quantity)
+		// shopping cart is a list of cartitems (contains item_name, quantity)
+		List<CartItem> shoppingCart = new ArrayList<CartItem>(); 
 
 		try {
 			// connect to DB
@@ -55,8 +45,7 @@ public class ShoppingCartDAO {
 
 			while (rs.next()) {
 				// populate list
-				shoppingCart.add(new CartItem(rs.getString("Item_Name"), rs
-						.getInt("Quantity")));//
+				shoppingCart.add(new CartItem(rs.getString("Item_Name"), rs.getInt("Quantity")));
 			}
 		}
 
@@ -72,6 +61,7 @@ public class ShoppingCartDAO {
 
 	}
 
+	// (NOT USED) this function inserts a particular item into a particular user's shopping cart
 	public void insertShoppingItem(int userID, CartItem cartItem) {
 
 		PreparedStatement pst = null;
@@ -106,11 +96,12 @@ public class ShoppingCartDAO {
 
 	}
 
+	// this function deletes the (previous) shopping cart of a particular user (so that the current shopping cart can be inserted)
 	public void deleteCart(int userID) {
 
 		PreparedStatement pst = null;
 		/**
-		 * Prepare a query that inserts the cartitme into the shoppingcart table
+		 * Prepare a query that delets the user's shopping cart
 		 */
 
 		String insertQuery = "DELETE FROM ShoppingList WHERE AccountID=?";
@@ -134,24 +125,27 @@ public class ShoppingCartDAO {
 
 	}
 
+	// this function inserts the user's current shopping cart into the ShoppingList table
 	public void insertCart(int userID, HashSet<CartItem> cart) {
 
 		PreparedStatement pst = null;
+
+//		System.out.println("Cart being entered: ");
+//		for (CartItem item : cart) {
+//			System.out.println("ID entered: " + item.getItemID());
+//		}
+		
 		/**
 		 * Prepare a query that inserts a single item into shopping list table.
 		 * Will be looped through to add user's entire cart.
 		 */
-		System.out.println("Cart being entered: ");
-		for (CartItem item : cart) {
-			System.out.println("ID entered: " + item.getItemID());
-		}
-
 		String insertQuery = "INSERT INTO ShoppingList(AccountID, ItemID, Quantity) VALUES (?,?,?)";
 
 		try {
 			// connect to DB
 			currentCon = DbUtil.getConnection();
 
+			// for each item in cart, set AccountID, ItemID, and Quantity
 			for (CartItem item : cart) {
 				pst = currentCon.prepareStatement(insertQuery);
 				pst.setInt(1, userID);
@@ -176,16 +170,18 @@ public class ShoppingCartDAO {
 
 	}
 	
+	// this function retrieves a particular user's shopping cart 
+	// used when the user is returning i.e. has a shopping cart stored in the table from previous uses of the website
 	public Set<CartItem> loadCart(int userID) {
 		
 		Statement stmt = null;
 
 		/**
-		 * Prepare a query gets the shopping cart (item_name and quantity) for a particular user.
+		 * Prepare a query gets the shopping cart (all item info and quantity, each stored as a CartItem object) for a particular user.
 		 */
 		String searchQuery = "select I.ItemID, I.Item_Name, I.Amount, S.Quantity from Items I, ShoppingList S where I.ItemID = S.ItemID and S.AccountID = " + userID;
 		
-		Set<CartItem> shoppingCart = new HashSet<CartItem>(); //shopping cart is a list of cartitems (contains item_name, quantity)
+		Set<CartItem> shoppingCart = new HashSet<CartItem>(); //shopping cart is a set of CartItem objects
 
 		try {
 			// connect to DB

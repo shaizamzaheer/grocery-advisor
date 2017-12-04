@@ -14,6 +14,7 @@ import com.mie.model.CartItem;
 /**
  * Servlet implementation class FinalizeServlet
  */
+
 public class FinalizeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

@@ -13,24 +13,18 @@ import com.mie.model.*;
 import com.mie.controller.*;
 import com.mie.util.*;
 
+// this class is a DAO that accesses the UserAccounts table to retrieve and insert information about users
+// used for checking if users exist (during login and signup), and to insert new users (during signup)
+// this class also accesses the ShoppingList table to retrieve information about users that already have a shopping cart in the database
+
 public class UserDAO {
 
-	/**
-	 * This class handles the User objects and the login component of the web
-	 * app.
-	 */
 	static Connection currentCon = null;
 	static ResultSet rs = null;
 	
-	
-
-	/**
-	 * This method attempts to find the user that is trying to log in by first
-	 * retrieving the username and password entered by the user.
-	 */
+	// this function returns whether or not a user is allowed to login based on the email and password they entered
 	public boolean allowLogin(User user) {
 		
-
 		boolean allowLogin = true;
 
 		Statement stmt = null;
@@ -39,8 +33,7 @@ public class UserDAO {
 		String password = user.getPassword();
 
 		/**
-		 * Prepare a query that searches the members table in the database with
-		 * the given username and password.
+		 * Prepare a query that searches for the given email and password.
 		 */
 		String userTable = "UserAccounts";
 		String searchQuery = "select * from " + userTable + " where email='"
@@ -58,9 +51,9 @@ public class UserDAO {
 				allowLogin = false;
 
 			else {
-				// if user exists, set accountID in object
-				user.setUserID(rs.getInt("AccountID"));
-				user.setUsername(rs.getString("Username"));
+				// if user exists, set accountID and user's name in object
+				user.setUserID(rs.getInt("AccountID")); // needed on following pages for later use (e.g. accessing shopping cart)
+				user.setUsername(rs.getString("Username")); // needed to display on following pages
 			}
 		}
 
@@ -70,28 +63,27 @@ public class UserDAO {
 			ex.printStackTrace();
 		}
 
-		// Return the whether or not user exists.
+		// Return whether or not the user is allowed to login
 		return allowLogin;
 
 	}
 	
+	// this function returns whether or not a user is allowed to sign up based on the email they entered 
+	// name, password, and confirm password are checked via Javascript directly on the JSP
 	public boolean allowSignup(User user) {
-		
 
 		boolean allowSignup = true;
 
 		Statement stmt = null;
 
 		String email = user.getEmail();
-		String name = user.getUsername();
 
 		/**
-		 * Prepare a query that searches the members table in the database with
-		 * the given username and password.
+		 * Prepare a query that searches for the given email
 		 */
 		String userTable = "UserAccounts";
 		String searchQuery = "select * from " + userTable + " where email='"
-				+ email + "' OR username ='" + name + "'";
+				+ email + "'";
 
 		try {
 			// connect to DB
@@ -100,7 +92,7 @@ public class UserDAO {
 			rs = stmt.executeQuery(searchQuery);
 			boolean more = rs.next();
 
-			// If there are no results from the query, then user doesn't exist.
+			// If there are results from the query, then email already exists.
 			if (more)
 				allowSignup = false;
 
@@ -112,19 +104,20 @@ public class UserDAO {
 			ex.printStackTrace();
 		}
 
-		// Return the whether or not user exists.
+		// Return the whether or not user is allowed to signup.
 		return allowSignup;
 
 	}
 
+	// this function inserts a new user's information (if valid) into the database
 	public void createaccount(User user) {
 
-		// get info from object
+		// get user's info (Name, Email, Password)
 		String username = user.getUsername();
 		String password = user.getPassword();
 		String email = user.getEmail();
 
-		// prepare query
+		// prepare insert query
 		String userTable = "UserAccounts";
 		String insertQuery = "INSERT INTO " + userTable + " ( Username, [Password], Email ) VALUES ( '"
 				+ username + "', '" + password + "', '" + email + "')";
@@ -148,6 +141,8 @@ public class UserDAO {
 
 	}
 	
+	// this function returns whether or not the user is "returning" 
+	// (i.e. has a shopping cart already stored in the database from previous uses of the website)
 	public boolean isReturningUser(User user) {
 		
 
@@ -158,8 +153,7 @@ public class UserDAO {
 		int userID = user.getUserID();
 
 		/**
-		 * Prepare a query that searches the members table in the database with
-		 * the given username and password.
+		 * Prepare a query that searches the shoppingList table for the user's id
 		 */
 		String searchQuery = "select * from ShoppingList where AccountID="	+ userID + "";
 
@@ -182,7 +176,7 @@ public class UserDAO {
 			ex.printStackTrace();
 		}
 
-		// Return the whether or not user exists.
+		// Return the whether or not user is returning.
 		return isReturning;
 
 	}

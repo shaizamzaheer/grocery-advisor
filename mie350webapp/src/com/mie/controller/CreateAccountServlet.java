@@ -17,6 +17,8 @@ import com.mie.controller.LoginServlet;
  * Servlet implementation class CreateAccountServlet
  */
 
+// This servlet takes care of creating a new user account
+
 public class CreateAccountServlet extends LoginServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,13 +32,15 @@ public class CreateAccountServlet extends LoginServlet {
 		
 		User user = new User(name, password, email);
 
-		// check if user exists in database
+		// check if user exists in database (i.e. if email exists)
 		UserDAO userDAO = new UserDAO();
 		boolean canUserSignup = userDAO.allowSignup(user);
 
-		// if user cant signup means user exists...
+		// if user cant signup means email already exists...
 		if (!canUserSignup) {
-			//sendToWelcome(request, response, user);
+			
+			// session objects are set so that when redirected back to login.jsp, 
+			// the email field will be red and shows an error message (i.e. Email already exists)
 			request.getSession().setAttribute("invalidSignin", true);
 			request.getSession().setAttribute("invalidLogin", false);
 			response.sendRedirect("login.jsp");
@@ -47,7 +51,8 @@ public class CreateAccountServlet extends LoginServlet {
 
 			// put into userAccounts table
 			userDAO.createaccount(user);
-			userDAO.allowLogin(user); //not proper, but assigns proper ID to user
+			userDAO.allowLogin(user); //not proper, but assigns proper ID and Name to user object
+			
 			//if username already exists, some SQL error will come up because username is the primary key
 			//username restrictions (min characters or something) can be done in access, if we choose to do that
 			//or restrict it within the form itself. We might need a userAlreadyExists.jsp to redirect to at this point
