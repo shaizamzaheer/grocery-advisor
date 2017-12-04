@@ -1,5 +1,7 @@
 package com.mie.model;
 
+// this class extends the Item class, thus it holds all the information of a particular item, in addition to the quantity chosen by the user
+
 public class CartItem extends Item {
 	int quantity;
 

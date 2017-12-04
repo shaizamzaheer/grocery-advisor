@@ -1,5 +1,6 @@
 package com.mie.model;
 
+// this class holds information about a particular Item - itemID, item name (includes brand), it's amount (e.g. 12 L, 300 g)
 public class Item {
 	int itemID;
 	String item_name;

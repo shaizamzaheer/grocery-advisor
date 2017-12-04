@@ -2,11 +2,10 @@ package com.mie.model;
 
 import java.util.Date;
 
+// this class holds all relevant info about the user (i.e. userID, user's Name, password, email
+// and also whether or not the user is "returning" (i.e. has a shopping cart already in the database from previous uses of the website)
+
 public class User {
-	/**
-	 * This class contains all of the relevant information, and getter/setter
-	 * methods for the User object.
-	 */
 
 	private int userID;
 	private String username;

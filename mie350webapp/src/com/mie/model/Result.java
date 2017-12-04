@@ -3,12 +3,18 @@ package com.mie.model;
 import java.util.Set;
 import java.util.TreeSet;
 
+// this class holds information about the final results that will be displayed to the user to allow them to choose which store to go to
+// Result holds information about store details, the price for the user's shopping cart at that particular store, 
+// the distance from the user to that store, the ETA from the user to that store, the user's chosen travel method to get to the store, 
+// as well as how the user wants to rank the results (i.e. preference by price, ETA, or both, in which case the time value is also considered)
+
+// this class implements Comparable<Result> so that a TreeSet of Result objects will be in order based on user's preference
+
 public class Result implements Comparable<Result> {
 	
 	private Store storeDetails;
 	private double price;
 	private double distance;
-	private final double distanceToPrice = 1;
 	private int ETA;
 	private String travelMethod;
 	private String preference;
@@ -25,6 +31,7 @@ public class Result implements Comparable<Result> {
 		this.makeETA(distance, travelMethod);
 	}
 	
+	// a metric is used when the user prefers both time and price, thus both are combined into a metric via "how much a user values an hour"
 	public double getMetric() {
 		return this.getTimeValue()*this.getETA()/60 + this.getPrice();
 	}
@@ -56,12 +63,15 @@ public class Result implements Comparable<Result> {
 	@Override
 	public int compareTo(Result other) {
 
+		// if user prefers price, then rank by price
 		if (this.getPreference().equalsIgnoreCase("price")) 
 			return compareByPrice(other);
 		
+		// if user prefers time, then rank by ETA
 		else if (this.getPreference().equalsIgnoreCase("time"))
 			return compareByTime(other);
 		
+		// if user prefers both, then rank by metric
 		else if (this.getPreference().equalsIgnoreCase("both"))
 			return compareByMetric(other);
 		
@@ -70,6 +80,7 @@ public class Result implements Comparable<Result> {
 		
 	}
 	
+	// this function ranks Result objects by metric first, then price, then franchise name, then id; if IDs are same, then the stores are the same.
 	private int compareByMetric(Result other) {
 
 		if (this.getMetric() < other.getMetric())
@@ -102,6 +113,7 @@ public class Result implements Comparable<Result> {
 		}
 	}
 
+	// this function ranks Result objects by ETA first, then price, then franchise name, then id; if IDs are same, then the stores are the same.
 	private int compareByTime(Result other) {
 
 		if (this.getETA() < other.getETA())
@@ -134,6 +146,7 @@ public class Result implements Comparable<Result> {
 		}
 	}
 
+	// this function ranks Result objects by price first, then ETA, then franchise name, then id; if IDs are same, then the stores are the same.
 	private int compareByPrice(Result other) {
 		
 		if (this.getPrice() < other.getPrice())
@@ -166,6 +179,7 @@ public class Result implements Comparable<Result> {
 		}
 	}
 
+	// toString() used for debugging
 	@Override
 	public String toString() {
 		return "\n{Store: " + this.getStoreDetails().getFranchise()
@@ -190,6 +204,7 @@ public class Result implements Comparable<Result> {
 		return ETA;
 	}
 
+	// this function calculates an approximate ETA based on the distance and travel method 
 	public void makeETA(double distance, String travelMethod) {
 		
 		if (travelMethod.equalsIgnoreCase("walk"))
@@ -207,6 +222,7 @@ public class Result implements Comparable<Result> {
 		
 	}
 	
+	// this function approximates ETA based on the distance for travelling by "car"
 	public int ETAByCar(double distance) {
 		if (distance >= 15.5) 
 			return (int)(60*(distance + 10)/70);
@@ -221,6 +237,7 @@ public class Result implements Comparable<Result> {
 			return (int)(60*distance/5.4);
 	}
 	
+	// this function approximates ETA based on the distance for travelling by "bike"
 	public int ETAByBike(double distance) {
 		if (distance >= 15.5) 
 			return (int)(60*(distance + 6.5)/15.5);
@@ -235,6 +252,7 @@ public class Result implements Comparable<Result> {
 			return (int)(60*distance/5.4);
 	}
 	
+	// this function approximates ETA based on the distance for travelling by "walk"ing
 	public int ETAByWalk(double distance) {
 		if (distance >= 15.5) 
 			return (int)(60*(distance + 10)/5.4);
@@ -249,6 +267,7 @@ public class Result implements Comparable<Result> {
 			return (int)(60*distance/5.4);
 	}
 	
+	// this function approximates ETA based on the distance for travelling by "transit"
 	public int ETAByTransit(double distance) {
 		if (distance >= 15.5) 
 			return (int)(ETAByBike(distance)*1.75);
@@ -278,25 +297,5 @@ public class Result implements Comparable<Result> {
 	public void setTimeValue(double timeValue) {
 		this.timeValue = timeValue;
 	}
-	
-//	public static void main(String[] args) {
-//		Result r1 = new Result(new Store(1, 0, 0), 10, 5); //metric = 15; price = 5
-//		Result r2 = new Result(new Store(2, 0, 0), 5, 5); //10; 5
-//		Result r3 = new Result(new Store(3, 0, 0), 10, 10); //20; 10
-//		Result r4 = new Result(new Store(4, 0, 0), 19, 1); //20; 19
-//		Result r5 = new Result(new Store(5, 0, 0), 5, 11); //16; 5
-//		
-//		//:. order should be... r2, r1, r5, r3, r4
-//		
-//		Set<Result> results = new TreeSet<Result>();
-//		results.add(r1);
-//		results.add(r2);
-//		results.add(r3);
-//		results.add(r4);
-//		results.add(r5);
-//		
-//		System.out.println(results); //2, 1, 5, 3, 4 --> ORDER WORKS
-//		
-//	}
 	
 }

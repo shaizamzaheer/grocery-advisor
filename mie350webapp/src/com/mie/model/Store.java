@@ -4,6 +4,11 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+// this class holds information about a particular store - it's ID, franchise name, street address, region, postal code, phone number,
+// as well as information such as latitude and longitude and the distance from the user's location
+// it also holds information about it's hours in two different formats (a complete HashMap that maps each day to a range of hours) 
+// and a list of Strings that represent store hours in short form (e.g. "Mon-Fri : 09:00 - 22:00")
+
 public class Store {
 	
 	private int storeID;
@@ -114,15 +119,30 @@ public class Store {
 		this.distance = distance;
 	}
 
+	// this function converts a complete HashMap representation of store hours (which maps each day and is unordered)
+	// into a compact form, such as "Mon-Sun: 9:00-22:00"
 	public void makeHoursCompact() {
 		
-		hoursCompact = new ArrayList<String>();
+		hoursCompact = new ArrayList<String>(); // a list will hold the compact form. e.g. "Mon-Fri: 9:00-22:00","Sat-Sun: 12:00-23:00"
 		
 		String[] days = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 		
+		// HOW IT WORKS:
+		
+		// start on monday (set startDay to "Mon")
+		// get startTime and get endTime
+		
+		// the startDay, startTime and endTime are intialized.
+		// the endDay is initialized to the startDay
+				
+		// the day after the startDay is accessed (i.e. currDay)
+		// if currDay's time is the same as startDay, then set currDay as endDay (to end the string if the next day's time is different), and the next day becomes currDay
+		// if currDay's time is different from startDay, then one string is completed in the form of "startDay - endDay : startTime - endTime" and inserted into the list
+		// if startDay and endDay are the same, then the string is in the form of "startDay : startTime - endTime" and inserted into the list
+		
 		String startDay = "Mon";
-		String startTimeFull = hours.get(days[0])[0].toString();
-		String startTime = startTimeFull.substring(0, startTimeFull.length() - 3);
+		String startTimeFull = hours.get(days[0])[0].toString(); // e.g. 9:00:00 as in database
+		String startTime = startTimeFull.substring(0, startTimeFull.length() - 3); // shortened to 9:00
 		String endTimeFull = hours.get(days[0])[1].toString();
 		String endTime = endTimeFull.substring(0, startTimeFull.length() - 3);
 		
@@ -131,7 +151,8 @@ public class Store {
 		
 		String line = "";
 		
-		line += startDay + " - ";
+		//line += startDay + " - ";
+		
 		
 		String endDay = startDay;
 		String currDay = "";
@@ -141,30 +162,37 @@ public class Store {
 			currStartTimeFull = hours.get(days[i])[0].toString();
 			currEndTimeFull = hours.get(days[i])[1].toString();
 			
+			// if the currDay's times match startDay's, then set a new endDay 
 			if (startTimeFull.equalsIgnoreCase(currStartTimeFull) && endTimeFull.equalsIgnoreCase(currEndTimeFull)) {
 				endDay = currDay;
 				
+				// if the currDay/endDay is Sunday, then no more looping after, so break after adding the last String into list
 				if (i == days.length - 1) {
 					line = startDay + " - " + endDay + ": " + startTime + " - " + endTime;
 					hoursCompact.add(line);
 					break;
 				}
 				
+				// if the currDay is not Sunday, then keep looping; start iteration from the top
 				continue;
 			}
 			
+			// if currDay's time doesn't match startDay's, that signifies the end of a string and a beginning of a new one
 			else {
 				
+				// if startDay and endDay are the same, then the string is only for one day
 				if (startDay.equals(endDay)) {
 					line = endDay + ": " + startTime + " - " + endTime;
 				}
 				
+				// if startDay and endDay are different, then the string is for a range of days
 				else {
 					line = startDay + " - " + endDay + ": " + startTime + " - " + endTime;
 				}
 				
-				hoursCompact.add(line);
+				hoursCompact.add(line); // the string is added to the list
 				
+				// the process now repeats from the first step; startDay is initialized to currDay, etc.
 				startDay = currDay;
 				endDay = startDay;
 				
@@ -173,6 +201,7 @@ public class Store {
 				startTime = startTimeFull.substring(0, startTimeFull.length() - 3);
 				endTime = endTimeFull.substring(0, startTimeFull.length() - 3);
 				
+				// if currDay is sunday and it reached this point, then that means sunday is on its own
 				if (i == days.length - 1) {
 					line = endDay + ": " + startTime + " - " + endTime;
 					hoursCompact.add(line);
@@ -180,15 +209,7 @@ public class Store {
 				}
 				
 			}
-		}
-		//start on monday (set startDay to "Mon")
-		//get startTime and get endTime
-		
-		//go to tuesday (set endDay to "Tue")
-		//if startTime and endTime are same as previous, go to wednesday.
-		//if startTime and endTime are different than previous
-			//then establish the string > store in arraylist > go to Wednesday, start on wednesday (set startDay to "Wed")
-		
+		}		
 	}
 
 	public ArrayList<String> getHoursCompact() {

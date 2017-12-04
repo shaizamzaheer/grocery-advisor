@@ -2,6 +2,10 @@ package com.mie.model;
 
 import java.sql.Date;
 
+// this class extends CartItem (which extends Item)
+// thus, ReceiptItem holds information about a particular item and its quantity, 
+// in addition to its price and the date that the (sale) price ends if available (for a particular store)
+
 public class ReceiptItem extends CartItem {
 	private double price;
 	private Date saleEnd;
