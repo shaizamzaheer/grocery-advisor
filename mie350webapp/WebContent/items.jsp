@@ -33,6 +33,8 @@
 	<div id="contents">
 	
 	<% List<Item> items = (ArrayList<Item>) session.getAttribute("items"); 
+	
+	if (!items.isEmpty()) {
 	HashMap<Integer, CartItem> shoppingCartDictionary = (HashMap<Integer, CartItem>)session.getAttribute("shoppingCartDictionary");
 	String display = "none";
 	String deleteClass = "";
@@ -72,6 +74,14 @@ for (Item item : items) {
 	
 	  <button type="button" class="item-btn <%= deleteClass%>"><%= btnText %></button>
 	</div>
+	
+	<% } //end of for
+	} //end of if
+	
+	else { %>
+	
+	<h1 id="no-items-found">Sorry, we couldn't find any items for the item type: "<%=session.getAttribute("item_type")  %>".
+	<br><br>Please use the categories or the search bar's autocomplete feature to help you find what you are looking for.</h1>
 	
 	<% } %>
   

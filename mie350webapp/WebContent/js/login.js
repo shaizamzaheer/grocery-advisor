@@ -104,7 +104,14 @@ window.onload = function () {
 		  confirm.classList.add("login-red");
 	  }
 	  
-	  else {
+	  else if (password.value == confirm.value) {
+		  document.getElementById("missing-confirm").style.display = "none";
+		  document.getElementById("diff-confirm").style.display = "none";
+		  
+		  confirm.classList.remove("login-red");
+	  }
+	  
+	  if (name.value != "" && email.value != "" && password.value != "" && confirm.value != "" && password.value == confirm.value) {
 		  this.parentElement.submit();
 	  }
 	  

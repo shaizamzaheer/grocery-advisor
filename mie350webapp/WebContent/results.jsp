@@ -43,6 +43,8 @@
 	
 	<% 
 	Set<Result> results = (TreeSet<Result>)session.getAttribute("results"); 
+	
+	if (results != null && !results.isEmpty()) {
 	int count = 1;
 	for (Result result : results) { 
 		Store store = result.getStoreDetails();
@@ -77,7 +79,20 @@
   	</div>
   	
 	<% count++;
-	} %>
+	} //end of for-loop
+	} //end of if 
+	
+	else if (results == null) { %>
+	
+	<h1 class="no-store-message">Sorry, we couldn't find any stores that are within the radius you specified.</h1>
+	
+	<% } 
+	
+	else if (results != null && results.isEmpty()) { %>
+	
+	<h1 class="no-store-message">Sorry, we couldn't find any stores that had all (or enough of) the items you were looking for.</h1>
+	
+	<% } %>
 	
 </div>
 

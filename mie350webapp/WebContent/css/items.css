@@ -190,6 +190,24 @@ text-align: center;
   line-height: normal;
 }
 
+#no-items-found {
+  	font-family: Abyssinica SIL;
+	font-style: normal;
+	font-weight: normal;
+	line-height: normal;
+	font-size: 36px;
+  
+  color: white;
+  
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  
+  top: 23px;
+  left: 45px;
+  right: 45px;
+}
+
 @media screen and (max-width: 1400px) {
   
   #content-title {

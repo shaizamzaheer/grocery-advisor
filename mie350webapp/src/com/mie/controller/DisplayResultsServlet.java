@@ -33,6 +33,7 @@ public class DisplayResultsServlet extends HttpServlet {
 		ArrayList<Integer> candidateStoreIDs = (ArrayList<Integer>) request.getSession().getAttribute("candidateStoreIDs");
 		ArrayList<Double> candidateStoreDistances = (ArrayList<Double>) request.getSession().getAttribute("candidateStoreDistances");
 		
+		
 		HashMap<Integer, Double> storeToDistances = new HashMap<Integer, Double>();
 		
 		for (int i = 0; i < candidateStoreIDs.size(); i++) {

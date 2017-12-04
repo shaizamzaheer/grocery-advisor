@@ -48,8 +48,15 @@ public class GetStoresWithinRadiusServlet extends HttpServlet {
 		
 		request.getSession().setAttribute("candidateStoreDistances", candidateStoreDistances);
 		//response.sendRedirect("gettingDistances.jsp");
+		
+		if (candidateStoreIDs.isEmpty()) {
+			response.sendRedirect("results.jsp");
+		}
+		
+		else {
 		RequestDispatcher rd = request.getRequestDispatcher("DisplayResultsServlet");
 		rd.forward(request, response);
+		}
 	}
 
 }
