@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.util.*, com.mie.model.*"%>
+    pageEncoding="ISO-8859-1" import="java.util.*, com.mie.model.*, java.text.SimpleDateFormat"%>
     
 
   <div id="popup-receipt-container">
@@ -23,6 +23,8 @@
         </p><!--
         --><p class="popup-receipt-info"><%= item.getItemName() %>, <%= item.getAmount() %></p><!--
         --><p class="popup-receipt-cost">$<%= item.getPrice() %></p>
+        <% if (item.getSaleEnd() != null) { 
+        	String dateSaleEnd = new SimpleDateFormat("MM/dd/yyyy").format(item.getSaleEnd()); %><span>Sale Ends On <%= dateSaleEnd %></span><% } %>
       </div>
       
       <% } //end of for 

@@ -115,7 +115,7 @@ public class CheapestDAO {
 				saleEnd = rs.getDate(6);
 				
 				System.out.println("ID: " + itemID + " Name: " + item_name + " Amount: " + amount + "Qty: " + quantity
-						+ " Price: $" + price);
+						+ " Price: $" + price + " Sale Ends On: " + saleEnd);
 				
 				receipt.add(new ReceiptItem(itemID, item_name, amount, quantity, price, saleEnd));
 			}
