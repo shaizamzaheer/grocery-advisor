@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width">
 <title>Grocery Advisor - Items</title>
-<link rel="stylesheet" type="text/css" href="css/displayInlineBlock.css">
 <link rel="stylesheet" type="text/css" href="css/popup.css">
 <script type="text/javascript" src="js/addToCart.js"></script>
 <script type="text/javascript" src="js/editCart.js"></script>

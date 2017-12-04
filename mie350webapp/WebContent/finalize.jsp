@@ -8,9 +8,6 @@
 <title>Grocery Advisor - Finalize</title>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2GqdujVRHhAIpGZ5dRbkbzOrbvox711A&libraries=places"></script>
 
-
-<link rel="stylesheet" type="text/css" href="css/displayInlineBlock.css">
-
 <link rel="stylesheet" type="text/css" href="css/popup.css">
 
 <script type="text/javascript" src="js/editCart.js"></script>
