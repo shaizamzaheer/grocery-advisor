@@ -72,6 +72,9 @@ for (Item item : items) {
 	      <i class="material-icons">done</i>
 	      <span>In Cart</span>
 	    </div>
+	    
+	    <!-- Image for each item is displayed; each image was retrieved from walmart.ca -->
+	  	<img src="img/<%= item.getItemID()%>.png" style="max-width: 100%; max-height: 100%; border-radius: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
 	  </div>
 	  <input type="hidden" value="<%= item.getItemID() %>" />
 	  <p class="item-info"><span class="item-name"><%= item.getItemName()%></span>, <span class="item-amount"><%=item.getAmount() %></span></p>

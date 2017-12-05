@@ -76,6 +76,7 @@
   
   margin: auto;
   position: relative;
+  
 }
 
 .quantity-control {
@@ -147,6 +148,7 @@ text-align: center;
   display: inline-block;
   text-align: center;
   margin: 32px;
+  width: 300px;
 }
 
 .item-info {
@@ -164,12 +166,12 @@ text-align: center;
   height: 120px;
   border-radius: 100%;
   background-color: mediumaquamarine;
-  position: relative;
-  margin: auto;
+  position: absolute;
   top: calc(50% - 60px);
-  
+  left: calc(50% - 60px);
   text-align: center;
   
+  z-index: 1;
 }
 
 .in-cart-symbol i, .in-cart-symbol span {
