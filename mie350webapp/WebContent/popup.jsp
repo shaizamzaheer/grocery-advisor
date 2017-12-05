@@ -8,6 +8,8 @@
     <div id="popup-cart-contents">
     <%
 		Set<CartItem> shoppingCart = (HashSet<CartItem>)session.getAttribute("shoppingCart"); 
+    
+    	// if shopping cart is not empty, then populate with cart items info (option to delete, item name and amount, and option to change quantity)
 	  	if (shoppingCart != null && !shoppingCart.isEmpty()) {
 	  		
 			for (CartItem item : shoppingCart) { 
@@ -28,6 +30,7 @@
 			
 		} //end of if not null
 	  	
+		// if shopping cart IS empty, display appropriate message
 		else { %>
 
 	<div id="popup-cart-empty">Your shopping cart is empty...</div>
@@ -36,7 +39,9 @@
 	
 	</div>
 	
-	<% if (shoppingCart != null && !shoppingCart.isEmpty()) { %>
+	<% 
+		// if shopping cart is not empty, then give the user options (buttons) to clear entire shopping cart or confirm shopping cart
+		if (shoppingCart != null && !shoppingCart.isEmpty()) { %>
 		<div id="popup-cart-btns">
       <button id="popup-cart-clearall" class="popup-cart-btn"><i class="material-icons">delete</i>  <span>Clear All</span></button>
 

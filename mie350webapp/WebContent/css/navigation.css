@@ -1,5 +1,8 @@
 @CHARSET "ISO-8859-1";
 
+/* This stylesheet has all relevant styles to the fixed top area */
+/* Top area consists of white bar with the logo, website name, user's name and signout button and green area with search bar, categories, and cart button */
+
 body {
   margin: 0;
   padding: 0;

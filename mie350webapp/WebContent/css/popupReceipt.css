@@ -1,5 +1,7 @@
 @CHARSET "ISO-8859-1";
 
+/* This stylesheet has all relevant styles for Receipt Popup, popupReceipt.jsp */
+
 #popup-receipt {
   position: fixed;
   top: 0;

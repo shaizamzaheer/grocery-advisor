@@ -1,5 +1,6 @@
 @CHARSET "ISO-8859-1";
 
+/* This stylesheet has all relevant styles for welcome.jsp, except for #contents and #content-title, which are found in items.css */
 
 #welcome-message {
   font-family: Abyssinica SIL;
