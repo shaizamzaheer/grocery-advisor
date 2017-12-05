@@ -12,6 +12,12 @@
 <script type="text/javascript" src="js/editCart.js"></script>
 <script type="text/javascript" src="js/displayShoppingCart.js"></script>
 <link rel="stylesheet" type="text/css" href="css/navigation.css">
+
+<!-- Google Icons used  -->
+<!-- shopping cart icon (shopping_cart), check mark icon (done), trashcan icon (delete), magnifying glass icon (search); found in https://www.w3schools.com/icons/google_icons_action.asp -->
+<!-- plus icon (add), minus icon (remove); found in https://www.w3schools.com/icons/google_icons_content.asp -->
+<!-- walking icon (directions_walk), bike icon (directions_bike), car icon (directions_car), transit icon (directions_transit); found in https://www.w3schools.com/icons/google_icons_maps.asp -->
+<!-- dropdown arrow icon (expand_more), X icon (close); found in https://www.w3schools.com/icons/google_icons_navigation.asp -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <link rel="stylesheet" type="text/css" href="css/items.css">

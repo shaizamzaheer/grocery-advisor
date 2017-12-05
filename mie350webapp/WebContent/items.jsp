@@ -11,6 +11,12 @@
 <script type="text/javascript" src="js/editCart.js"></script>
 <script type="text/javascript" src="js/displayShoppingCart.js"></script>
 <link rel="stylesheet" type="text/css" href="css/navigation.css">
+
+<!-- Google Icons used  -->
+<!-- shopping cart icon (shopping_cart), check mark icon (done), trashcan icon (delete), magnifying glass icon (search); found in https://www.w3schools.com/icons/google_icons_action.asp -->
+<!-- plus icon (add), minus icon (remove); found in https://www.w3schools.com/icons/google_icons_content.asp -->
+<!-- walking icon (directions_walk), bike icon (directions_bike), car icon (directions_car), transit icon (directions_transit); found in https://www.w3schools.com/icons/google_icons_maps.asp -->
+<!-- dropdown arrow icon (expand_more), X icon (close); found in https://www.w3schools.com/icons/google_icons_navigation.asp -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <link rel="stylesheet" type="text/css" href="css/items.css">
@@ -74,7 +80,9 @@ for (Item item : items) {
 	    </div>
 	    
 	    <!-- Image for each item is displayed; each image was retrieved from walmart.ca -->
+	    <!-- Each image file found in the img folder is named according to its respective itemID in the form "itemID.png"; e.g. the item with itemID of 4 would have a corresponding image file called "4.png" -->
 	  	<img src="img/<%= item.getItemID()%>.png" style="max-width: 100%; max-height: 100%; border-radius: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+	  
 	  </div>
 	  <input type="hidden" value="<%= item.getItemID() %>" />
 	  <p class="item-info"><span class="item-name"><%= item.getItemName()%></span>, <span class="item-amount"><%=item.getAmount() %></span></p>
