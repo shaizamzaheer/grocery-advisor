@@ -1,5 +1,7 @@
 @CHARSET "ISO-8859-1";
 
+/* This stylesheet has all relevant styles for finalize.jsp except for #contents and #content-title which are found in items.css */
+
 #finalize-form h1 {
   font-family: Abyssinica SIL;
   font-style: normal;

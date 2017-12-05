@@ -1,6 +1,6 @@
 @CHARSET "ISO-8859-1";
 
-/* CSS for Shopping Cart Popup */
+/* This stylesheet has all relevant styles for Shopping Cart Popup, popup.jsp, except for the quantity button styles which are found in items.css */
 
 #popup {
 	display: none;

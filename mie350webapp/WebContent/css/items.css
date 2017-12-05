@@ -1,5 +1,9 @@
 @CHARSET "ISO-8859-1";
 
+/* This stylesheet has all relevant styles for items.jsp */
+/* #content-title and #contents are used by other pages as well (i.e. finalize.jsp, results.jsp, and welcome.jsp) */
+/* the shopping cart popup also uses the styles relating to the quantity buttons */
+
 #content-title {
   position: fixed;
   top: 401px;

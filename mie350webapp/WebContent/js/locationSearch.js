@@ -1,6 +1,6 @@
-/**
- * 
- */
+// this script implements the Places Autocomplete, Google Places Web Service API
+// so that the user can search locations easily and so that the system can retrieve the user's selected lat/lon efficiently
+// this script also takes care of submitting the user's inputs from finalize.jsp to GetStoresWithinRadiusServlet
 
 window.onload = function () {
 	
@@ -28,13 +28,14 @@ function initializeSearchBar() {
 		document.getElementById("userLat").value = lat;
 		document.getElementById("userLon").value = lon;
 		
+		// if "Go" is clicked...
 		submitBtn.addEventListener("click", function() {
 			
 			//alert(lat + ", " + lon);
 			//console.log(lat + ", " + lon);
 			
 			//submit form
-			form.submit();
+			form.submit(); // submit all user inputs from finalize.jsp (radius, lat/lon, travel method, ranking preference, time value) to GetStoresWithinRadiusServlet
 			
 		});
 	});

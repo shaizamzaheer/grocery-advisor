@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width">
 <title>Grocery Advisor - Finalize</title>
+
+<!-- script reference to use Places Autocomplete, Google Places Web Service API -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2GqdujVRHhAIpGZ5dRbkbzOrbvox711A&libraries=places"></script>
 
 <link rel="stylesheet" type="text/css" href="css/popup.css">
@@ -24,16 +26,19 @@
 
 <body>
 
-	<%
-	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	
+	<%
+	// this prevents this page to be cached; thus, after logging out, can't be accessed by "back" button
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+	
+	// if a user didn't log in (i.e. user is null), then this page cannot be accessed (by url) so redirect to login.jsp
 	if (session.getAttribute("user") == null) {
 		response.sendRedirect("login.jsp");
 		return;
 	}
 	%>
 	
-		<%@ include file="navigation.jsp"%>
+		<%@ include file="navigation.jsp"%> <!-- Fixed top area -->
 <h1 id="content-title">Finalize</h1>
 	<div id="contents">
 
@@ -46,7 +51,7 @@
       <button type="button" id="transport-transit"><i class="material-icons">directions_transit</i></button>
     </div>
     
-    <input type="hidden" name="transport-method" value="walk">
+    <input type="hidden" name="transport-method" value="walk"><!-- value changed via JS depending on which transport-btns above is clicked -->
     
         <div id="input-radius-container">
       <h1>Find stores within: <select name="radius" id="input-radius">
@@ -60,6 +65,8 @@
       </select> km</h1>
     </div>
     
+    <!-- Location search bar uses Places Autocomplete, Google Places Web Service API for autocomplete location -->
+    <!-- (see locationSearch.js for implementation) -->
     <div id="location-search-container">
     <input type="text" placeholder="Enter your location..." id="location-search-bar">
     	<input type="hidden" id="userLat" name="userLat" value=""/>
@@ -89,6 +96,7 @@
       
     </div>
     
+    <!-- time value selection/input only displayed when radio button "Both" is selected -->
     <div id="time-value-container" style="display: none;">
       <h1>How much do you value an hour?
       <input type="number" min="1" value="10" id="time-value" name="time-value">

@@ -38,6 +38,7 @@
   
   <button id="cart-btn"><i class="material-icons">shopping_cart</i><span style="display:<%= displayCapacity%>"><%=capacity %></span></button>
   
+  <!-- Populate each category button with respective dropdown information  -->
   <ul id="category-btns">
     <li><span>Grain</span><i class="material-icons">expand_more</i>
     	<div class="category-dropdown-container">
@@ -119,7 +120,8 @@
     
   </ul>
 </div>
-      
+
+<!-- A div to hold the shopping cart popup elements (popup.jsp) when retrieved via AJAX -->      
 <div id="popup">
 
 </div>

@@ -25,20 +25,24 @@
 <body>
 	
 	<%
-	
+	// this prevents this page to be cached; thus, after logging out, can't be accessed by "back" button
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	
+	// if a user didn't log in (i.e. user is null), then this page cannot be accessed (by url) so redirect to login.jsp
 	if (session.getAttribute("user") == null) {
 		response.sendRedirect("login.jsp");
 		return;
 	}
 	%>
 	
-	<%@ include file="navigation.jsp"%>
+	<%@ include file="navigation.jsp"%> <!-- Fixed top area -->
 	
 <h1 id="content-title">Home</h1>
 <div id="contents">
-<% if (shoppingCart == null || shoppingCart.isEmpty()) { %>
+<% 
+	// if shopping cart is empty/not empty, show respective message
+
+	if (shoppingCart == null || shoppingCart.isEmpty()) { %>
 	 <h1 id="welcome-message">
 	 Looks like your list is empty. 
 	 Use the categories or search for some groceries to make a shopping list. 
@@ -56,7 +60,11 @@
 	 <% } %>
 </div>
 
-<% if (!((Boolean)session.getAttribute("loadPopupShown")) && user.isReturning()) { %>
+<% 
+	// if loadPopupShown is not true (i.e. the load cart popup hasnt already been shown) and user is a returning user
+	// then display the popup
+
+if (!((Boolean)session.getAttribute("loadPopupShown")) && user.isReturning()) { %>
 <div id="popup-load">
   <div id="popup-load-container">
     <h1 id="popup-cart-title">Load Previous Cart?</h1>
@@ -77,7 +85,7 @@
 </div>
     
 <% 
-session.setAttribute("loadPopupShown", true);
+session.setAttribute("loadPopupShown", true); //set to true so that the popup won't show if user comes back to this page
 }
 	
 %>
