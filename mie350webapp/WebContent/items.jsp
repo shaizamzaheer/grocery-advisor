@@ -79,7 +79,7 @@ for (Item item : items) {
 	      <span>In Cart</span>
 	    </div>
 	    
-	    <!-- Image for each item is displayed; each image was retrieved from walmart.ca -->
+	    <!-- Image for each item is displayed; each image was retrieved from walmart.ca (APA Citation displayed near bottom of this JSP) -->
 	    <!-- Each image file found in the img folder is named according to its respective itemID in the form "itemID.png"; e.g. the item with itemID of 4 would have a corresponding image file called "4.png" -->
 	  	<img src="img/<%= item.getItemID()%>.png" style="max-width: 100%; max-height: 100%; border-radius: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
 	  
@@ -95,8 +95,15 @@ for (Item item : items) {
 	  <button type="button" class="item-btn <%= deleteClass%>"><%= btnText %></button>
 	</div>
 	
-	<% } //end of for
-	} //end of if
+	<% } //end of for %>
+	
+	<!-- According to the APA Formatting and Style Guide from Purdue OWL (https://owl.english.purdue.edu/owl/resource/560/10/), -->
+	<!-- under the section 'Nonperiodical Web Document or Report', -->
+	<!-- "When an Internet document is more than one Web page, provide a URL that links to the home page or entry page for the document" -->
+	<!-- Thus, APA Citation for item images: Walmart.ca. (2017). Walmart.ca Grocery. Retrieved from https://www.walmart.ca/en/grocery  -->
+	<p id="citation">APA Citation for item images: Walmart.ca. (2017). <i>Walmart.ca Grocery</i>. Retrieved from <a href="https://www.walmart.ca/en/grocery">https://www.walmart.ca/en/grocery</a></p>
+	
+	<% } //end of if
 	
 	//if "items" IS empty, then display appropriate message
 	else { %>

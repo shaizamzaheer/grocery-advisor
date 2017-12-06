@@ -214,6 +214,18 @@ text-align: center;
   right: 45px;
 }
 
+#citation {
+	font-family: Abyssinica SIL;
+	font-style: normal;
+	font-weight: normal;
+	line-height: normal;
+	font-size: 16px;
+  
+  	color: white;
+ 
+  	padding: 0 36px;
+}
+
 @media screen and (max-width: 1400px) {
   
   #content-title {
